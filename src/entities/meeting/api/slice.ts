@@ -64,6 +64,23 @@ export const meetingsApi = createApi({
         body: { meeting_id, start_time, end_time },
       }),
     }),
+    setNewSlotMeeting: build.mutation<
+      void,
+      {
+        meeting_id: number;
+        slot_id: number;
+        date: number;
+        start_time: string;
+        end_time: string;
+      }
+    >({
+      //продление встречи и перенос встречи
+      query: ({ meeting_id, slot_id, date, start_time, end_time }) => ({
+        url: "/reschudale", //прописать endpoint !!!
+        method: "PATCH",
+        body: { meeting_id, slot_id, date, start_time, end_time },
+      }),
+    }),
   }),
 });
 
@@ -73,4 +90,5 @@ export const {
   useCreateMeetingMutation,
   useSetMeetingStatusMutation,
   useUpdateMeetingMutation,
+  useSetNewSlotMeetingMutation,
 } = meetingsApi;

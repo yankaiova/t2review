@@ -16,13 +16,17 @@ export const MeetingEdit = () => {
 
   return (
     <div key={"edit-meet" + id}>
-      <ExtendMeeting meeting_id={meeting_id} />
+      <ExtendMeeting meeting_id={meetingId} />
+      {/* перенести */}
       <BaseButton text="Продлить" onClick={rescheduleMeeting} />
+      {/* продлить */}
       <Rate
         id={meetingId}
         actions={<CompleteMeeting meeting_id={meetingId} />}
       />
+      {/* завершить и оценить */}
       <CancelMeeting meeting_id={meetingId} />
+      {/* отменить */}
     </div>
   );
 };

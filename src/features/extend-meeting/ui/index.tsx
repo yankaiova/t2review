@@ -9,21 +9,17 @@ import { useEffect, useState } from "react";
 import { Select, MenuItem } from "@mui/material";
 import { calculateEndTime } from "../../../shared/lib/helpers";
 import { meetingsApi } from "../../../entities/meeting";
-const timer: number[] = [30, 60];
+import { slotsApi } from "../../../entities/slot";
+import { timer } from "../../../shared/lib/constants";
+import { useSlot } from "../../../entities/slot";
 
-type PropsExtendMeeting = {
-  meeting_id: number;
-  date: string;
-  start_time: string;
-  end_time: string;
-};
-export const ExtendMeeting = ({
-  meeting_id,
-  date,
-  start_time,
-  end_time,
-}: PropsExtendMeeting) => {
-  const [updateEndTime, { isLoading }] = meetingsApi.useUpdateMeetingMutation();
+export const ExtendMeeting = ({ meeting_id }: { meeting_id: number }) => {
+  const { slotAtribiutes } = useSlot();
+  const { slot_id, date, start_time, end_time } = slotAtribiutes;
+
+  const [updateEndTime] = meetingsApi.useUpdateMeetingMutation();
+  const [updateSlotEndTime] = slotsApi.useUpdateSlotEndTimeMutation();
+
   const [time, setTime] = useState<number>(timer[0]);
   const [newEnd, setNewEnd] = useState<string>(end_time);
   const handleChangeTime = (event: any) => {
@@ -33,7 +29,9 @@ export const ExtendMeeting = ({
   useEffect(() => {
     const value = calculateEndTime(date, start_time, time);
     setNewEnd(value);
-    updateEndTime({ meeting_id, start_time, end_time: newEnd });
+    updateEndTime({ meeting_id, start_time, end_time: newEnd }).then(() =>
+      updateSlotEndTime({ slot_id: slot_id, end_time: newEnd })
+    );
   }, [time]);
 
   return (

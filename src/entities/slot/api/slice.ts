@@ -22,7 +22,36 @@ export const slotsApi = createApi({
           start_time,
           end_time,
           slot_type,
+          is_avalible: true,
         },
+      }),
+    }),
+    updateSlotAvalible: build.mutation<
+      void,
+      {
+        slot_id: number;
+        is_avalible: boolean;
+      }
+    >({
+      //слот недоступен теперь (занят)
+      query: ({ slot_id, is_avalible }) => ({
+        url: "/slot", //прописать endpoint !!!
+        method: "PATCH",
+        body: { slot_id, is_avalible },
+      }),
+    }),
+    updateSlotEndTime: build.mutation<
+      void,
+      {
+        slot_id: number;
+        end_time: string;
+      }
+    >({
+      //слот недоступен теперь (занят)
+      query: ({ slot_id, end_time }) => ({
+        url: "/slot", //прописать endpoint !!!
+        method: "PATCH",
+        body: { slot_id, end_time },
       }),
     }),
   }),
@@ -32,4 +61,6 @@ export const {
   useCreateSlotMutation,
   useGetAllSlotsQuery,
   useLazyGetSlotbyIdQuery,
+  useUpdateSlotAvalibleMutation,
+  useUpdateSlotEndTimeMutation,
 } = slotsApi;

@@ -1,9 +1,11 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-
-export const initialState = {
+type RecordState = {
+  chosenOptions: string[];
+  expert_id: number;
+};
+export const initialState: RecordState = {
   chosenOptions: [""],
   expert_id: 1,
-  slot: {},
 };
 
 export const recordSlice = createSlice({
@@ -19,12 +21,9 @@ export const recordSlice = createSlice({
     setExpert: (state, action) => {
       state.expert_id = action.payload;
     },
-    setSlot: (state, action) => {
-      state.slot = action.payload;
-    },
   },
 });
 
-export const { setChosenOptions, setSlot, setExpert } = recordSlice.actions;
+export const { setChosenOptions, setExpert } = recordSlice.actions;
 
 export default recordSlice.reducer;

@@ -1,4 +1,9 @@
-import { FormControl, Typography, Switch } from "@mui/material";
+import {
+  FormControl,
+  Typography,
+  Switch,
+  SelectChangeEvent,
+} from "@mui/material";
 import { useCalendar } from "../../../entities/calendar/lib/hook";
 import {
   BaseButton,
@@ -7,38 +12,36 @@ import {
   BaseBoxContainer,
 } from "../../../shared/ui";
 import { Select, MenuItem } from "@mui/material";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { slotsApi } from "../../../entities/slot";
 import { calculateEndTime, dateView } from "../../../shared/lib/helpers";
+import { timer, startSlots } from "../../../shared/lib/constants";
+import { style } from "./styles";
+import { AuthContext } from "../../../shared/context";
 
 export const AddSlot = () => {
-  const style = { display: "flex", flexDirection: "column", gap: "15px" };
-  const startSlots = [
-    "12:00",
-    "12:30",
-    "13:00",
-    "13:30",
-    "14:00",
-    "14:30",
-    "15:00",
-  ];
-  const timer: number[] = [30, 60];
+  const { user_id } = useContext(AuthContext);
+  const [createNewSlot] = slotsApi.useCreateSlotMutation();
+
   const { date } = useCalendar();
   const dateV = dateView(date);
-  const [startTime, setStartTime] = useState<string>(startSlots[0]);
-  const handleChangeStart = (event: any) => {
-    setStartTime(event.target.value);
+
+  const createSlot = () => {
+    createNewSlot({
+      user_id: user_id,
+      start_time: startTime,
+      end_time: endTime,
+      slot_type: checked ? "offline" : "online",
+    });
   };
 
+  const [startTime, setStartTime] = useState<string>(startSlots[0]);
+  const [checked, setChecked] = useState<boolean>(false);
+  const [endTime, setEndTime] = useState<string>(startTime);
   const [time, setTime] = useState<number>(timer[0]);
   const handleChangeTime = (event: any) => {
     setTime(event.target.value);
   };
-  const [checked, setChecked] = useState<boolean>(false);
-
-  const handleCheck = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setChecked(event.target.checked);
-  };
-  const [endTime, setEndTime] = useState<string>(startTime);
 
   useEffect(() => {
     const t = calculateEndTime(JSON.parse(date), startTime, time);
@@ -63,7 +66,9 @@ export const AddSlot = () => {
             <Select
               id="slot-add-select"
               value={startTime}
-              onChange={handleChangeStart}
+              onChange={(e: SelectChangeEvent<string>) =>
+                setStartTime(e.target.value)
+              }
             >
               {startSlots.map((item: string) => (
                 <MenuItem key={"slot" + item} value={item}>
@@ -88,14 +93,17 @@ export const AddSlot = () => {
           </Select>
         </BaseBoxContainer>
         <BaseBoxContainer>
+          <BaseTypography>online</BaseTypography>
           <Switch
             checked={checked}
-            onChange={handleCheck}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setChecked(e.target.checked)
+            }
             inputProps={{ "aria-label": "controlled" }}
           />
-          <Typography>{checked === true ? "offline" : "online"}</Typography>
+          <BaseTypography>offline</BaseTypography>
         </BaseBoxContainer>
-        <BaseButton text="Сохранить" />
+        <BaseButton text="Сохранить" onClick={createSlot} />
       </FormControl>
     </BaseModal>
   );
