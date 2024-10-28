@@ -3,17 +3,10 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { Stack, Box } from "@mui/material";
 import { BaseButton, BaseLink } from "../../../shared/ui";
+import { style } from "./styles";
 import iconLogo from "../../../assets/Т1 Интеграция 1 1.svg";
 
 export const Header = () => {
-  const style = {
-    margin: "20px 5rem",
-    display: "flex",
-    flexWrap: "wrap",
-    alignItems: "center",
-    justifyContent: "space-between",
-  };
-
   const { user_id, role, setRole } = useContext(AuthContext);
 
   const ContentForAuthUser = () => {

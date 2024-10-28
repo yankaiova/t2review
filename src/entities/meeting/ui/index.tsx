@@ -2,6 +2,7 @@ import { Button, Typography, Stack } from "@mui/material";
 import { BaseLink } from "../../../shared/ui";
 import { useNavigate } from "react-router-dom";
 import { Meeting } from "../../../shared/model/types";
+import { style } from "./styles";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 
 export const MeetingItem = ({ meeting }: { meeting: Meeting }) => {
@@ -10,12 +11,7 @@ export const MeetingItem = ({ meeting }: { meeting: Meeting }) => {
     navigate(`/meeting/${meeting.meeting_id}/edit`);
   };
   return (
-    <Stack
-      direction="row"
-      alignItems="center"
-      justifyContent="space-between"
-      marginBottom="10px"
-    >
+    <Stack sx={style}>
       <Typography variant="body1" color="secondary.main">
         {String(meeting.start_time).slice(-5)} -
         {String(meeting.end_time).slice(-5)}
