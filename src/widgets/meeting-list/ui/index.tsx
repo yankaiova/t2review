@@ -1,7 +1,7 @@
 import { Meeting } from "../../../shared/model/types";
-import { useCalendar } from "../../../entities/slot/lib/useCalendar";
+import { useCalendar } from "../../../entities/calendar";
 import { MeetingItem } from "../../../entities/meeting";
-import dayjs from "dayjs";
+import { meetings } from "../../../mocks";
 
 export const MeetingList = () => {
   const { date } = useCalendar();

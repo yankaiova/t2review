@@ -9,6 +9,5 @@ export function calculateEndTime(
     .minute(Number(startTime.slice(3, 5)))
     .second(0);
   const temp = newDateTime.add(time, "minutes").minute();
-  const minutesEnd = temp < 10 ? "0" + temp : temp;
-  return newDateTime.add(time, "minutes").hour() + ":" + minutesEnd;
+  return dayjs(temp).format("DD-MM-YYYY");
 }

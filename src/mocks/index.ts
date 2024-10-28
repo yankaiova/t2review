@@ -10,7 +10,7 @@ type Expert = {
   role: string;
   comp: string;
 };
-const meetings: Meeting[] = [
+export const meetings = [
   {
     meeting_id: 1,
     expert_id: 23,

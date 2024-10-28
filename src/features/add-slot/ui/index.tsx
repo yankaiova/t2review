@@ -1,5 +1,5 @@
 import { FormControl, Typography, Switch } from "@mui/material";
-import { useCalendar } from "../../../entities/slot/lib/useCalendar";
+import { useCalendar } from "../../../entities/calendar/lib/hook";
 import {
   BaseButton,
   BaseModal,

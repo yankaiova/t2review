@@ -1,7 +1,7 @@
-import { useCalendar } from "../../../entities/slot/lib/useCalendar";
+import { useCalendar } from "../../../entities/calendar/lib/hook";
 import { Slot } from "../../../shared/model/types";
 import { Record } from "../../../entities/record";
-import { useRecord } from "../../../entities/record/lib/useRecord";
+import { useRecord } from "../../../entities/record/lib/hooks";
 const slots: Slot[] = [];
 export const RecordsByExpert = () => {
   const { date } = useCalendar();

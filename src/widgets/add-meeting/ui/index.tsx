@@ -1,23 +1,36 @@
 import { Typography, FormControl } from "@mui/material";
-import { BaseButton } from "../../../shared/ui";
-import { SlotCard } from "../../../entities/slot";
+import {
+  BaseButton,
+  BaseBoxContainer,
+  BaseTypography,
+} from "../../../shared/ui";
+import { useSlotByRecord } from "../../../entities/record";
 import { useState } from "react";
 import { TextField } from "@mui/material";
-import { Materials } from "../../../features/set-materials";
+import { Materials } from "../../set-materials";
+import { style } from "./styles";
 
 export const AddMeeting = () => {
-  const style = { display: "flex", flexDirection: "column", gap: "15px" };
+  const { slot } = useSlotByRecord();
   const [materials, setMaterials] = useState<string[]>([]);
   return (
     <>
-      <SlotCard
-        slot={{
-          id: 1,
-          date: "12.10.2024",
-          start_time: "12:00",
-          end_time: "13:00",
-        }}
-      />
+      <BaseBoxContainer>
+        <Typography variant="h5" component="div" color="text.main">
+          День
+        </Typography>
+        <Typography variant="h5" component="div" color="text.main">
+          {slot.date}
+        </Typography>
+      </BaseBoxContainer>
+      <BaseBoxContainer>
+        <BaseTypography>Начало</BaseTypography>
+        <BaseTypography>{slot.start_time}</BaseTypography>
+      </BaseBoxContainer>
+      <BaseBoxContainer>
+        <BaseTypography>Конец</BaseTypography>
+        <BaseTypography>{slot.end_time}</BaseTypography>
+      </BaseBoxContainer>
       <Typography color="#2FB3FF">Встреча онлайн на 60 минут</Typography>
       <FormControl sx={style}>
         <Materials materials={materials} setMaterials={setMaterials} />

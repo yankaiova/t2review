@@ -40,29 +40,28 @@ export const meetingsApi = createApi({
     }),
     setMeetingStatus: build.mutation<
       void,
-      { meetingId: string; status: string }
+      { meeting_id: number; status: string }
     >({
       //изменение статуса встречи
-      query: ({ meetingId, status }) => ({
+      query: ({ meeting_id, status }) => ({
         url: "/status", //прописать endpoint !!!
         method: "PATCH",
-        body: { meetingId, status }, //при завершении встречи - completed, при удалении встречи - canceled
+        body: { meeting_id, status }, //при завершении встречи - completed, при удалении встречи - canceled
       }),
     }),
     updateMeeting: build.mutation<
       void,
       {
-        meetingId: string;
-        slot_id: number;
+        meeting_id: number;
         start_time: string;
         end_time: string;
       }
     >({
       //продление встречи и перенос встречи
-      query: ({ meetingId, slot_id, start_time, end_time }) => ({
+      query: ({ meeting_id, start_time, end_time }) => ({
         url: "/extend", //прописать endpoint !!!
         method: "PATCH",
-        body: { meetingId, slot_id, start_time, end_time },
+        body: { meeting_id, start_time, end_time },
       }),
     }),
   }),
