@@ -1,0 +1,1 @@
+export { DeleteSlot } from "./ui";
