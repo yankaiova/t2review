@@ -4,8 +4,9 @@ import { useState } from "react";
 
 type PropsRate = {
   id: number;
+  actions: React.ReactElement;
 };
-export const Rate = ({ id }: PropsRate) => {
+export const Rate = ({ id, actions }: PropsRate) => {
   const [value, setValue] = useState<number | null>(5);
   const setRating = (e: React.SyntheticEvent, newValue: number | null) => {
     setValue(newValue);
@@ -17,6 +18,7 @@ export const Rate = ({ id }: PropsRate) => {
       <Box sx={{ "& > legend": { mt: 2 } }}>
         <Typography component="legend">Oцените встречу</Typography>
         <Rating name="simple-controlled" value={value} onChange={setRating} />
+        {actions}
       </Box>
     </BaseModal>
   );

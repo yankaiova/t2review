@@ -1,6 +1,7 @@
 import { Button, Typography, Stack } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { Slot } from "../../../shared/model/types";
+import { style } from "./styles";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 
 type PropsSlotItem = { slot: Slot; actions?: React.ReactNode };
@@ -11,7 +12,7 @@ export const SlotItem = ({ slot, actions }: PropsSlotItem) => {
   };
 
   return (
-    <Stack direction="row" alignItems="center" justifyContent="space-between">
+    <Stack sx={style}>
       <Typography variant="body2" color="text.secondary">
         {String(slot.start_time)} - {String(slot.end_time)}
       </Typography>

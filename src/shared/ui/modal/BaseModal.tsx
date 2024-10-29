@@ -1,24 +1,28 @@
-import { Modal } from "@mui/material";
+import { Modal, Box } from "@mui/material";
 import { BaseBox } from "../box/BaseBox";
-import { useState } from "react";
-import { BaseButton } from "..";
-
+import CloseIcon from "@mui/icons-material/Close";
+import { modal, modalBig } from "./styles";
 type PropsBaseModal = {
-  eventName: string;
+  open: boolean;
+  handleClose: () => void;
   children?: React.ReactNode;
+  isUseDefaultStyles?: boolean;
 };
 
-export function BaseModal({ eventName, children }: PropsBaseModal) {
-  const [open, setOpen] = useState<boolean>(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
+export function BaseModal({
+  children,
+  isUseDefaultStyles = true,
+  open,
+  handleClose,
+}: PropsBaseModal) {
   return (
-    <div>
-      <BaseButton text={eventName} onClick={handleOpen} />
+    <Box>
       <Modal open={open} onClose={handleClose}>
-        <BaseBox>{children}</BaseBox>
+        <Box sx={[isUseDefaultStyles && modal, !!modalBig && modalBig]}>
+          <CloseIcon onClick={handleClose} />
+          <BaseBox>{children}</BaseBox>
+        </Box>
       </Modal>
-    </div>
+    </Box>
   );
 }

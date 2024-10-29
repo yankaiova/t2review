@@ -1,15 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
-import dayReducer from "../../entities/slot/model/slice";
+import recordReducer from "../../entities/slot/model/slice";
 export const store = configureStore({
   reducer: {
-    day: dayReducer,
+    record: recordReducer,
+    // [slotsApi.reducerPath]: slotsApi.reducer,
     // history: historyReducer,
     // [productApi.reducerPath]: productApi.reducer,
   },
 
   middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
-  //   .concat(productApi.middleware)
+  // .concat(slotsApi.middleware),
   //   .prepend(
   //     listenerMiddlewareHistory.middleware,
   //     listenerMiddlewareFavorites.middleware

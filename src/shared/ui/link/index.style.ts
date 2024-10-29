@@ -4,5 +4,5 @@ export const style = {
   fontWeight: "400",
   lineHeight: "26.56px",
   color: "#2FB3FF",
-  underline: "none",
+  textDecorationLine: "none",
 };
