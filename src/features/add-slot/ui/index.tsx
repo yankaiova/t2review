@@ -19,7 +19,13 @@ import { timer, startSlots } from "../../../shared/lib/constants";
 import { style } from "./styles";
 import { AuthContext } from "../../../shared/context";
 
-export const AddSlot = () => {
+export const AddSlot = ({
+  isModal,
+  closeModal,
+}: {
+  isModal: boolean;
+  closeModal: () => void;
+}) => {
   const { user_id } = useContext(AuthContext);
   const [createNewSlot] = slotsApi.useCreateSlotMutation();
 
@@ -42,14 +48,16 @@ export const AddSlot = () => {
   const handleChangeTime = (event: any) => {
     setTime(event.target.value);
   };
-
+  const handleCloseModal = () => {
+    closeModal();
+  };
   useEffect(() => {
     const t = calculateEndTime(JSON.parse(date), startTime, time);
     setEndTime(t);
   }, [time, startTime]);
 
   return (
-    <BaseModal eventName="добавить слот">
+    <BaseModal isModal={isModal} handleModalClose={handleCloseModal}>
       <FormControl sx={style}>
         <BaseBoxContainer>
           <Typography variant="h5" component="div" color="text.main">
