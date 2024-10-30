@@ -1,30 +1,21 @@
-import { Card, CardContent, CardActions, Typography } from "@mui/material";
-import {
-  BaseButton,
-  BaseBoxContainer,
-  BaseTypography,
-} from "../../../shared/ui";
-
-export const Record = ({ slot, handleClick }: any) => {
+import { Card, CardContent, CardActions } from "@mui/material";
+import { BaseButton, BaseCard } from "../../../shared/ui";
+import { BaseSlot } from "../../../shared/model/types";
+type PropsRecord = {
+  slot: BaseSlot;
+  handleClick: () => void;
+};
+export const Record = ({ slot, handleClick }: PropsRecord) => {
   return (
     <Card>
       <CardContent>
-        <BaseBoxContainer>
-          <Typography variant="h5" component="div" color="text.main">
-            День
-          </Typography>
-          <Typography variant="h5" component="div" color="text.main">
-            {slot.date}
-          </Typography>
-        </BaseBoxContainer>
-        <BaseBoxContainer>
-          <BaseTypography>Начало</BaseTypography>
-          <BaseTypography>{slot.start_time}</BaseTypography>
-        </BaseBoxContainer>
-        <BaseBoxContainer>
-          <BaseTypography>Конец</BaseTypography>
-          <BaseTypography>{slot.end_time}</BaseTypography>
-        </BaseBoxContainer>
+        <BaseCard
+          slot={{
+            date: slot.date,
+            start_time: slot.start_time,
+            end_time: slot.end_time,
+          }}
+        />
       </CardContent>
       <CardActions>
         <BaseButton text="Записаться" onClick={handleClick} />

@@ -1,7 +1,7 @@
 import { Stack } from "@mui/material";
-import { BaseButton, BaseTypography } from "../../../shared/ui";
+import { BaseButton, BaseTypography } from "@/shared/ui";
 import { Link } from "react-router-dom";
-import pictureMain from "../../../assets/192cc1c0909911efab591690387607a1 1.png";
+import pictureMain from "@/assets/192cc1c0909911efab591690387607a1 1.png";
 
 export const HomePage = () => {
   return (
@@ -50,9 +50,9 @@ export const HomePage = () => {
           gap="1rem"
           marginTop="30px"
         >
-          {/* <Link to="/search">
-            <BaseButton text="Найти эксперта" />
-          </Link> */}
+          <Link to={`/expert/${2}`}>
+            <BaseButton text="Найти слот" />
+          </Link>
           <Link to="/calendar">
             <BaseButton text=" Хочу помогать" />
           </Link>

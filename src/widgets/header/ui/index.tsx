@@ -1,10 +1,10 @@
-import { AuthContext } from "../../../shared/context";
+import { AuthContext } from "@/shared/context";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { Stack, Box } from "@mui/material";
-import { BaseButton, BaseLink } from "../../../shared/ui";
+import { BaseButton, BaseLink } from "@/shared/ui";
 import { style } from "./styles";
-import iconLogo from "../../../assets/Т1 Интеграция 1 1.svg";
+import iconLogo from "@/assets/Т1 Интеграция 1 1.svg";
 
 export const Header = () => {
   const { user_id, role, setRole } = useContext(AuthContext);

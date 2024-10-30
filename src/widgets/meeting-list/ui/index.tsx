@@ -1,7 +1,7 @@
-import { Meeting } from "../../../shared/model/types";
-import { useCalendar } from "../../../entities/calendar";
-import { MeetingItem } from "../../../entities/meeting";
-import { meetings } from "../../../mocks";
+import { Meeting } from "@/shared/model/types";
+import { useCalendar } from "@/entities/calendar";
+import { MeetingItem } from "@/entities/meeting";
+import { meetings } from "@/mocks";
 
 export const MeetingList = () => {
   const { date } = useCalendar();

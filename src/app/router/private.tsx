@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../../shared/context";
+import { AuthContext } from "@/shared/context";
 
 type props = { children: React.ReactNode };
 

@@ -1,5 +1,5 @@
 import { List, ListItem, Divider, Typography } from "@mui/material";
-import { BaseButton } from "../../../shared/ui";
+import { BaseButton } from "@/shared/ui";
 import { useDialogs } from "@toolpad/core/useDialogs";
 
 type PropsMaterials = {
