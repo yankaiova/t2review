@@ -1,12 +1,12 @@
 import { Typography, FormControl } from "@mui/material";
-import { BaseButton, BaseCard } from "../../../shared/ui";
-import { useSlotByRecord } from "../../../entities/record";
+import { BaseButton, BaseCard } from "@/shared/ui";
+import { useSlotByRecord } from "@/entities/record";
 import { useState } from "react";
 import { TextField } from "@mui/material";
-import { Materials } from "../../set-materials";
+import { Materials } from "@/widgets/set-materials";
 import { style } from "./styles";
-import { slotsApi } from "../../../entities/slot";
-import { meetingsApi } from "../../../entities/meeting";
+import { slotsApi } from "@/entities/slot";
+import { meetingsApi } from "@/entities/meeting";
 
 export const AddMeeting = () => {
   const [createNewMeeting] = meetingsApi.useCreateMeetingMutation();

@@ -23,7 +23,8 @@ export const Filters = () => {
     border: "1px solid white",
     borderRadius: "0",
   };
-  const [competention, setCompetetion] = useState(competentions);
+  const [competention, setCompetetion] =
+    useState<{ name: string; checked: boolean }[]>(competentions);
   const [role, setRole] = useState<string>("");
   const handleChangeRole = (e) => {
     setRole(e.target.value);

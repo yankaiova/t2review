@@ -1,5 +1,5 @@
 import { createSelector } from "@reduxjs/toolkit";
-import { RootState } from "../../../app/model/store";
+import { RootState } from "@/app/model/store";
 
 export const getDay = (state: RootState) => state.day;
 

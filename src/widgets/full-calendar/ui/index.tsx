@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import { Typography } from "@mui/material";
-import { AuthContext } from "../../../shared/context";
-import { MeetingList } from "../../meeting-list";
-import { SlotList } from "../../slot-list";
-import { Calendar } from "../../../entities/calendar";
-import { AddSlot } from "../../../features/add-slot";
+import { AuthContext } from "@/shared/context";
+import { MeetingList } from "@/widgets/meeting-list";
+import { SlotList } from "@/widgets/slot-list";
+import { Calendar } from "@/entities/calendar";
+import { AddSlot } from "@/features/add-slot";
 import { Stack } from "@mui/material";
 import { Box } from "@mui/system";
 

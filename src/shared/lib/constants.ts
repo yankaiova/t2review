@@ -5,7 +5,8 @@ export const roles: string[] = [
   "Системный администратор (System Administrator)",
   "Технический писатель (TechnivalWriter)",
 ];
-export const competentions: { name: string; checked: false }[] = [
+type FilterCompetention = { name: string; checked: boolean };
+export const competentions: FilterCompetention[] = [
   { name: "Junior", checked: false },
   { name: "Middle", checked: false },
   { name: "Senior", checked: false },

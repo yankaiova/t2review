@@ -1,7 +1,7 @@
-import { useCalendar } from "../../../entities/calendar/lib/hook";
-import { Slot } from "../../../shared/model/types";
-import { SlotItem } from "../../../entities/slot";
-import { DeleteSlot } from "../../../features/delete-slot";
+import { useCalendar } from "@/entities/calendar/lib/hook";
+import { Slot } from "@/shared/model/types";
+import { SlotItem } from "@/entities/slot";
+import { DeleteSlot } from "@/features/delete-slot";
 
 const slots: Slot[] = [];
 export const SlotList = () => {

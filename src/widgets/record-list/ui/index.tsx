@@ -1,8 +1,8 @@
 import { useNavigate, useLocation } from "react-router-dom";
-import { meetingsApi } from "../../../entities/meeting";
-import { Slot } from "../../../shared/model/types";
-import { Record } from "../../../entities/record";
-import { useSlot } from "../../../entities/slot";
+import { meetingsApi } from "@/entities/meeting";
+import { Slot } from "@/shared/model/types";
+import { Record } from "@/entities/record";
+import { useSlot } from "@/entities/slot";
 
 const slots: Slot[] = [];
 export const RecordsByExpert = () => {

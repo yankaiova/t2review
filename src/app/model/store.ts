@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
-import recordReducer from "../../entities/slot/model/slice";
+import recordReducer from "@/entities/record/model/slice";
 export const store = configureStore({
   reducer: {
     record: recordReducer,
