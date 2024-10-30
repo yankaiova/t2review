@@ -1,6 +1,6 @@
 import { Card, CardContent, CardActions } from "@mui/material";
-import { BaseButton, BaseCard } from "../../../shared/ui";
-import { BaseSlot } from "../../../shared/model/types";
+import { BaseButton, BaseCard } from "@/shared/ui";
+import { BaseSlot } from "@/shared/model/types";
 type PropsRecord = {
   slot: BaseSlot;
   handleClick: () => void;

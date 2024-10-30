@@ -3,7 +3,7 @@ import { SearchForm } from "@/features/search";
 import { Filters } from "@/features/filters";
 import { ExpertList } from "@/widgets/expert-list";
 import { Stack } from "@mui/system";
-import { AddMeeting } from "../../../widgets/add-meeting";
+import { AddMeeting } from "@/widgets/add-meeting";
 export const SearchPage = () => {
   return (
     <Container>

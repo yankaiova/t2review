@@ -1,17 +1,12 @@
 import { Typography, FormControl } from "@mui/material";
-import {
-  BaseButton,
-  BaseBoxContainer,
-  BaseModal,
-  BaseCard,
-} from "../../../shared/ui";
+import { BaseButton, BaseBoxContainer, BaseModal, BaseCard } from "@/shared/ui";
 import { useEffect, useState } from "react";
 import { Select, MenuItem } from "@mui/material";
-import { calculateEndTime } from "../../../shared/lib/helpers";
-import { meetingsApi } from "../../../entities/meeting";
-import { slotsApi } from "../../../entities/slot";
-import { timer } from "../../../shared/lib/constants";
-import { useSlot } from "../../../entities/slot";
+import { calculateEndTime } from "@/shared/lib/helpers";
+import { meetingsApi } from "@/entities/meeting";
+import { slotsApi } from "@/entities/slot";
+import { timer } from "@/shared/lib/constants";
+import { useSlot } from "@/entities/slot";
 
 export const ExtendMeeting = ({ meeting_id }: { meeting_id: number }) => {
   const { slotAtribiutes } = useSlot();

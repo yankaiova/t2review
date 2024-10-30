@@ -5,8 +5,8 @@ import {
   Typography,
   Rating,
 } from "@mui/material";
-import { BaseBoxContainer, BaseTypography } from "../../../shared/ui";
-import iconUser from "../../assets/User.png";
+import { BaseBoxContainer, BaseTypography } from "@/shared/ui";
+import iconUser from "@/assets/User.png";
 
 interface Expert {
   id_expert: number;

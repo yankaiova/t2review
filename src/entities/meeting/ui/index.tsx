@@ -1,7 +1,7 @@
 import { Button, Typography, Stack } from "@mui/material";
-import { BaseLink } from "../../../shared/ui";
+import { BaseLink } from "@/shared/ui";
 import { useNavigate } from "react-router-dom";
-import { Meeting } from "../../../shared/model/types";
+import { Meeting } from "@/shared/model/types";
 import { style } from "./styles";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 

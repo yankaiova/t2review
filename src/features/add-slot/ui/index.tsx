@@ -4,20 +4,20 @@ import {
   Switch,
   SelectChangeEvent,
 } from "@mui/material";
-import { useCalendar } from "../../../entities/calendar/lib/hook";
+import { useCalendar } from "@/entities/calendar/lib/hook";
 import {
   BaseButton,
   BaseModal,
   BaseTypography,
   BaseBoxContainer,
-} from "../../../shared/ui";
+} from "@/shared/ui";
 import { Select, MenuItem } from "@mui/material";
 import { useState, useEffect, useContext } from "react";
-import { slotsApi } from "../../../entities/slot";
-import { calculateEndTime, dateView } from "../../../shared/lib/helpers";
-import { timer, startSlots } from "../../../shared/lib/constants";
+import { slotsApi } from "@/entities/slot";
+import { calculateEndTime, dateView } from "@/shared/lib/helpers";
+import { timer, startSlots } from "@/shared/lib/constants";
 import { style } from "./styles";
-import { AuthContext } from "../../../shared/context";
+import { AuthContext } from "@/shared/context";
 
 export const AddSlot = ({
   isModal,

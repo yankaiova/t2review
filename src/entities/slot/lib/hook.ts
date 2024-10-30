@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { setSlot } from "../../slot/model/slice";
+import { setSlot } from "../model/slice";
 import { useCallback } from "react";
 import { getSlot } from "../model/selectors";
 

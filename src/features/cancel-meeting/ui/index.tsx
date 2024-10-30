@@ -1,7 +1,7 @@
-import { BaseButton } from "../../../shared/ui";
-import { meetingsApi } from "../../../entities/meeting";
-import { slotsApi } from "../../../entities/slot";
-import { useSlot } from "../../../entities/slot";
+import { BaseButton } from "@/shared/ui";
+import { meetingsApi } from "@/entities/meeting";
+import { slotsApi } from "@/entities/slot";
+import { useSlot } from "@/entities/slot";
 
 export const CancelMeeting = ({ meeting_id }: { meeting_id: number }) => {
   const { slotAtribiutes } = useSlot();

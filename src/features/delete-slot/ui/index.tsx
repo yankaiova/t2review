@@ -1,4 +1,4 @@
-import { BaseButton } from "../../../shared/ui";
+import { BaseButton } from "@/shared/ui";
 
 export const DeleteSlot = ({ slot_id }: { slot_id: number }) => {
   const deleteSlot = () => {};
