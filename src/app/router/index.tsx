@@ -1,12 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Layout } from "../../widgets/layout/ui";
 import { CalendarPage } from "../../pages/calendar";
-import { MeetingEditPage } from "@/pages/meeting-edit";
-import { SearchPage } from "@/pages/search";
 import { HomePage } from "@/pages/main";
 import { PrivateRoute } from "./private";
 import { CreatePage } from "@/pages/create-meeting";
 import { SearchExpertPage } from "@/pages/search-by-expert";
+import { MeetingDetail } from "@/pages/meeting-detail/ui";
 
 export const routes = createBrowserRouter([
   {
@@ -26,25 +25,24 @@ export const routes = createBrowserRouter([
       //       <SearchPage />
       //     </PrivateRoute>
       //   ),
-      //   children: [
-      //     {
-      //       path: "/expert/:id",
-      //       element: (
-      //         <PrivateRoute>
-      //           <SearchExpertPage />
-      //         </PrivateRoute>
-      //       ),
-      //     },
-      //   ],
       // },
+      //   children: [
       // {
-      //   path: "/meeting/create",
+      //   path: "/expert/:id",
       //   element: (
       //     <PrivateRoute>
-      //       <CreatePage />
+      //       <SearchExpertPage />
       //     </PrivateRoute>
       //   ),
       // },
+      {
+        path: "/meetings/create",
+        element: (
+          <PrivateRoute>
+            <CreatePage />
+          </PrivateRoute>
+        ),
+      },
       {
         path: "/calendar",
         element: (
@@ -53,23 +51,22 @@ export const routes = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-
-      // {
-      //   path: "/meeting/:id/edit",
-      //   element: (
-      //     <PrivateRoute>
-      //       <MeetingEditPage />
-      //     </PrivateRoute>
-      //   ),
-      // },
-      // {
-      //   path: "/meeting/:id/reschudale",
-      //   element: (
-      //     <PrivateRoute>
-      //       <SearchExpertPage />
-      //     </PrivateRoute>
-      //   ),
-      // },
+      {
+        path: "/meeting/:id",
+        element: (
+          <PrivateRoute>
+            <MeetingDetail />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/meeting/:id/reschudale",
+        element: (
+          <PrivateRoute>
+            <SearchExpertPage />
+          </PrivateRoute>
+        ),
+      },
     ],
   },
 ]);

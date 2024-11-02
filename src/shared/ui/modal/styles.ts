@@ -10,6 +10,7 @@ export const modal = {
   width: "400px",
   height: "320px",
   padding: "40px",
+  borderRadius: "10px",
 };
 export const modalBig = {
   position: "absolute",
@@ -24,4 +25,9 @@ export const modalBig = {
   maxWidth: "1000px",
   height: "80vh",
   padding: "40px",
+};
+export const iconButton = {
+  position: "absolute",
+  top: "20px",
+  right: "20px",
 };

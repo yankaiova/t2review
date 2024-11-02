@@ -6,15 +6,11 @@ import { BaseButton, BaseLink } from "@/shared/ui";
 import { style } from "./styles";
 import iconLogo from "@/assets/Т1 Интеграция 1 1.svg";
 
+const LinkToAuthStartPage = ({ text }: { text: string }) => {
+  return <BaseLink text={text} path="/calendar" />;
+};
 export const Header = () => {
   const { user_id, role, setRole } = useContext(AuthContext);
-
-  const ContentForAuthUser = () => {
-    if (role === "expert") {
-      return <BaseLink text="Мне нужная помощь" path="#" />;
-    }
-    return <BaseLink text="Хочу помогать" path="#" />;
-  };
 
   return (
     <Box sx={style}>
@@ -23,15 +19,20 @@ export const Header = () => {
           <img src={iconLogo} alt="" />
         </Link>
         <BaseLink text="Сервисы T1" path="#" />
-        {user_id ? (
+        {!!user_id ? (
           <>
-            <BaseLink text="Хочу помогать" path="#" />
-            <BaseLink text="Мне нужна помощь" path="#" />
+            <LinkToAuthStartPage text="Хочу помогать" />
+            <LinkToAuthStartPage text="Мне нужна помощь" />
           </>
         ) : (
           <>
-            <ContentForAuthUser />
+            <BaseButton
+              text={role === "expert" ? "Хочу помогать" : "Мне нужна помощь"}
+            />
             <BaseLink text="Календарь" path={"/calendar"} />
+            {role === "client" && (
+              <BaseLink text="Найти эксперта" path={"/search"} />
+            )}
           </>
         )}
       </Stack>

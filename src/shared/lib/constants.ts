@@ -39,7 +39,7 @@ export const expertises: string[] = [
   "Внутренняя документация",
 ];
 
-export const timer: number[] = [30, 60, 90, 120];
+export const timer: number[] = [0, 30, 60, 90, 120];
 export const startSlots = [
   "12:00",
   "12:30",
