@@ -6,11 +6,15 @@ export const slotsApi = createApi({
 
   endpoints: (build) => ({
     getAllSlots: build.query<Slot[], void>({
-      query: () => `/meetings`,
+      query: () => `/slots`,
     }),
     getSlotbyId: build.query<Slot, number>({
       //получение встречи по id
-      query: (id) => `/meetings/${id}`,
+      query: (id) => `/slots/${id}`,
+    }),
+    getSlotbyExpertId: build.query<Slot, number>({
+      //получение встречи по id
+      query: (id) => `/slots/expert/${id}`,
     }),
     createSlot: build.mutation<Slot, Slot>({
       //добавление - создание слота

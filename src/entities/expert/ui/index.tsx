@@ -5,8 +5,9 @@ import {
   Typography,
   Rating,
 } from "@mui/material";
-import { BaseBoxContainer, BaseTypography } from "../../../shared/ui";
-import iconUser from "../../assets/User.png";
+import { BaseBoxContainer, BaseTypography } from "@/shared/ui";
+import iconUser from "@/assets/User.png";
+import React from "react";
 
 interface Expert {
   id_expert: number;
@@ -14,10 +15,11 @@ interface Expert {
   role: string;
   competetion: string;
   mark: number;
+  description?: string;
 }
-type PropsCardExpert = { expert: Expert };
+type PropsCardExpert = { expert: Expert; children?: React.ReactNode };
 
-export const CardExpert = ({ expert }: PropsCardExpert) => {
+export const CardExpert = ({ expert, children }: PropsCardExpert) => {
   return (
     <Card sx={{ maxWidth: 400 }}>
       <CardContent>
@@ -35,9 +37,10 @@ export const CardExpert = ({ expert }: PropsCardExpert) => {
           <BaseTypography>{expert.competetion}</BaseTypography>
         </BaseBoxContainer>
         <BaseBoxContainer>
-          <BaseTypography>Оценка</BaseTypography>
+          <BaseTypography>Оценка пользователей</BaseTypography>
           <Rating name="read-only" value={expert.mark} readOnly />
         </BaseBoxContainer>
+        {children}
       </CardContent>
     </Card>
   );

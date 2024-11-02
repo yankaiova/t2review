@@ -16,6 +16,7 @@ export type BaseSlot = {
   end_time: string;
 };
 export interface Slot {
+  slot_id: number;
   creator_id: number;
   date: string;
   start_time: string;

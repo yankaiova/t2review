@@ -1,5 +1,5 @@
-import { BaseButton } from "../../../shared/ui";
-import { meetingsApi } from "../../../entities/meeting";
+import { BaseButton } from "@/shared/ui";
+import { meetingsApi } from "@/entities/meeting";
 export const CompleteMeeting = ({ meeting_id }: { meeting_id: number }) => {
   const [updateStatus, { isLoading }] =
     meetingsApi.useSetMeetingStatusMutation();

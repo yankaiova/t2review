@@ -1,11 +1,11 @@
 import { Card, CardContent, CardActions } from "@mui/material";
-import { BaseButton, BaseCard } from "../../../shared/ui";
-import { BaseSlot } from "../../../shared/model/types";
+import { BaseCard } from "@/shared/ui";
+import { BaseSlot } from "@/shared/model/types";
 type PropsRecord = {
   slot: BaseSlot;
-  handleClick: () => void;
+  children: React.ReactNode;
 };
-export const Record = ({ slot, handleClick }: PropsRecord) => {
+export const Record = ({ slot, children }: PropsRecord) => {
   return (
     <Card>
       <CardContent>
@@ -17,9 +17,7 @@ export const Record = ({ slot, handleClick }: PropsRecord) => {
           }}
         />
       </CardContent>
-      <CardActions>
-        <BaseButton text="Записаться" onClick={handleClick} />
-      </CardActions>
+      <CardActions>{children}</CardActions>
     </Card>
   );
 };

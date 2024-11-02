@@ -2,12 +2,13 @@ import { useCalendar } from "@/entities/calendar/lib/hook";
 import { Slot } from "@/shared/model/types";
 import { SlotItem } from "@/entities/slot";
 import { DeleteSlot } from "@/features/delete-slot";
+import { BaseTypography } from "@/shared/ui";
 
 const slots: Slot[] = [];
 export const SlotList = () => {
   const { date } = useCalendar();
-  if (slots.length === 0) {
-    return <div style={{ marginBottom: "20px" }}>Нет слотов текущую дату</div>;
+  if (slots && slots.length === 0) {
+    return <BaseTypography>Нет слотов текущую дату</BaseTypography>;
   }
   return (
     <>
