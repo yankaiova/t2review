@@ -1,0 +1,1 @@
+export { DeleteMaterial } from "./ui";
