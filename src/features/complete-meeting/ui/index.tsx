@@ -3,9 +3,9 @@ import { meetingsApi } from "@/entities/meeting";
 export const CompleteMeeting = ({ meeting_id }: { meeting_id: number }) => {
   const [updateStatus, { isLoading }] =
     meetingsApi.useSetMeetingStatusMutation();
-  const cancelMeeting = () => {
+  const completeMeeting = () => {
     updateStatus({ meeting_id: meeting_id, status: "completed" });
   };
 
-  return <BaseButton text="Завершить" onClick={cancelMeeting} />;
+  return <BaseButton text="Завершить" onClick={completeMeeting} />;
 };

@@ -14,12 +14,12 @@ export const Rate = ({ id, actions }: PropsRate) => {
   };
 
   return (
-    <BaseModal eventName="Завершить встречу">
-      <Box sx={{ "& > legend": { mt: 2 } }}>
+    <BaseModal eventName="Завершить">
+      <>
         <Typography component="legend">Oцените встречу</Typography>
         <Rating name="simple-controlled" value={value} onChange={setRating} />
         {actions}
-      </Box>
+      </>
     </BaseModal>
   );
 };
