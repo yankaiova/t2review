@@ -1,26 +1,41 @@
-import { Modal, Box } from "@mui/material";
-import { BaseBox } from "../box/BaseBox";
+import { Modal, Box, MenuItem } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import { modal, modalBig } from "./styles";
+import { useState } from "react";
+import { modal, iconButton } from "./styles";
+import { BaseTypography } from "..";
 type PropsBaseModal = {
-  open: boolean;
-  handleClose: () => void;
+  eventName: string;
   children?: React.ReactNode;
-  isUseDefaultStyles?: boolean;
 };
 
-export function BaseModal({
-  children,
-  isUseDefaultStyles = true,
-  open,
-  handleClose,
-}: PropsBaseModal) {
+export function BaseModal({ children, eventName }: PropsBaseModal) {
+  const [isModal, setIsModal] = useState<boolean>(false);
+
+  const openModal = () => {
+    setIsModal(true);
+  };
+
+  const closeModal = () => {
+    setIsModal(false);
+  };
   return (
-    <Box>
-      <Modal open={open} onClose={handleClose}>
-        <Box sx={[isUseDefaultStyles && modal, !!modalBig && modalBig]}>
-          <CloseIcon onClick={handleClose} />
-          <BaseBox>{children}</BaseBox>
+    <Box component="div">
+      <MenuItem onClick={openModal}>
+        <BaseTypography>{eventName}</BaseTypography>
+      </MenuItem>
+      <Modal open={isModal} onClose={closeModal}>
+        <Box sx={modal}>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "20px",
+              alignItems: "center",
+            }}
+          >
+            {children}
+          </Box>
+          <CloseIcon onClick={closeModal} sx={iconButton} />
         </Box>
       </Modal>
     </Box>

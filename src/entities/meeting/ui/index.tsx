@@ -3,13 +3,13 @@ import { BaseLink } from "@/shared/ui";
 import { useNavigate } from "react-router-dom";
 import { Meeting } from "@/shared/model/types";
 import { style } from "./styles";
-import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 
-export const MeetingItem = ({ meeting }: { meeting: Meeting }) => {
-  const navigate = useNavigate();
-  const handleClickEdit = () => {
-    navigate(`/meeting/${meeting.meeting_id}/edit`);
-  };
+type PropsMeetingItem = {
+  meeting: Meeting;
+  children: React.ReactNode;
+};
+
+export const MeetingItem = ({ meeting, children }: PropsMeetingItem) => {
   return (
     <Stack sx={style}>
       <Typography variant="body1" color="text.info">
@@ -19,9 +19,7 @@ export const MeetingItem = ({ meeting }: { meeting: Meeting }) => {
         {meeting.meeting_status}
       </Typography>
       <BaseLink text="Подробнее" path={`/meeting/${meeting.meeting_id}`} />
-      <Button onClick={handleClickEdit}>
-        <EditOutlinedIcon />
-      </Button>
+      {children}
     </Stack>
   );
 };

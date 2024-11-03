@@ -1,41 +1,49 @@
 import { Typography, FormControl } from "@mui/material";
 import { BaseButton, BaseBoxContainer, BaseModal, BaseCard } from "@/shared/ui";
 import { useEffect, useState } from "react";
-import { Select, MenuItem } from "@mui/material";
+import { Select, MenuItem, SelectChangeEvent } from "@mui/material";
 import { calculateEndTime } from "@/shared/lib/helpers";
-import { meetingsApi } from "@/entities/meeting";
-import { slotsApi } from "@/entities/slot";
+//import { meetingsApi } from "@/entities/meeting";
+//import { slotsApi } from "@/entities/slot";ss
 import { timer } from "@/shared/lib/constants";
-import { useSlot } from "@/entities/slot";
+import { Meeting } from "@/shared/model/types";
 
-export const ExtendMeeting = ({ meeting_id }: { meeting_id: number }) => {
-  const { slotAtribiutes } = useSlot();
-  const { slot_id, date, start_time, end_time } = slotAtribiutes;
-
-  const [updateEndTime] = meetingsApi.useUpdateMeetingMutation();
-  const [updateSlotEndTime] = slotsApi.useUpdateSlotEndTimeMutation();
-
-  const [time, setTime] = useState<number>(timer[0]);
-  const [newEnd, setNewEnd] = useState<string>(end_time);
-  const handleChangeTime = (event: any) => {
-    setTime(event.target.value);
-  };
-
+type PropsExtendMeeting = { meeting: Meeting };
+export const ExtendMeeting = (props: PropsExtendMeeting) => {
+  const { meeting } = props;
+  // const [updateEndTime] = meetingsApi.useUpdateMeetingMutation();
+  // const [updateSlotEndTime] = slotsApi.useUpdateSlotEndTimeMutation();
+  const [time, setTime] = useState<string>(String(timer[0]));
+  const [newEnd, setNewEnd] = useState<string>(meeting.end_time);
   useEffect(() => {
-    const value = calculateEndTime(date, start_time, time);
-    setNewEnd(value);
-    updateEndTime({ meeting_id, start_time, end_time: newEnd }).then(() =>
-      updateSlotEndTime({ slot_id: slot_id, end_time: newEnd })
+    const value = calculateEndTime(
+      meeting.date,
+      meeting.end_time,
+      Number(time)
     );
+    setNewEnd(value);
+    // updateEndTime({ meeting_id, start_time, end_time: newEnd }).then(() =>
+    //   updateSlotEndTime({ slot_id: slot_id, end_time: newEnd })
+    // );
   }, [time]);
 
   return (
-    <BaseModal eventName="Продлить встречу">
-      <BaseCard slot={{ date, start_time, end_time }} />
+    <BaseModal eventName="Продлить">
+      <BaseCard
+        slot={{
+          date: meeting.date,
+          start_time: meeting.start_time,
+          end_time: newEnd,
+        }}
+      />
       <FormControl>
         <BaseBoxContainer>
           <Typography color="#2FB3FF">Продлить встречу на</Typography>
-          <Select id="slot-t-select" value={time} onChange={handleChangeTime}>
+          <Select
+            id="slot-t-select"
+            value={time}
+            onChange={(e: SelectChangeEvent) => setTime(e.target.value)}
+          >
             {timer.map((item: number) => (
               <MenuItem key={"slot" + item} value={item}>
                 {item + "м"}

@@ -1,1 +1,1 @@
-export { MeetingEdit } from "./ui";
+export { MeetingSettings } from "./ui";

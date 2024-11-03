@@ -9,11 +9,11 @@ import { dateToFormat } from "../lib/dateToFormat";
 
 export const Calendar = () => {
   const { setNewDate } = useCalendar();
-  const today = dateToFormat(Date.now());
-  const [value, setValue] = useState<string>(today);
+  const today = Date.now();
+  const [value, setValue] = useState<dayjs.Dayjs>(dayjs(today));
   function setDate(newValue: dayjs.Dayjs) {
+    setValue(newValue);
     const dateString = dateToFormat(newValue);
-    setValue(dateString);
     setNewDate(dateString);
   }
   return (
