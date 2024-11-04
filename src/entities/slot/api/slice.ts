@@ -1,28 +1,31 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { Slot } from "@/shared/model/types";
+import { SERVER_API } from "@/shared/lib/constants";
 
 export const slotsApi = createApi({
   reducerPath: "slotsApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "https://dummyjson.com" }),
+  baseQuery: fetchBaseQuery({ baseUrl: `${SERVER_API}/api/v1/slots` }),
 
   endpoints: (build) => ({
-    getAllSlots: build.query<Slot[], void>({
-      query: () => `/slots`,
+    getSlotsbyExpert: build.query<Slot[], number>({
+      //получить доступные слоты у эксперта
+      query: (expert_id) => `/expert/${expert_id}`,
     }),
     getSlotbyId: build.query<Slot, number>({
-      //получение встречи по id
-      query: (id) => `/slots/${id}`,
+      //получение cлота по id
+      query: (id) => `/${id}`,
     }),
     getSlotbyExpertId: build.query<Slot, number>({
       //получение встречи по id
       query: (id) => `/slots/expert/${id}`,
     }),
-    createSlot: build.mutation<Slot, Slot>({
+    createSlot: build.mutation<Slot, Partial<Slot>>({
       //добавление - создание слота
-      query: ({ user_id, start_time, end_time, slot_type }) => ({
-        url: "/create-meeting", //enpoint !!!
+      query: ({ creator_id, start_time, end_time, slot_type }) => ({
+        url: "",
         method: "POST",
         body: {
-          user_id,
+          creator_id,
           start_time,
           end_time,
           slot_type,
@@ -37,9 +40,9 @@ export const slotsApi = createApi({
         is_avalible: boolean;
       }
     >({
-      //слот недоступен теперь (занят)
+      //слот недоступен теперь (занят) или свободен
       query: ({ slot_id, is_avalible }) => ({
-        url: "/slot", //прописать endpoint !!!
+        url: `/${slot_id}/availability`,
         method: "PATCH",
         body: { slot_id, is_avalible },
       }),
@@ -51,9 +54,9 @@ export const slotsApi = createApi({
         end_time: string;
       }
     >({
-      //слот недоступен теперь (занят)
+      //продление слота при продлении встречи
       query: ({ slot_id, end_time }) => ({
-        url: "/slot", //прописать endpoint !!!
+        url: `/${slot_id}/end_time`,
         method: "PATCH",
         body: { slot_id, end_time },
       }),
@@ -63,7 +66,7 @@ export const slotsApi = createApi({
 
 export const {
   useCreateSlotMutation,
-  useGetAllSlotsQuery,
+  useGetSlotsbyExpertQuery,
   useLazyGetSlotbyIdQuery,
   useUpdateSlotAvalibleMutation,
   useUpdateSlotEndTimeMutation,

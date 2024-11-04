@@ -1,22 +1,31 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
-import recordReducer from "@/entities/record/model/slice";
-import dayReducer from "@/entities/calendar/model/slice";
+import { meetingsApi } from "@/entities/meeting";
+import { slotsReducer, slotsApi } from "@/entities/slot";
+import { expertsReducer, usersApi } from "@/entities/user";
+import { dayReducer } from "@/entities/calendar";
+import { materialsReducer } from "@/entities/material";
+import { commentsApi } from "@/entities/comment";
+
 export const store = configureStore({
   reducer: {
-    record: recordReducer,
+    experts: expertsReducer,
+    slots: slotsReducer,
     day: dayReducer,
-    // [slotsApi.reducerPath]: slotsApi.reducer,
-    // history: historyReducer,
-    // [productApi.reducerPath]: productApi.reducer,
+    materials: materialsReducer,
+    [slotsApi.reducerPath]: slotsApi.reducer,
+    [meetingsApi.reducerPath]: meetingsApi.reducer,
+    [usersApi.reducerPath]: usersApi.reducer,
+    [commentsApi.reducerPath]: commentsApi.reducer,
   },
 
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
-  // .concat(slotsApi.middleware),
-  //   .prepend(
-  //     listenerMiddlewareHistory.middleware,
-  //     listenerMiddlewareFavorites.middleware
-  //   ),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(
+      slotsApi.middleware,
+      meetingsApi.middleware,
+      usersApi.middleware,
+      commentsApi.middleware
+    ),
 });
 setupListeners(store.dispatch);
 export type RootState = ReturnType<typeof store.getState>;
