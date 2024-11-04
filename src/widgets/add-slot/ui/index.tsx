@@ -1,5 +1,11 @@
-import { Typography, Switch, SelectChangeEvent } from "@mui/material";
-import { useCalendar } from "@/entities/calendar/lib/hook";
+import {
+  Typography,
+  Switch,
+  SelectChangeEvent,
+  Box,
+  TextField,
+} from "@mui/material";
+import { useCalendar } from "@/entities/calendar";
 import {
   BaseButton,
   BaseFormDialog,
@@ -10,50 +16,51 @@ import { Select, MenuItem } from "@mui/material";
 import { useState, useEffect, useContext } from "react";
 import { slotsApi } from "@/entities/slot";
 import { calculateEndTime, dateView } from "@/shared/lib/helpers";
-import { timer, startSlots } from "@/shared/lib/constants";
+import { TIMER } from "@/shared/lib/constants";
 import { AuthContext } from "@/shared/context";
+import { style } from "./styles";
+import { useModal } from "@/shared/lib/hooks";
 
 export const AddSlot = () => {
+  const { open, openModal, closeModal } = useModal();
   const { user_id } = useContext(AuthContext);
   const [createNewSlot] = slotsApi.useCreateSlotMutation();
 
   const { date } = useCalendar();
   const dateV = dateView(date);
 
-  const [startTime, setStartTime] = useState<string>(startSlots[0]);
+  const [start_time, setStart_time] = useState<string>("");
   const [checked, setChecked] = useState<boolean>(false);
-  const [endTime, setEndTime] = useState<string>(startTime);
-  const [time, setTime] = useState<string>(String(timer[0]));
-
-  const [open, setOpen] = useState<boolean>(false);
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
+  const [endTime, setEndTime] = useState<string>("");
+  const [time, setTime] = useState<string>(String(TIMER.HOUR_0_5));
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    createNewSlot({
-      user_id: user_id,
-      start_time: startTime,
-      end_time: endTime,
-      slot_type: checked ? "offline" : "online",
-    });
+    if (user_id) {
+      createNewSlot({
+        creator_id: user_id,
+        start_time,
+        end_time: endTime,
+        slot_type: checked ? "offline" : "online",
+      });
+    }
   };
 
   useEffect(() => {
-    const t = calculateEndTime(JSON.parse(date), startTime, Number(time));
+    const t = calculateEndTime(date, start_time, Number(time));
     setEndTime(t);
-  }, [time, startTime]);
+  }, [time, start_time]);
 
   return (
-    <>
-      <BaseButton text="Добавить слот" onClick={handleClickOpen} />
-      <BaseFormDialog handleClose={handleClose} open={open} onSubmit={onSubmit}>
-        <>
+    <Box sx={style}>
+      <BaseButton text="Добавить слот" onClick={openModal} />
+      <BaseFormDialog
+        handleClose={closeModal}
+        open={open}
+        onSubmit={onSubmit}
+        textSubmit="Сохранить"
+      >
+        <Box sx={{ width: "260px", padding: "40px" }}>
           <BaseBoxContainer>
             <Typography variant="h5" component="div" color="text.main">
               День
@@ -64,22 +71,6 @@ export const AddSlot = () => {
           </BaseBoxContainer>
           <BaseBoxContainer>
             <BaseTypography>Начало</BaseTypography>
-            <BaseTypography>
-              {" "}
-              <Select
-                id="slot-add-select"
-                value={startTime}
-                onChange={(e: SelectChangeEvent<string>) =>
-                  setStartTime(e.target.value)
-                }
-              >
-                {startSlots.map((item: string) => (
-                  <MenuItem key={"slot" + item} value={item}>
-                    {item}
-                  </MenuItem>
-                ))}
-              </Select>
-            </BaseTypography>
           </BaseBoxContainer>
           <BaseBoxContainer>
             <BaseTypography>Конец</BaseTypography>
@@ -92,9 +83,9 @@ export const AddSlot = () => {
               value={time}
               onChange={(e: SelectChangeEvent) => setTime(e.target.value)}
             >
-              {timer.map((item: number) => (
-                <MenuItem key={"slot" + item} value={item}>
-                  {item + "м"}
+              {Object.entries(TIMER).map(([key, value]) => (
+                <MenuItem key={"slot" + value} value={value}>
+                  {value + "м"}
                 </MenuItem>
               ))}
             </Select>
@@ -110,8 +101,8 @@ export const AddSlot = () => {
             />
             <BaseTypography>offline</BaseTypography>
           </BaseBoxContainer>
-        </>
+        </Box>
       </BaseFormDialog>
-    </>
+    </Box>
   );
 };

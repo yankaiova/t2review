@@ -1,9 +1,8 @@
 import { DialogContent, MenuItem } from "@mui/material";
 import { meetingsApi } from "@/entities/meeting";
 import { slotsApi } from "@/entities/slot";
-import { useState } from "react";
-import { BaseTypography } from "@/shared/ui";
-import { AlertDialog } from "@/shared/ui";
+import { useModal } from "@/shared/lib/hooks";
+import { BaseTypography, BaseFormDialog } from "@/shared/ui";
 
 type PropsCancelMeeting = {
   meeting_id: number;
@@ -15,33 +14,28 @@ export const CancelMeeting = (props: PropsCancelMeeting) => {
   const [updateStatus] = meetingsApi.useSetMeetingStatusMutation();
   const [updateSlotAvalible] = slotsApi.useUpdateSlotAvalibleMutation();
 
-  const [open, setOpen] = useState<boolean>(false);
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
+  const { open, openModal, closeModal } = useModal();
 
   const cancelMeeting = () => {
-    updateStatus({ meeting_id: meeting_id, status: "canceled" }).then(() =>
-      updateSlotAvalible({ slot_id: slot_id, is_avalible: true })
-    );
+    console.log("отмена");
+    // updateStatus({ meeting_id: meeting_id, status: "canceled" }).then(() =>
+    //   updateSlotAvalible({ slot_id: slot_id, is_avalible: true })
+    // );
   };
 
   return (
     <>
-      <MenuItem onClick={handleClickOpen}>
+      <MenuItem onClick={openModal}>
         <BaseTypography>Отменить</BaseTypography>
       </MenuItem>
-      <AlertDialog
+      <BaseFormDialog
         open={open}
-        handleClose={handleClose}
+        handleClose={closeModal}
         onSubmit={cancelMeeting}
+        textSubmit="Подтвердить"
       >
         <DialogContent>Вы уверены, что хотите отменить встречу?</DialogContent>
-      </AlertDialog>
+      </BaseFormDialog>
     </>
   );
 };

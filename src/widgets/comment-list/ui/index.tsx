@@ -2,7 +2,7 @@ import { BaseTypography } from "@/shared/ui";
 import { useParams } from "react-router-dom";
 import { CommentItem, commentsApi } from "@/entities/comment";
 import { Comment } from "@/shared/model/types";
-import { NameUser } from "@/widgets/user-name";
+import { NameUser } from "@/features/user-name";
 
 export const CommentList = () => {
   const { meetingId } = useParams();

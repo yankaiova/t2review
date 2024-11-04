@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { meetingsApi } from "@/entities/meeting";
 import { AddComment } from "@mui/icons-material";
 import { CommentList } from "@/widgets/comment-list";
-import { NameUser } from "@/widgets/user-name";
+import { NameUser } from "@/features/user-name";
 
 export const MeetingInfo = () => {
   const { meetingId } = useParams();

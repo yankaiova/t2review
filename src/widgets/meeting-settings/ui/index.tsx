@@ -1,6 +1,5 @@
 import { CancelMeeting } from "@/features/cancel-meeting";
 import { useNavigate } from "react-router";
-import { Rate } from "@/features/rate";
 import { ExtendMeeting } from "@/features/extend-meeting/ui";
 import { CompleteMeeting } from "@/features/complete-meeting";
 //import { meetingsApi } from "@/entities/meeting";
@@ -24,6 +23,7 @@ export const MeetingSettings = ({ meeting_id }: { meeting_id: number }) => {
     setAnchorEl(null);
   };
   if (!data) return;
+
   const rescheduleMeeting = () => {
     navigate(`/meeting/${meeting_id}/expert/${data.expert_id}`);
   };
@@ -34,7 +34,7 @@ export const MeetingSettings = ({ meeting_id }: { meeting_id: number }) => {
         <SettingsIcon color="primary" />
       </Button>
       <Menu
-        id="basic-menu"
+        id="basic-menu-meeting"
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
@@ -43,10 +43,7 @@ export const MeetingSettings = ({ meeting_id }: { meeting_id: number }) => {
         <MenuItem onClick={rescheduleMeeting}>
           <BaseTypography>Перенести</BaseTypography>
         </MenuItem>
-        <Rate
-          id={meeting_id}
-          actions={<CompleteMeeting meeting_id={meeting_id} />}
-        />
+        <CompleteMeeting meeting_id={meeting_id} />
         <CancelMeeting meeting_id={meeting_id} slot_id={data.slot_id} />
       </Menu>
     </div>

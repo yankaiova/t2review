@@ -1,6 +1,6 @@
 import Grid from "@mui/material/Grid2";
 import { Slot } from "@/shared/model/types";
-import { Record } from "@/entities/record";
+import { Record } from "@/entities/slot";
 import { CreateRecordButton } from "@/features/create-record";
 import { BaseTypography } from "@/shared/ui";
 

@@ -8,7 +8,7 @@ import { style } from "./styles";
 
 export const Login = () => {
   const { setRole, setUser } = useContext(AuthContext);
-  const [getAuthUser] = usersApi.useUseGetUserByNameMutation();
+  const [getAuthUser] = usersApi.useGetUserByNameMutation();
 
   const navigate = useNavigate();
 
