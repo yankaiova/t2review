@@ -7,3 +7,4 @@ export { BaseBoxContainer } from "./container";
 export { BaseCard } from "./card";
 export { BaseFormDialog } from "./dialog";
 export { AlertDialog } from "./alert";
+export { TypographyStatus } from "./status";
