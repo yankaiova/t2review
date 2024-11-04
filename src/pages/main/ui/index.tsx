@@ -1,6 +1,6 @@
 import { Stack } from "@mui/material";
-import { BaseButton, BaseTypography } from "@/shared/ui";
-import { Link } from "react-router-dom";
+import { BaseTypography } from "@/shared/ui";
+import { Login } from "@/features/login";
 import pictureMain from "@/assets/192cc1c0909911efab591690387607a1 1.png";
 
 export const HomePage = () => {
@@ -44,19 +44,7 @@ export const HomePage = () => {
           Присоединяйтесь к P2P-Review и развивайтесь вместе с профессиональным
           сообществом!{" "}
         </BaseTypography>
-        <Stack
-          direction="row"
-          justifyContent="center"
-          gap="1rem"
-          marginTop="30px"
-        >
-          <Link to={`/expert/${2}`}>
-            <BaseButton text="Найти слот" />
-          </Link>
-          <Link to="/calendar">
-            <BaseButton text=" Хочу помогать" />
-          </Link>
-        </Stack>
+        <Login />
       </Stack>
       <img
         src={pictureMain}

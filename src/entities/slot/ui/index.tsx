@@ -1,25 +1,20 @@
-import { Button, Typography, Stack } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { Stack } from "@mui/material";
 import { Slot } from "@/shared/model/types";
 import { style } from "./styles";
-import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
+import { BaseTypography } from "@/shared/ui";
 
 type PropsSlotItem = { slot: Slot; actions?: React.ReactNode };
 export const SlotItem = (props: PropsSlotItem) => {
   const { slot, actions } = props;
-  const navigate = useNavigate();
-  const handleClickEdit = () => {
-    navigate(`/slot/${slot.slot_id}/edit`);
-  };
+
+  if (!slot.is_availible) return;
 
   return (
     <Stack sx={style}>
-      <Typography variant="body2" color="text.secondary">
+      <BaseTypography>
         {slot.start_time} - {slot.end_time}
-      </Typography>
-      <Button onClick={handleClickEdit}>
-        <EditOutlinedIcon />
-      </Button>
+      </BaseTypography>
+      <BaseTypography>доступен</BaseTypography>
       {actions}
     </Stack>
   );

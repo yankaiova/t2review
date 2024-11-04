@@ -14,7 +14,7 @@ export const MeetingList = () => {
   return (
     <div>
       {meetings.map((item: Meeting) => (
-        <Fragment key={item.meeting_id}>
+        <Fragment key={item.meeting_id + "meet"}>
           {date === item.date && (
             <MeetingItem key={item.meeting_id} meeting={item}>
               <MeetingSettings meeting_id={item.meeting_id} />

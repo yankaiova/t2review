@@ -1,29 +1,29 @@
-import { Button, DialogContent } from "@mui/material";
-import { AlertDialog } from "@/shared/ui";
+import { Button } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { useState } from "react";
+import { BaseFormDialog, BaseTypography } from "@/shared/ui";
+import { useModal } from "@/shared/lib/hooks";
 
 export const DeleteSlot = ({ slot_id }: { slot_id: number }) => {
-  const [open, setOpen] = useState<boolean>(false);
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
+  const { open, openModal, closeModal } = useModal();
   const deleteSlot = () => {
     console.log(slot_id);
   };
 
   return (
     <>
-      <Button onClick={handleClickOpen}>
+      <Button onClick={openModal}>
         <DeleteIcon color="primary" />
       </Button>
-      <AlertDialog open={open} handleClose={handleClose} onSubmit={deleteSlot}>
-        <DialogContent>Вы уверены, что хотите отменить встречу?</DialogContent>
-      </AlertDialog>
+      <BaseFormDialog
+        open={open}
+        handleClose={closeModal}
+        onSubmit={deleteSlot}
+        textSubmit="Подтвердить"
+      >
+        <BaseTypography>
+          Вы уверены, что хотите отменить встречу?
+        </BaseTypography>
+      </BaseFormDialog>
     </>
   );
 };

@@ -1,5 +1,6 @@
 export const style = {
   flexDirection: "row",
   alignItems: "center",
-  justifyContent: "space-between",
+  justifyContent: "start",
+  gap: "20px",
 };

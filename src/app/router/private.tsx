@@ -1,10 +1,18 @@
-import { useContext } from "react";
-import { Navigate } from "react-router-dom";
 import { AuthContext } from "@/shared/context";
+import { useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-type PropsPrivateRoute = { children: React.ReactNode };
+type props = { children: React.ReactNode };
 
-export const PrivateRoute = ({ children }: PropsPrivateRoute): JSX.Element => {
+export const PrivateRoute = ({ children }: props) => {
   const { user_id } = useContext(AuthContext);
-  return !!user_id ? <>{children}</> : <Navigate to={"/main"} replace />;
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!user_id) {
+      navigate("/");
+    }
+  }, [user_id, navigate]);
+
+  if (user_id) return <>{children}</>;
 };

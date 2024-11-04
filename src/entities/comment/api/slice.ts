@@ -1,18 +1,30 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { Comment } from "@/shared/model/types";
+import { SERVER_API } from "@/shared/lib/constants";
 
 export const commentsApi = createApi({
-  reducerPath: "meetingsApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "https://dummyjson.com" }),
+  reducerPath: "commentsApi",
+  baseQuery: fetchBaseQuery({
+    baseUrl: `${SERVER_API}/api/v1/comments`,
+  }),
 
   endpoints: (build) => ({
     getAllCommentsByMeeting: build.query<Comment[], number>({
-      query: (id) => `/comments/meeting/${id}`,
+      //получить все комментарии по id встречи
+      query: (meeting_id) => `/meeting/${meeting_id}`,
     }),
-    addComments: build.mutation<Comment, Partial<Comment>>({
-      //добавление - создание встречи
+    addComments: build.mutation<
+      Comment,
+      {
+        meeting_id: number;
+        user_id: number;
+        create_time: string;
+        comment_text: string;
+      }
+    >({
+      //добавление - создание комментария
       query: ({ meeting_id, user_id, create_time, comment_text }) => ({
-        url: "/comments/add", //enpoint !!!
+        url: "",
         method: "POST",
         body: {
           meeting_id,

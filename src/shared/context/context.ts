@@ -1,13 +1,13 @@
 import { createContext } from "react";
 type Props = {
-  role: string | null;
+  role: string;
   setRole: (value: string) => void;
-  user_id: number;
-  setUser: (value: number) => void;
+  user_id?: number | null;
+  setUser: (value: number | null) => void;
 };
 export const AuthContext = createContext<Props>({
-  role: "expert",
+  role: "",
+  user_id: null,
   setRole: () => {},
-  user_id: 1,
   setUser: () => {},
 });

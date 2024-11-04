@@ -1,38 +1,32 @@
 import { useState } from "react";
-import { TextField } from "@mui/material";
+import { FormControl, TextField } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
+import { useSearchExpert } from "@/entities/user";
 
 export const SearchForm = () => {
+  const { setQuery } = useSearchExpert();
   const [currentSearchValue, setCurrentSearchValue] = useState<string>("");
-  const onSubmit = (search: string) => {
-    if (search.trim()) {
-      //запрос на бэк
-      //разворачиваем список экспертов
-      //очищаем поле ввода
+
+  const onSubmit = () => {
+    if (currentSearchValue.trim()) {
+      setQuery(currentSearchValue);
     }
   };
 
   function handleClick(e: React.MouseEvent) {
     e.preventDefault();
-    onSubmit(currentSearchValue);
+    onSubmit();
   }
 
-  function handleKeyPress(e: React.KeyboardEvent, value: string) {
+  function handleKeyPress(e: React.KeyboardEvent) {
     if (e.key === "Enter") {
       e.preventDefault();
-      onSubmit(value);
+      onSubmit();
     }
   }
 
   return (
-    <form
-      style={{
-        display: "flex",
-        alignItems: "center",
-        width: "100%",
-        borderBottom: "1px solid #E2E2EA",
-      }}
-    >
+    <FormControl>
       <SearchIcon
         type="submit"
         onClick={handleClick}
@@ -48,9 +42,9 @@ export const SearchForm = () => {
         onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
           setCurrentSearchValue(e.target.value)
         }
-        onKeyDown={(e) => handleKeyPress(e, currentSearchValue)}
+        onKeyDown={handleKeyPress}
         autoComplete="off"
       />
-    </form>
+    </FormControl>
   );
 };

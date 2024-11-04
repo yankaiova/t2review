@@ -1,5 +1,11 @@
 import { BaseButton, BaseCard, BaseTypography } from "@/shared/ui";
-import { useSlot } from "@/entities/slot";
+import { useSlot, slotsApi } from "@/entities/slot";
+import { style } from "./styles";
+import { meetingsApi } from "@/entities/meeting";
+import { AddMaterial } from "@/features/add-material";
+import { useMaterials } from "@/entities/material";
+import { DeleteMaterial } from "@/features/delete-material";
+import { useState } from "react";
 import {
   TextField,
   Typography,
@@ -8,13 +14,6 @@ import {
   ListItem,
   Container,
 } from "@mui/material";
-import { style } from "./styles";
-import { slotsApi } from "@/entities/slot";
-import { meetingsApi } from "@/entities/meeting";
-import { AddMaterial } from "@/features/add-material";
-import { useMaterials } from "@/entities/material";
-import { DeleteMaterial } from "@/features/delete-material";
-import { useState } from "react";
 
 export const MaterialList = () => {
   const { links } = useMaterials();

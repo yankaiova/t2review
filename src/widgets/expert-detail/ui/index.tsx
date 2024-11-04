@@ -1,10 +1,17 @@
 import { BaseTypography } from "@/shared/ui";
 import { useParams } from "react-router-dom";
-import { CardExpert } from "@/entities/expert";
-import { expertsApi } from "@/entities/expert";
+import { CardExpert, usersApi } from "@/entities/user";
+import { users } from "@/mocks";
+import { useState } from "react";
+
 export const ExpertInfo = () => {
-  const { expert_id } = useParams();
-  const { data } = expertsApi.useGetExpertbyIdQuery(Number(expert_id));
+  const { expertId } = useParams();
+  const [data, setData] = useState(
+    users.find((item) => item.user_id === Number(expertId))
+  );
+  // const { data } = usersApi.useGetUserbyIdQuery(Number(expert_id));
+
+  if (!data) return;
 
   return (
     <CardExpert expert={data}>

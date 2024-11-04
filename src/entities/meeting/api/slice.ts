@@ -1,40 +1,42 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { Meeting } from "@/shared/model/types";
+import { SERVER_API } from "@/shared/lib/constants";
 
 export const meetingsApi = createApi({
   reducerPath: "meetingsApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "https://dummyjson.com" }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: `${SERVER_API}/api/v1/meetings`,
+  }),
 
   endpoints: (build) => ({
     getAllMeeting: build.query<Meeting[], void>({
-      query: () => `/meetings`,
+      query: () => ``,
     }),
     getMeetingbyId: build.query<Meeting, number>({
       //получение встречи по id
-      query: (id) => `/meetings/${id}`,
+      query: (id) => `/${id}`,
     }),
-    createMeeting: build.mutation<Meeting, Meeting>({
+    createMeeting: build.mutation<Meeting, Partial<Meeting>>({
       //добавление - создание встречи
       query: ({
         meeting_status,
-        slot,
+        slot_id,
         start_time,
         end_time,
         meeting_type,
         description,
         expert_id,
-        material_id,
       }) => ({
-        url: "/create-meeting", //enpoint !!!
+        url: "",
         method: "POST",
         body: {
           meeting_status,
-          slot,
+          slot_id,
           start_time,
           end_time,
           meeting_type,
           description,
           expert_id,
-          material_id,
         },
       }),
     }),
@@ -44,24 +46,23 @@ export const meetingsApi = createApi({
     >({
       //изменение статуса встречи
       query: ({ meeting_id, status }) => ({
-        url: "/status", //прописать endpoint !!!
+        url: `/${meeting_id}/status`,
         method: "PATCH",
         body: { meeting_id, status }, //при завершении встречи - completed, при удалении встречи - canceled
       }),
     }),
-    updateMeeting: build.mutation<
+    updateTimeMeeting: build.mutation<
       void,
       {
         meeting_id: number;
-        start_time: string;
         end_time: string;
       }
     >({
-      //продление встречи и перенос встречи
-      query: ({ meeting_id, start_time, end_time }) => ({
-        url: "/extend", //прописать endpoint !!!
+      //продление встречи
+      query: ({ meeting_id, end_time }) => ({
+        url: `/${meeting_id}/end_time`,
         method: "PATCH",
-        body: { meeting_id, start_time, end_time },
+        body: { meeting_id, end_time },
       }),
     }),
     setNewSlotMeeting: build.mutation<
@@ -72,13 +73,21 @@ export const meetingsApi = createApi({
         date: number;
         start_time: string;
         end_time: string;
+        type_meeting: "offline" | "online";
       }
     >({
-      //продление встречи и перенос встречи
-      query: ({ meeting_id, slot_id, date, start_time, end_time }) => ({
-        url: "/reschudale", //прописать endpoint !!!
+      // перенос встречи
+      query: ({
+        meeting_id,
+        slot_id,
+        date,
+        start_time,
+        end_time,
+        type_meeting,
+      }) => ({
+        url: `/${meeting_id}/slot`,
         method: "PATCH",
-        body: { meeting_id, slot_id, date, start_time, end_time },
+        body: { meeting_id, slot_id, date, start_time, end_time, type_meeting },
       }),
     }),
   }),
@@ -89,6 +98,6 @@ export const {
   useGetMeetingbyIdQuery,
   useCreateMeetingMutation,
   useSetMeetingStatusMutation,
-  useUpdateMeetingMutation,
+  useUpdateTimeMeetingMutation,
   useSetNewSlotMeetingMutation,
 } = meetingsApi;

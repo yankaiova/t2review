@@ -1,1 +1,2 @@
-export const style = { display: "flex", flexDirection: "column", gap: "15px" };
+export const style = { marginTop: "20px" };
+export const boxStyle = { width: "260px", padding: "40px" };

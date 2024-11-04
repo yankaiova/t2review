@@ -1,4 +1,5 @@
 import { Link } from "@mui/material";
+import { Link as RouteLink } from "react-router-dom";
 import { style } from "./index.style";
 type PropsBaseLink = {
   path: string;
@@ -6,8 +7,11 @@ type PropsBaseLink = {
 };
 export const BaseLink = ({ path, text }: PropsBaseLink) => {
   return (
-    <Link href={path} variant="body2" sx={style}>
-      {text}
-    </Link>
+    <RouteLink to={path}>
+      {" "}
+      <Link variant="body2" sx={style}>
+        {text}
+      </Link>
+    </RouteLink>
   );
 };
