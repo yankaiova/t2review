@@ -30,7 +30,7 @@ export interface User {
   role: "client" | "expert";
   firstName: string;
   lastName: string;
-  description: string;
+  description?: string;
   rating?: number;
   competence?: string;
   area?: string;

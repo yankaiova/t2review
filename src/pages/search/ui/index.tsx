@@ -11,6 +11,7 @@ export const SearchPage = () => {
         direction={{ xs: "column", sm: "row" }}
         justifyContent="start"
         alignItems="center"
+        gap="2rem"
       >
         <Filters />
         <ExpertList />

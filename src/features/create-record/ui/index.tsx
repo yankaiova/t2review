@@ -11,12 +11,13 @@ export const CreateRecordButton = ({ slot }: { slot: Slot }) => {
 
   const navigate = useNavigate();
 
-  const [updateMeeting] = meetingsApi.useUpdateMeetingMutation();
+  // const [updateMeeting] = meetingsApi.useUpdateMeetingMutation();
 
   const handleClick = () => {
     setCurrentSlot(slot);
     if (!!useLocation().pathname.match(/reschudale/)) {
-      updateMeeting({ meetingId, ...slotAtribiutes });
+      console.log("reschudale");
+      // updateMeeting({ meetingId, ...slotAtribiutes });
     } else {
       navigate("/meeting/create");
     }

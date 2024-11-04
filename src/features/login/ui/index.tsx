@@ -27,7 +27,7 @@ export const Login = () => {
   };
 
   const signIn = () => {
-    setRole("expert");
+    setRole("client");
     setUser(23);
     navigate("/calendar");
     // getAuthUser({ firstName, lastName })

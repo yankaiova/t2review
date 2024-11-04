@@ -18,33 +18,6 @@ export const routes = createBrowserRouter([
         path: "/",
         element: <HomePage />,
       },
-
-      {
-        path: "/search",
-        element: (
-          <PrivateRoute>
-            <SearchPage />
-          </PrivateRoute>
-        ),
-        children: [
-          {
-            path: "/search/expert/:expertId",
-            element: (
-              <PrivateRoute>
-                <SearchExpertPage />
-              </PrivateRoute>
-            ),
-          },
-        ],
-      },
-      {
-        path: "/meetings/create",
-        element: (
-          <PrivateRoute>
-            <CreatePage />
-          </PrivateRoute>
-        ),
-      },
       {
         path: "/calendar",
         element: (
@@ -66,6 +39,32 @@ export const routes = createBrowserRouter([
         element: (
           <PrivateRoute>
             <SearchExpertPage />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/search",
+        element: (
+          <PrivateRoute>
+            {" "}
+            <SearchPage />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/search/expert/:expertId",
+        element: (
+          <PrivateRoute>
+            <SearchExpertPage />
+          </PrivateRoute>
+        ),
+      },
+
+      {
+        path: "/meetings/create",
+        element: (
+          <PrivateRoute>
+            <CreatePage />
           </PrivateRoute>
         ),
       },

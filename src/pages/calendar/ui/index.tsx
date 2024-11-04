@@ -8,8 +8,8 @@ import { Stack, Box, Container, Typography } from "@mui/material";
 import { style } from "./styles";
 
 export const CalendarPage = () => {
-  const { role } = useContext(AuthContext);
-
+  const { role, user_id } = useContext(AuthContext);
+  console.log(role, user_id);
   return (
     <Container>
       <Stack direction={{ xs: "column", sm: "row" }} marginTop="5rem">

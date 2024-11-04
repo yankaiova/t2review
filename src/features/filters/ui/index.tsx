@@ -13,7 +13,7 @@ import { useState } from "react";
 import {
   ROLE,
   competentions,
-  RATING,
+  ratings,
   EXPERTISE,
 } from "../../../shared/lib/constants";
 import { useSearchExpert } from "@/entities/user";
@@ -67,12 +67,12 @@ export const Filters = () => {
   };
   return (
     <FormControl>
-      <FormGroup>
-        {competentions.map((item) => (
+      {/* <FormGroup> */}
+      {/* {competentions.map((item) => (
           <FormControlLabel
+            key={"checkbox" + item.name}
             control={
               <Checkbox
-                key={"checkbox" + item.name}
                 checked={item.checked}
                 onChange={handleChange}
                 name={item.name}
@@ -82,42 +82,27 @@ export const Filters = () => {
           />
         ))}
       </FormGroup>
-      <Select
-        id="slot-e-select"
-        value={expertise}
-        onChange={handleExpertise}
-        label="Область экспертизы"
-      >
-        {Object.entries(EXPERTISE).map(([key, value]) => (
+      <Select id="slot-e-select" value={expertise} onChange={handleExpertise}>
+        {Object.values(EXPERTISE).map((value) => (
           <MenuItem key={value} value={value}>
             {value}
           </MenuItem>
         ))}
       </Select>
-      <Select
-        id="slot-t-select"
-        value={role}
-        onChange={handleChangeRole}
-        label="Выбор ролей"
-      >
-        {Object.entries(ROLE).map(([key, value]) => (
+      <Select id="slot-t-select" value={role} onChange={handleChangeRole}>
+        {Object.values(ROLE).map((value) => (
           <MenuItem key={value} value={value}>
             {value}
           </MenuItem>
         ))}
       </Select>
-      <ToggleButtonGroup
-        value={rating}
-        exclusive
-        onChange={handleRating}
-        aria-label="text alignment"
-      >
-        {Object.entries(RATING).map(([key, value]) => (
+      <ToggleButtonGroup value={rating} exclusive onChange={handleRating}>
+        {ratings.map((value: number) => (
           <ToggleButton value={value} key={value} sx={style}>
             {value}
           </ToggleButton>
         ))}
-      </ToggleButtonGroup>
+      </ToggleButtonGroup> */}
       <BaseButton text="Применить фильтры" onClick={onSubmit} />
     </FormControl>
   );

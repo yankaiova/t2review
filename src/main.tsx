@@ -3,7 +3,7 @@ import React from "react";
 import { App } from "./app/ui";
 import "./index.css";
 import { Provider } from "react-redux";
-import { store } from "./app/model/store";
+import { store } from "@/entities/root-store";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

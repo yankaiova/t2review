@@ -7,7 +7,7 @@ type PropsRecord = {
 };
 export const Record = ({ slot, children }: PropsRecord) => {
   return (
-    <Card>
+    <Card sx={{ width: "100%" }}>
       <CardContent>
         <BaseCard
           slot={{

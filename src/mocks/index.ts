@@ -36,6 +36,7 @@ export const meetings: Meeting[] = [
     date: "29-10-2024",
     start_time: "12:30",
     end_time: "13:30",
+    description: "jfjjff",
     meeting_type: "online",
     meeting_status: "запланирована",
   },
@@ -46,6 +47,7 @@ export const meetings: Meeting[] = [
     slot_id: 8,
     date: "29-10-2024",
     start_time: "15:30",
+    description: "jjdfjjee",
     end_time: "16:00",
     meeting_type: "offline",
     meeting_status: "завершена",
@@ -59,6 +61,9 @@ export const users: User[] = [
     role: "client",
     firstName: "Михаил",
     lastName: "Михайлов",
+    roleExpert: "Frontend",
+    competence: "Junior",
+    rating: 3,
   },
   {
     user_id: 23,
@@ -67,6 +72,11 @@ export const users: User[] = [
     role: "expert",
     firstName: "Иван",
     lastName: "Иванов",
+    roleExpert: "UI/UX Designer",
+    competence: "Middle",
+    description:
+      "Привет! Я DevOps инженер начального уровня, и я готов помочь вам освоить основы DevOps и автоматизации. Вот чем я могу быть полезен: Настройка базового CI/CD пайплайна. Могу помочь настроить простой процесс непрерывной интеграции и доставки с использованием инструментов, таких как Jenkins, GitLab CI или GitHub Actions. Это позволит вам автоматизировать сборку и тестирование кода при каждом изменении. Автоматизация развертывания приложений. Покажу, как работать с Docker, создавать контейнеры и автоматизировать развертывание приложений. Это упростит управление инфраструктурой и обеспечит стабильность развертываний. Основы работы с системами контроля версий. Если у вас возникают трудности с Git, я помогу разобраться в базовых командах, покажу, как работать с ветками, и объясню основные принципы управления изменениями в коде. Я могу стать вашим проводником в мир DevOps и помочь сделать первые шаги в этой области!",
+    rating: 5,
   },
   {
     user_id: 2,
@@ -75,6 +85,9 @@ export const users: User[] = [
     role: "expert",
     firstName: "Антон",
     lastName: "Антонов",
+    roleExpert: "System Administrator",
+    rating: 4,
+    competence: "Junior",
   },
 ];
 export const slots: Slot[] = [
@@ -85,8 +98,18 @@ export const slots: Slot[] = [
     start_time: "12:00",
     end_time: "13:00",
     description: "Консультация по ручному тестированию",
-    type_slot: "online",
+    slot_type: "online",
     is_availible: false,
+  },
+  {
+    slot_id: 4,
+    creator_id: 23,
+    date: "28-10-2024",
+    start_time: "12:00",
+    end_time: "13:00",
+    description: "Консультация по ручному тестированию",
+    slot_type: "online",
+    is_availible: true,
   },
   {
     slot_id: 2,
@@ -95,7 +118,7 @@ export const slots: Slot[] = [
     start_time: "13:00",
     end_time: "14:00",
     description: "Консультация по Front-end разработке",
-    type_slot: "offline",
+    slot_type: "offline",
     is_availible: true,
   },
 ];

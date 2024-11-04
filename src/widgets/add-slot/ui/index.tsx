@@ -18,7 +18,7 @@ import { slotsApi } from "@/entities/slot";
 import { calculateEndTime, dateView } from "@/shared/lib/helpers";
 import { TIMER } from "@/shared/lib/constants";
 import { AuthContext } from "@/shared/context";
-import { style } from "./styles";
+import { style, boxStyle } from "./styles";
 import { useModal } from "@/shared/lib/hooks";
 
 export const AddSlot = () => {
@@ -60,7 +60,7 @@ export const AddSlot = () => {
         onSubmit={onSubmit}
         textSubmit="Сохранить"
       >
-        <Box sx={{ width: "260px", padding: "40px" }}>
+        <Box sx={boxStyle}>
           <BaseBoxContainer>
             <Typography variant="h5" component="div" color="text.main">
               День
@@ -71,6 +71,15 @@ export const AddSlot = () => {
           </BaseBoxContainer>
           <BaseBoxContainer>
             <BaseTypography>Начало</BaseTypography>
+            <TextField
+              id="outlined-input-startslot"
+              placeholder="12:00"
+              value={start_time}
+              onChange={(
+                e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+              ) => setStart_time(e.target.value)}
+              multiline
+            />
           </BaseBoxContainer>
           <BaseBoxContainer>
             <BaseTypography>Конец</BaseTypography>
