@@ -5,7 +5,10 @@ import { Container, Stack } from "@mui/material";
 export const SearchExpertPage = () => {
   return (
     <Container>
-      <Stack flexDirection="row">
+      <Stack
+        direction={{ xs: "column", sm: "row" }}
+        justifyContent={{ xs: "start", sm: "center" }}
+      >
         <ExpertInfo />
         <RecordsByExpert />
       </Stack>

@@ -3,7 +3,7 @@ import { SERVER_API } from "@/shared/lib/constants";
 import { FilterOptions, User } from "@/shared/model/types";
 
 export const usersApi = createApi({
-  reducerPath: "expertsApi",
+  reducerPath: "usersApi",
   baseQuery: fetchBaseQuery({ baseUrl: `${SERVER_API}/api/v1/users` }),
 
   endpoints: (build) => ({
