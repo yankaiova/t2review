@@ -8,7 +8,8 @@ type PropsBaseFormDialog = {
   textSubmit: string;
   onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
 };
-
+const contentStyle = { margin: "30px" };
+const actionsStyle = { margin: "0 30px 20px" };
 export const BaseFormDialog = ({
   open,
   handleClose,
@@ -25,8 +26,8 @@ export const BaseFormDialog = ({
         onSubmit: onSubmit,
       }}
     >
-      <DialogContent>{children}</DialogContent>
-      <DialogActions>
+      <DialogContent sx={contentStyle}>{children}</DialogContent>
+      <DialogActions sx={actionsStyle}>
         <Button onClick={handleClose}>Отмена</Button>
         <Button type="submit">{textSubmit}</Button>
       </DialogActions>

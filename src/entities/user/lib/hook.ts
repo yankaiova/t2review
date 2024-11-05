@@ -1,24 +1,18 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useCallback } from "react";
 import { getQuerySearch, getChosenOptions } from "../model/selectors";
 import { setChosenOptions, setQuerySearch } from "../model/slice";
+import { FilterOptions } from "@/shared/model/types";
 
 export const useSearchExpert = () => {
   const dispatch = useDispatch();
   const query = useSelector(getQuerySearch);
   const chosenOptions = useSelector(getChosenOptions);
 
-  const setQuery = useCallback(
-    (str: string) => {
-      dispatch(setQuerySearch(str));
-    },
-    [dispatch, query]
-  );
-  const setOptions = useCallback(
-    (chosenOptions: string[]) => {
-      dispatch(setChosenOptions({ chosenOptions }));
-    },
-    [dispatch, chosenOptions]
-  );
+  const setQuery = (str: string) => {
+    dispatch(setQuerySearch(str));
+  };
+  const setOptions = (chosenOptions: Partial<FilterOptions>) => {
+    dispatch(setChosenOptions(chosenOptions));
+  };
   return { setQuery, setOptions, query, chosenOptions };
 };

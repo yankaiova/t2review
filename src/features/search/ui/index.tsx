@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { FormControl, TextField } from "@mui/material";
+import { TextField } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { useSearchExpert } from "@/entities/user";
-
+const style = { width: "100%", marginBottom: "30px" };
 export const SearchForm = () => {
   const { setQuery } = useSearchExpert();
   const [currentSearchValue, setCurrentSearchValue] = useState<string>("");
@@ -26,18 +26,24 @@ export const SearchForm = () => {
   }
 
   return (
-    <FormControl>
-      <SearchIcon
-        type="submit"
-        onClick={handleClick}
-        color="disabled"
-        style={{ cursor: "pointer" }}
-      />
+    <form>
       <TextField
         id="search"
         type="text"
-        label="Поиск..."
+        slotProps={{
+          input: {
+            startAdornment: (
+              <SearchIcon
+                fontSize="small"
+                onClick={handleClick}
+                color="disabled"
+              />
+            ),
+          },
+        }}
+        placeholder="Поиск..."
         variant="standard"
+        sx={style}
         value={currentSearchValue}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
           setCurrentSearchValue(e.target.value)
@@ -45,6 +51,6 @@ export const SearchForm = () => {
         onKeyDown={handleKeyPress}
         autoComplete="off"
       />
-    </FormControl>
+    </form>
   );
 };

@@ -7,12 +7,10 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export const ExpertList = () => {
-  const { user_id, role } = useContext(AuthContext);
   const { query, chosenOptions } = useSearchExpert();
   const [experts, setExperts] = useState<User[]>([...users]);
   const [expertByQuery] = usersApi.useGetExpertsByQueryMutation();
   const [expertsByFilters] = usersApi.useGetExpertsByFilterMutation();
-  console.log(user_id, role);
   const navigate = useNavigate();
 
   // useEffect(() => {

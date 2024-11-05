@@ -20,9 +20,7 @@ export const DeleteSlot = ({ slot_id }: { slot_id: number }) => {
         onSubmit={deleteSlot}
         textSubmit="Подтвердить"
       >
-        <BaseTypography>
-          Вы уверены, что хотите отменить встречу?
-        </BaseTypography>
+        <BaseTypography>Вы уверены, что хотите удалить слот?</BaseTypography>
       </BaseFormDialog>
     </>
   );

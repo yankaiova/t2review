@@ -5,9 +5,10 @@ import { BaseButton } from "@/shared/ui";
 import { Slot } from "@/shared/model/types";
 
 export const CreateRecordButton = ({ slot }: { slot: Slot }) => {
+  const isFirstCreateMeeting = !!useLocation().pathname.match(/reschudale/);
   const { meeting_id } = useParams();
   const meetingId = Number(meeting_id);
-  const { slotAtribiutes, setCurrentSlot } = useSlot();
+  const { setCurrentSlot } = useSlot();
 
   const navigate = useNavigate();
 
@@ -15,11 +16,11 @@ export const CreateRecordButton = ({ slot }: { slot: Slot }) => {
 
   const handleClick = () => {
     setCurrentSlot(slot);
-    if (!!useLocation().pathname.match(/reschudale/)) {
+    if (isFirstCreateMeeting) {
       console.log("reschudale");
       // updateMeeting({ meetingId, ...slotAtribiutes });
     } else {
-      navigate("/meeting/create");
+      navigate("/meetings/create");
     }
   };
   return <BaseButton text="Записаться" onClick={handleClick} />;

@@ -15,11 +15,8 @@ export const usersSlice = createSlice({
   name: "users",
   initialState,
   reducers: {
-    setChosenOptions(
-      state,
-      { payload }: PayloadAction<{ chosenOptions: Partial<FilterOptions> }>
-    ) {
-      state.chosenOptions = payload.chosenOptions;
+    setChosenOptions(state, action) {
+      state.chosenOptions = action.payload;
     },
     setExpert: (state, action) => {
       state.expert_id = action.payload;

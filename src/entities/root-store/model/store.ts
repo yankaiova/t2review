@@ -2,7 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import { useSelector, TypedUseSelectorHook, useDispatch } from "react-redux";
 import { meetingsApi } from "@/entities/meeting";
-import { slotsReducer, slotsApi } from "@/entities/slot";
+import { slotReducer, slotsApi } from "@/entities/slot";
 import { usersReducer, usersApi } from "@/entities/user";
 import { dayReducer } from "@/entities/calendar";
 import { materialsReducer } from "@/entities/material";
@@ -11,7 +11,7 @@ import { commentsApi } from "@/entities/comment";
 export const store = configureStore({
   reducer: {
     users: usersReducer,
-    slots: slotsReducer,
+    slot: slotReducer,
     day: dayReducer,
     materials: materialsReducer,
     [slotsApi.reducerPath]: slotsApi.reducer,

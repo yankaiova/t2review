@@ -78,7 +78,6 @@ export const AddSlot = () => {
               onChange={(
                 e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
               ) => setStart_time(e.target.value)}
-              multiline
             />
           </BaseBoxContainer>
           <BaseBoxContainer>

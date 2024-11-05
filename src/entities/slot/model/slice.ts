@@ -1,44 +1,29 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-type RecordState = {
-  slot_id: number;
-  meeting_type: string;
-  date: string;
-  start_time: string;
-  end_time: string;
-};
-export const initialState: RecordState = {
+import { BaseSlot } from "@/shared/model/types";
+
+export type SlotState = BaseSlot & { slot_id: number };
+export const initialState: SlotState = {
   slot_id: 1,
-  meeting_type: "online",
+  slot_type: "online",
   date: "",
   start_time: "",
   end_time: "",
 };
 
-export const recordSlice = createSlice({
-  name: "record",
+export const slotSlice = createSlice({
+  name: "slot",
   initialState,
   reducers: {
-    setSlot: (
-      state,
-      {
-        payload,
-      }: PayloadAction<{
-        slot_id: number;
-        meeting_type: string;
-        date: string;
-        start_time: string;
-        end_time: string;
-      }>
-    ) => {
+    setSlot: (state, { payload }: PayloadAction<SlotState>) => {
       state.slot_id = payload.slot_id;
       state.date = payload.date;
       state.start_time = payload.start_time;
       state.end_time = payload.end_time;
-      state.meeting_type = payload.meeting_type;
+      state.slot_type = payload.slot_type;
     },
   },
 });
 
-export const { setSlot } = recordSlice.actions;
+export const { setSlot } = slotSlice.actions;
 
-export default recordSlice.reducer;
+export default slotSlice.reducer;
