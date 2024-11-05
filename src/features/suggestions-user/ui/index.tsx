@@ -1,5 +1,5 @@
 import { SuggestionsUI } from "@/shared/ui";
-import { TextField } from "@mui/material";
+import { TextField, Box } from "@mui/material";
 import { useState } from "react";
 import { useDebounce, useSuggestions } from "@/shared/lib/hooks";
 
@@ -25,8 +25,8 @@ export const SelectUsers = () => {
   const onBlur = () => setTimeout(() => setIsOpen(false), 200);
   const debounceValue = useDebounce(name, 200);
   return (
-    <form style={{ display: "flex" }}>
-      <div style={{ position: "relative", height: "150px" }}>
+    <Box sx={{ display: "flex" }}>
+      <Box sx={{ position: "relative", height: "150px" }}>
         <TextField
           value={name}
           onFocus={onFocus}
@@ -36,7 +36,7 @@ export const SelectUsers = () => {
           }}
         />
         {debounceValue && <Suggestions value={debounceValue} isOpen={isOpen} />}
-      </div>
-    </form>
+      </Box>
+    </Box>
   );
 };

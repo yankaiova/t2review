@@ -1,5 +1,6 @@
 import Button from "@mui/material/Button";
 import { DialogContent, DialogActions, Dialog } from "@mui/material";
+import { contentStyle, actionsStyle } from "./styles";
 
 type PropsBaseFormDialog = {
   open: boolean;
@@ -8,8 +9,7 @@ type PropsBaseFormDialog = {
   textSubmit: string;
   onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
 };
-const contentStyle = { margin: "30px" };
-const actionsStyle = { margin: "0 30px 20px" };
+
 export const BaseFormDialog = ({
   open,
   handleClose,

@@ -54,6 +54,7 @@ export const ExtendMeeting = (props: PropsExtendMeeting) => {
             date: meeting.date,
             start_time: meeting.start_time,
             end_time: newEnd,
+            slot_type: maaeting.meeting_type,
           }}
         />
         <FormControl>

@@ -29,7 +29,7 @@ export const AddComment = () => {
 
   return (
     <>
-      <SmsIcon onClick={openModal} style={{ cursor: "pointer" }} />
+      <SmsIcon onClick={openModal} sx={{ cursor: "pointer" }} />
       <BaseFormDialog
         handleClose={closeModal}
         open={open}
