@@ -18,9 +18,7 @@ export const Header = () => {
         </Link>
         <BaseLink text="Сервисы T1" path="#" />
         {role === "client" && (
-          <>
-            <BaseLink text="Мне нужна помощь" path={"/search"} />
-          </>
+          <BaseLink text="Мне нужна помощь" path={"/search"} />
         )}
         {!!user_id && (
           <>

@@ -13,7 +13,7 @@ export const materialsSlice = createSlice({
   initialState,
   reducers: {
     addToMaterials: (state, action) => {
-      state.links?.push(action.payload);
+      state.links.push(action.payload);
     },
     removeFromMaterials: (state, action) => {
       state.links = state.links?.filter((item) => item !== action.payload);

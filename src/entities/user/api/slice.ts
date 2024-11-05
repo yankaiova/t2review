@@ -22,15 +22,12 @@ export const usersApi = createApi({
         body: { chosenOptions },
       }),
     }),
-    getUserByName: build.mutation<
-      User[],
-      { lastName: string; firstName: string }
-    >({
+    getUserByName: build.mutation<User[], string>({
       //получить пользователя по id
-      query: ({ lastName, firstName }) => ({
+      query: (name) => ({
         url: `/name`,
         method: "GET",
-        body: { lastName, firstName },
+        body: { name },
       }),
     }),
     getUserbyId: build.query<User, number>({

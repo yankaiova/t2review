@@ -1,15 +1,13 @@
 import {
   Select,
-  FormControl,
   MenuItem,
   FormControlLabel,
   Checkbox,
   FormGroup,
-  ToggleButtonGroup,
-  ToggleButton,
   SelectChangeEvent,
+  Typography,
 } from "@mui/material";
-import { useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import {
   ROLE,
   competentions,
@@ -17,34 +15,20 @@ import {
   EXPERTISE,
 } from "../../../shared/lib/constants";
 import { useSearchExpert } from "@/entities/user";
-import { BaseButton } from "@/shared/ui";
+import { BaseButton, CustomToggleGroup } from "@/shared/ui";
 
 export const Filters = () => {
   const { setOptions } = useSearchExpert();
-  const style = {
-    backgroundColor: "#2FB3FF",
-    marginRight: "20px",
-    border: "1px solid white",
-    borderRadius: "0",
-  };
-  const [competence, setCompetence] = useState<
-    { name: string; checked: boolean }[]
-  >([]);
-  const [role, setRole] = useState<string>("");
+  const [rating, setRating] = useState<number>(5);
+  const [competence, setCompetence] =
+    useState<{ name: string; checked: boolean }[]>(competentions);
+  const [role, setRole] = useState<ROLE | "">("");
   const handleChangeRole = (e: SelectChangeEvent<string>) => {
     setRole(e.target.value);
   };
-  const [expertise, setExpertise] = useState<string>("");
-  const handleExpertise = (e: SelectChangeEvent<string>) => {
+  const [expertise, setExpertise] = useState<EXPERTISE | "">("");
+  const handleExpertise = (e: SelectChangeEvent) => {
     setExpertise(e.target.value);
-  };
-  const [rating, setRating] = useState<string | null>(null);
-
-  const handleRating = (
-    event: React.MouseEvent<HTMLElement>,
-    newRating: string | null
-  ) => {
-    setRating(newRating);
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -58,17 +42,23 @@ export const Filters = () => {
   };
 
   const onSubmit = () => {
-    const mapCompetence = competence.map((item) => {
-      if (item.checked) {
-        return item.name;
-      }
+    const mapCompetence = competence
+      .filter((item) => item.checked === true)
+      .map((item) => item.name);
+    setOptions({
+      competence: mapCompetence,
+      area: expertise || undefined,
+      rating,
+      roleExpert: role || undefined,
     });
-    setOptions({ competence: mapCompetence, expertise, rating, role });
   };
   return (
-    <FormControl>
-      {/* <FormGroup> */}
-      {/* {competentions.map((item) => (
+    <form style={{ display: "flex", flexDirection: "column" }}>
+      <FormGroup>
+        <Typography color="textDisabled">
+          Фильтр по уровню компетенции
+        </Typography>
+        {competence.map((item) => (
           <FormControlLabel
             key={"checkbox" + item.name}
             control={
@@ -82,13 +72,9 @@ export const Filters = () => {
           />
         ))}
       </FormGroup>
-      <Select id="slot-e-select" value={expertise} onChange={handleExpertise}>
-        {Object.values(EXPERTISE).map((value) => (
-          <MenuItem key={value} value={value}>
-            {value}
-          </MenuItem>
-        ))}
-      </Select>
+      <Typography color="textDisabled" marginTop="20px">
+        Выбор ролей
+      </Typography>
       <Select id="slot-t-select" value={role} onChange={handleChangeRole}>
         {Object.values(ROLE).map((value) => (
           <MenuItem key={value} value={value}>
@@ -96,14 +82,25 @@ export const Filters = () => {
           </MenuItem>
         ))}
       </Select>
-      <ToggleButtonGroup value={rating} exclusive onChange={handleRating}>
-        {ratings.map((value: number) => (
-          <ToggleButton value={value} key={value} sx={style}>
+      <Typography color="textDisabled" marginTop="20px">
+        Область экспертизы
+      </Typography>
+      <Select id="slot-e-select" value={expertise} onChange={handleExpertise}>
+        {Object.values(EXPERTISE).map((value) => (
+          <MenuItem key={value} value={value}>
             {value}
-          </ToggleButton>
+          </MenuItem>
         ))}
-      </ToggleButtonGroup> */}
-      <BaseButton text="Применить фильтры" onClick={onSubmit} />
-    </FormControl>
+      </Select>
+      <Typography marginTop="20px" color="textDisabled">
+        Оценка пользователей
+      </Typography>
+      <CustomToggleGroup
+        values={ratings}
+        currentValue={rating}
+        setCurrentValue={setRating}
+      />
+      <BaseButton text="Применить" onClick={onSubmit} />
+    </form>
   );
 };

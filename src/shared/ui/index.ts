@@ -1,4 +1,3 @@
-export { BaseModal } from "./modal/BaseModal";
 export { BaseBox } from "./box/BaseBox";
 export { BaseLink } from "./link";
 export { BaseButton } from "./button";
@@ -7,3 +6,5 @@ export { BaseBoxContainer } from "./container";
 export { BaseCard } from "./card";
 export { BaseFormDialog } from "./dialog";
 export { TypographyStatus } from "./status";
+export { CustomToggleGroup } from "./toggle-button-group";
+export { SuggestionsUI } from "./suggestions-ui";

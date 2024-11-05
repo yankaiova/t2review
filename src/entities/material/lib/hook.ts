@@ -1,25 +1,18 @@
-import { useDispatch, useSelector } from "react-redux";
-import { useCallback } from "react";
+import { useAppDispatch, useAppSelector } from "@/entities/root-store";
 import { getMaterialLinks } from "../model/selectors";
 import { addToMaterials, removeFromMaterials } from "../model/slice";
 
 export const useMaterials = () => {
-  const dispatch = useDispatch();
-  const links = useSelector(getMaterialLinks);
+  const dispatch = useAppDispatch();
+  const links = useAppSelector(getMaterialLinks);
 
-  const addLink = useCallback(
-    (link: string) => {
-      dispatch(addToMaterials(link));
-    },
-    [dispatch, links]
-  );
+  const addLink = (link: string) => {
+    dispatch(addToMaterials(link));
+  };
 
-  const removeLink = useCallback(
-    (link: string) => {
-      dispatch(removeFromMaterials(link));
-    },
-    [dispatch, links]
-  );
+  const removeLink = (link: string) => {
+    dispatch(removeFromMaterials(link));
+  };
 
   return { links, addLink, removeLink };
 };

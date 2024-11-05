@@ -14,6 +14,7 @@ export const Record = ({ slot, children }: PropsRecord) => {
             date: slot.date,
             start_time: slot.start_time,
             end_time: slot.end_time,
+            slot_type: slot.slot_type,
           }}
         />
       </CardContent>

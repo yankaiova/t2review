@@ -1,2 +1,2 @@
 import { RootState } from "@/entities/root-store";
-export const getSlot = (state: RootState) => state.slots;
+export const getSlot = (state: RootState) => state.slot;

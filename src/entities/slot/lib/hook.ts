@@ -1,18 +1,16 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "@/entities/root-store";
 import { setSlot } from "../model/slice";
-import { useCallback } from "react";
 import { getSlot } from "../model/selectors";
+import { BaseSlot } from "@/shared/model/types";
 
+type TSlot = BaseSlot & { slot_id: number };
 export const useSlot = () => {
-  const dispatch = useDispatch();
-  const slotAtribiutes = useSelector(getSlot);
+  const dispatch = useAppDispatch();
+  const slotAtribiutes = useAppSelector(getSlot);
 
-  const setCurrentSlot = useCallback(
-    (slot: any) => {
-      dispatch(setSlot(slot));
-    },
-    [dispatch, slotAtribiutes]
-  );
+  const setCurrentSlot = (slot: TSlot) => {
+    dispatch(setSlot(slot));
+  };
 
   return { slotAtribiutes, setCurrentSlot };
 };

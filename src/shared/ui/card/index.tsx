@@ -1,11 +1,8 @@
 import { BaseBoxContainer, BaseTypography } from "..";
 import { Typography } from "@mui/material";
 import { dateView } from "../../lib/helpers";
-type BaseSlot = {
-  date: string;
-  start_time: string;
-  end_time: string;
-};
+import { BaseSlot } from "@/shared/model/types";
+
 type PropsBaseCard = {
   slot: BaseSlot;
 };
@@ -28,6 +25,10 @@ export const BaseCard = ({ slot }: PropsBaseCard) => {
       <BaseBoxContainer>
         <BaseTypography>Конец</BaseTypography>
         <BaseTypography>{slot.end_time}</BaseTypography>
+      </BaseBoxContainer>
+      <BaseBoxContainer>
+        <BaseTypography>Формат</BaseTypography>
+        <BaseTypography>{slot.slot_type}</BaseTypography>
       </BaseBoxContainer>
     </>
   );
