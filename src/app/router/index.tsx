@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
-import { Layout } from "../../widgets/layout/ui";
-import { CalendarPage } from "../../pages/calendar";
+import { Layout } from "../providers";
+import { CalendarPage } from "@/pages/calendar";
 import { HomePage } from "@/pages/main";
 import { PrivateRoute } from "./private";
 import { CreatePage } from "@/pages/create-meeting";
