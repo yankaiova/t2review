@@ -4,13 +4,22 @@ import { FilterOptions, User } from "@/shared/model/types";
 
 export const usersApi = createApi({
   reducerPath: "usersApi",
-  baseQuery: fetchBaseQuery({ baseUrl: `${SERVER_API}/api/v1/users` }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: `${SERVER_API}/api/v1`,
+    prepareHeaders: (headers) => {
+      const token = localStorage.getItem("token");
+      if (token) {
+        headers.set("Authorization", `Bearer ${token}`);
+      }
+      return headers;
+    },
+  }),
 
   endpoints: (build) => ({
     getExpertsByQuery: build.mutation<User[], string>({
       //поиск экспертов по ключевым словам
       query: (query) => ({
-        url: `/search=${query}`,
+        url: `users/search=${query}`,
         method: "GET",
       }),
     }),
@@ -32,7 +41,15 @@ export const usersApi = createApi({
     }),
     getUserbyId: build.query<User, number>({
       //получение пользователя по id
-      query: (id) => `/${id}`,
+      query: (id) => `specialists/${id}`,
+    }),
+    getAllSkills: build.query<User, number>({
+      //получение всех скиллов
+      query: () => `/skills`,
+    }),
+    getAllPositiins: build.query<User, number>({
+      //получение всех позиций
+      query: () => `/positions`,
     }),
   }),
 });

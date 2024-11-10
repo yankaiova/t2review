@@ -1,55 +1,39 @@
 import { TextField, FormControl } from "@mui/material";
 import { BaseButton } from "@/shared/ui";
-import { useContext, useState } from "react";
-import { usersApi } from "@/entities/user";
-import { AuthContext } from "@/shared/context";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { style } from "./styles";
+import { useAppDispatch } from "@/entities/root-store";
+import { login } from "@/entities/auth/model/slice";
 
 export const Login = () => {
-  const { setRole, setUser } = useContext(AuthContext);
-  const [getAuthUser] = usersApi.useGetUserByNameMutation();
-
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
-  const [firstName, setFirstName] = useState<string>("");
-  const [lastName, setLastName] = useState<string>("");
-
-  const onChangeName = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setFirstName(e.target.value);
-  };
-  const onChangeLastName = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setLastName(e.target.value);
-  };
+  const [user, setUser] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
 
   const signIn = () => {
-    setRole("client");
-    setUser(23);
+    dispatch(login(23));
     navigate("/calendar");
-    // getAuthUser({ firstName, lastName })
-    //   .then((res) => {
-    //     setUser(res.data.user_id);
-    //     setRole(res.data.role);
-    //   })
-    //   .then(() => navigate("/calendar"));
   };
   return (
     <FormControl sx={style}>
       <TextField
-        id="outlined-firstname"
-        placeholder="Имя"
-        value={firstName}
-        onChange={onChangeName}
+        id="outlined-user"
+        placeholder="Введите логин"
+        value={user}
+        onChange={(
+          e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+        ) => setUser(e.target.value)}
       />
       <TextField
-        id="outlined-lastname"
-        placeholder="Фамилия"
-        value={lastName}
-        onChange={onChangeLastName}
+        id="outlined-password"
+        type="password"
+        value={password}
+        onChange={(
+          e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+        ) => setPassword(e.target.value)}
       />
       <BaseButton text="Войти" onClick={signIn} />
     </FormControl>

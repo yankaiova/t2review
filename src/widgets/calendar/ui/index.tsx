@@ -1,11 +1,11 @@
 import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { useCalendar } from "../lib/hook";
+import { useCalendar } from "@/entities/meeting";
 import { useState } from "react";
 import dayjs from "dayjs";
 import { style } from "./index.style";
-import { dateToFormat } from "../lib/dateToFormat";
+import { dateToFormat } from "@/shared/lib/helpers";
 
 export const Calendar = () => {
   const { setNewDate } = useCalendar();

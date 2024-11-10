@@ -1,5 +1,5 @@
+import { dateToFormat } from "@/shared/lib/helpers";
 import { createSlice } from "@reduxjs/toolkit";
-import { dateToFormat } from "../lib/dateToFormat";
 
 export interface DayState {
   date: string;
@@ -10,8 +10,8 @@ const initialState: DayState = {
   date: today,
 };
 
-export const daySlice = createSlice({
-  name: "day",
+export const meetingSlice = createSlice({
+  name: "meeting",
   initialState,
   reducers: {
     setDate: (state, action) => {
@@ -20,6 +20,6 @@ export const daySlice = createSlice({
   },
 });
 
-export const { setDate } = daySlice.actions;
+export const { setDate } = meetingSlice.actions;
 
-export default daySlice.reducer;
+export default meetingSlice.reducer;

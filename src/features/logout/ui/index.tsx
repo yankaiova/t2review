@@ -1,12 +1,10 @@
 import { BaseButton } from "@/shared/ui";
-import { useContext } from "react";
-import { AuthContext } from "@/shared/context";
-
+import { useAuth } from "@/entities/auth";
 export const Logout = () => {
-  const { setRole, setUser } = useContext(AuthContext);
+  const { logOut } = useAuth();
+
   const handleClick = () => {
-    setRole("");
-    setUser(null);
+    logOut();
   };
   return <BaseButton text="Выйти" onClick={handleClick} />;
 };
