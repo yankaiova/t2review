@@ -1,11 +1,12 @@
+import { getUser } from "@/shared/lib/helpers";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 export interface AuthState {
   user: number | null;
 }
-
+const savedUser = getUser();
 const initialState: AuthState = {
-  user: null,
+  user: savedUser,
 };
 
 const authSlice = createSlice({

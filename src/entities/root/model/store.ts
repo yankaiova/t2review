@@ -6,7 +6,7 @@ import { slotReducer, slotsApi } from "@/entities/slot";
 import { usersReducer, usersApi } from "@/entities/specialist";
 import { materialsReducer } from "@/entities/material";
 import { commentsApi } from "@/entities/comment";
-import { authReducer, authApi } from "@/entities/auth";
+import { authReducer, authApi, listenerMiddlewareAuth } from "@/entities/auth";
 
 export const store = configureStore({
   reducer: {
@@ -23,13 +23,15 @@ export const store = configureStore({
   },
 
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(
-      authApi.middleware,
-      slotsApi.middleware,
-      meetingsApi.middleware,
-      usersApi.middleware,
-      commentsApi.middleware
-    ),
+    getDefaultMiddleware()
+      .concat(
+        authApi.middleware,
+        slotsApi.middleware,
+        meetingsApi.middleware,
+        usersApi.middleware,
+        commentsApi.middleware
+      )
+      .prepend(listenerMiddlewareAuth.middleware),
 });
 setupListeners(store.dispatch);
 export type RootState = ReturnType<typeof store.getState>;
