@@ -1,4 +1,4 @@
-import { BaseButton } from "@/shared/ui";
+import { Button } from "@mui/material";
 import { useAuth } from "@/entities/auth";
 export const Logout = () => {
   const { logOut } = useAuth();
@@ -6,5 +6,9 @@ export const Logout = () => {
   const handleClick = () => {
     logOut();
   };
-  return <BaseButton text="Выйти" onClick={handleClick} />;
+  return (
+    <Button sx={{ color: "#2FB3FF" }} onClick={handleClick}>
+      Выйти
+    </Button>
+  );
 };
