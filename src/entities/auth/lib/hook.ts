@@ -1,11 +1,11 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "@/shared/lib/hooks";
 import { getAuthUser } from "../model/selectors";
 import { login, logout } from "../model/slice";
 import { authApi } from "..";
 
 export const useAuth = () => {
-  const dispatch = useDispatch();
-  const currentUser = useSelector(getAuthUser);
+  const dispatch = useAppDispatch();
+  const currentUser = useAppSelector(getAuthUser);
   const isAuth = !!currentUser;
   const [authUser] = authApi.useAuthUserMutation();
 

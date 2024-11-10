@@ -1,10 +1,10 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "@/shared/lib/hooks";
 import { getDate } from "../model/selectors";
 import { setDate } from "../model/slice";
 
 export const useCalendar = () => {
-  const dispatch = useDispatch();
-  const date = useSelector(getDate);
+  const dispatch = useAppDispatch();
+  const date = useAppSelector(getDate);
 
   const setNewDate = (newDate: string) => {
     dispatch(setDate(newDate));

@@ -1,12 +1,12 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "@/shared/lib/hooks";
 import { getQuerySearch, getChosenOptions } from "../model/selectors";
 import { setChosenOptions, setQuerySearch } from "../model/slice";
 import { FilterOptions } from "@/shared/model/types";
 
 export const useSearchExpert = () => {
-  const dispatch = useDispatch();
-  const query = useSelector(getQuerySearch);
-  const chosenOptions = useSelector(getChosenOptions);
+  const dispatch = useAppDispatch();
+  const query = useAppSelector(getQuerySearch);
+  const chosenOptions = useAppSelector(getChosenOptions);
 
   const setQuery = (str: string) => {
     dispatch(setQuerySearch(str));
