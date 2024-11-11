@@ -1,16 +1,19 @@
-import { CardExpert, usersApi, useSearchExpert } from "@/entities/user";
+import {
+  CardExpert,
+  specialistsApi,
+  useSearchExpert,
+} from "@/entities/specialist";
 import { users } from "@/mocks";
-import { AuthContext } from "@/shared/context";
 import { User } from "@/shared/model/types";
 import { Grid2 } from "@mui/material";
-import { useContext, useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export const ExpertList = () => {
   const { query, chosenOptions } = useSearchExpert();
   const [experts, setExperts] = useState<User[]>([...users]);
-  const [expertByQuery] = usersApi.useGetExpertsByQueryMutation();
-  const [expertsByFilters] = usersApi.useGetExpertsByFilterMutation();
+  const [expertByQuery] = specialistsApi.useGetExpertsByQueryMutation();
+  const [expertsByFilters] = specialistsApi.useGetExpertsByFilterMutation();
   const navigate = useNavigate();
 
   // useEffect(() => {

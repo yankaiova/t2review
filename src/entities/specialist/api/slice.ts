@@ -2,8 +2,8 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { SERVER_API } from "@/shared/lib/constants";
 import { FilterOptions, User } from "@/shared/model/types";
 
-export const usersApi = createApi({
-  reducerPath: "usersApi",
+export const specialistsApi = createApi({
+  reducerPath: "specialistsApi",
   baseQuery: fetchBaseQuery({
     baseUrl: `${SERVER_API}/api/v1`,
     prepareHeaders: (headers) => {
@@ -59,4 +59,4 @@ export const {
   useGetExpertsByQueryMutation,
   useGetExpertsByFilterMutation,
   useGetUserByNameMutation,
-} = usersApi;
+} = specialistsApi;

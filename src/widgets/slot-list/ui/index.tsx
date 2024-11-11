@@ -1,4 +1,4 @@
-import { useCalendar } from "@/entities/calendar";
+import { useCalendar } from "@/entities/meeting";
 import { Slot } from "@/shared/model/types";
 import { SlotItem } from "@/entities/slot";
 import { DeleteSlot } from "@/features/delete-slot";

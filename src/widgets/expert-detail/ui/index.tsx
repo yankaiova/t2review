@@ -1,6 +1,6 @@
 import { BaseTypography } from "@/shared/ui";
 import { useParams } from "react-router-dom";
-import { CardExpert, usersApi } from "@/entities/user";
+import { CardExpert, usersApi } from "@/entities/specialist";
 import { users } from "@/mocks";
 import { useState } from "react";
 

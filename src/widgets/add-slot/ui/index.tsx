@@ -5,7 +5,7 @@ import {
   Box,
   TextField,
 } from "@mui/material";
-import { useCalendar } from "@/entities/calendar";
+import { useCalendar } from "@/entities/meeting";
 import {
   BaseButton,
   BaseFormDialog,
@@ -13,17 +13,17 @@ import {
   BaseBoxContainer,
 } from "@/shared/ui";
 import { Select, MenuItem } from "@mui/material";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { slotsApi } from "@/entities/slot";
 import { calculateEndTime, dateView } from "@/shared/lib/helpers";
 import { TIMER } from "@/shared/lib/constants";
-import { AuthContext } from "@/shared/context";
 import { style, boxStyle } from "./styles";
 import { useModal } from "@/shared/lib/hooks";
+import { useAuth } from "@/entities/auth";
 
 export const AddSlot = () => {
   const { open, openModal, closeModal } = useModal();
-  const { user_id } = useContext(AuthContext);
+  const { user } = useAuth();
   const [createNewSlot] = slotsApi.useCreateSlotMutation();
 
   const { date } = useCalendar();
@@ -36,9 +36,9 @@ export const AddSlot = () => {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (user_id) {
+    if (user) {
       createNewSlot({
-        creator_id: user_id,
+        creator_id: user,
         start_time,
         end_time: endTime,
         slot_type: checked ? "offline" : "online",

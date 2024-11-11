@@ -1,5 +1,5 @@
 import { Meeting } from "@/shared/model/types";
-import { useCalendar } from "@/entities/calendar";
+import { useCalendar } from "@/entities/meeting";
 import { MeetingItem } from "@/entities/meeting";
 import { meetings } from "@/mocks";
 import { MeetingSettings } from "@/widgets/meeting-settings";

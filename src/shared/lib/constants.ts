@@ -1,6 +1,7 @@
 import { FilterCompetention } from "../model/types";
 
 export const SERVER_API = "https://dummyjson.com";
+export const SERVER_API_PROFILE = "http://localhost:8200";
 
 export enum ROLE {
   DEV = "Разработчик (Developer)",
@@ -10,7 +11,7 @@ export enum ROLE {
   TECH_WRITER = "Технический писатель (TechnivalWriter)",
 }
 
-export const ratings = [1, 2, 3, 4, 5];
+export const levelSkills = ["1", "2", "3", "4", "5"];
 
 export enum EXPERTISE {
   JAVA = "Java",
