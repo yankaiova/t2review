@@ -7,9 +7,8 @@ type props = { children: React.ReactNode };
 export const PrivateRoute = ({ children }: props) => {
   const navigate = useNavigate();
   const { isAuth } = useAuth();
-
   useEffect(() => {
-    if (isAuth) {
+    if (!isAuth) {
       navigate("/");
     }
   }, [isAuth, navigate]);
