@@ -1,4 +1,4 @@
-import { useAppDispatch, useAppSelector } from "@/entities/root-store";
+import { useAppDispatch, useAppSelector } from "@/shared/lib/hooks";
 import { getMaterialLinks } from "../model/selectors";
 import { addToMaterials, removeFromMaterials } from "../model/slice";
 

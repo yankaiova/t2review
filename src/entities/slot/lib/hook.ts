@@ -1,4 +1,4 @@
-import { useAppDispatch, useAppSelector } from "@/entities/root-store";
+import { useAppDispatch, useAppSelector } from "@/shared/lib/hooks";
 import { setSlot } from "../model/slice";
 import { getSlot } from "../model/selectors";
 import { BaseSlot } from "@/shared/model/types";

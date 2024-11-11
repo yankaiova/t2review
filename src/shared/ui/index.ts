@@ -1,4 +1,3 @@
-export { BaseBox } from "./box/BaseBox";
 export { BaseLink } from "./link";
 export { BaseButton } from "./button";
 export { BaseTypography } from "./typography";
@@ -8,3 +7,4 @@ export { BaseFormDialog } from "./dialog";
 export { TypographyStatus } from "./status";
 export { CustomToggleGroup } from "./toggle-button-group";
 export { SuggestionsUI } from "./suggestions-ui";
+export { HeaderView } from "./header";

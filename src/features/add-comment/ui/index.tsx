@@ -2,8 +2,8 @@ import { BaseFormDialog } from "@/shared/ui";
 import { TextField } from "@mui/material";
 import SmsIcon from "@mui/icons-material/Sms";
 import { commentsApi } from "@/entities/comment";
-import { useContext, useState } from "react";
-import { AuthContext } from "@/shared/context";
+import { useState } from "react";
+import { useAuth } from "@/entities/auth";
 import { useParams } from "react-router-dom";
 import dayjs from "dayjs";
 import { useModal } from "@/shared/lib/hooks";
@@ -13,7 +13,7 @@ export const AddComment = () => {
   const { meetingId } = useParams();
   const id = Number(meetingId);
 
-  const { user_id } = useContext(AuthContext);
+  const { user } = useAuth();
 
   const [comment, setComment] = useState<string>("");
 

@@ -1,15 +1,15 @@
 import "./index.css";
 import { routes } from "../router";
 import { RouterProvider } from "react-router-dom";
-import { AuthProvider } from "@/shared/context";
 import { Suspense } from "react";
+import { AppStoreProvider } from "../providers";
 
 export function App() {
   return (
-    <AuthProvider>
+    <AppStoreProvider>
       <Suspense fallback={<div>Заагрузка...</div>}>
         <RouterProvider router={routes} />
       </Suspense>
-    </AuthProvider>
+    </AppStoreProvider>
   );
 }
