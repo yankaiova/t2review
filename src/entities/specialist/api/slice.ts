@@ -5,7 +5,7 @@ import { FilterOptions, User } from "@/shared/model/types";
 export const specialistsApi = createApi({
   reducerPath: "specialistsApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: `${SERVER_API}/api/v1`,
+    baseUrl: `http://10.4.56.94:3000/team`,
     prepareHeaders: (headers) => {
       const token = localStorage.getItem("token");
       if (token) {
@@ -19,7 +19,7 @@ export const specialistsApi = createApi({
     getExpertsByQuery: build.mutation<User[], string>({
       //поиск экспертов по ключевым словам
       query: (query) => ({
-        url: `users/search=${query}`,
+        url: `specialists/search=${query}`,
         method: "GET",
       }),
     }),
@@ -51,6 +51,10 @@ export const specialistsApi = createApi({
       //получение всех позиций
       query: () => `/positions`,
     }),
+    getAllTeam: build.query<any, void>({
+      //получение всех позиций
+      query: () => ``,
+    }),
   }),
 });
 
@@ -59,4 +63,5 @@ export const {
   useGetExpertsByQueryMutation,
   useGetExpertsByFilterMutation,
   useGetUserByNameMutation,
+  useGetAllTeamQuery,
 } = specialistsApi;

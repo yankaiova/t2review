@@ -1,5 +1,5 @@
 import { useNavigate, useLocation, useParams } from "react-router-dom";
-import { meetingsApi } from "@/entities/meeting";
+//import { meetingsApi } from "@/entities/meeting";
 import { useSlot } from "@/entities/slot";
 import { BaseButton } from "@/shared/ui";
 import { Slot } from "@/shared/model/types";
@@ -17,7 +17,7 @@ export const CreateRecordButton = ({ slot }: { slot: Slot }) => {
   const handleClick = () => {
     setCurrentSlot(slot);
     if (isFirstCreateMeeting) {
-      console.log("reschudale");
+      console.log("reschudale", meetingId);
       // updateMeeting({ meetingId, ...slotAtribiutes });
     } else {
       navigate("/meetings/create");

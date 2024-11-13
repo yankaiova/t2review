@@ -6,17 +6,17 @@ import {
   FormGroup,
   SelectChangeEvent,
   Typography,
-  ListItemText,
+  // ListItemText,
 } from "@mui/material";
 import { useState } from "react";
 import { useSearchExpert } from "@/entities/specialist";
 import { BaseButton } from "@/shared/ui";
 import { useFilters } from "../lib/hook";
-import { LevelSkills, Position, Skill } from "@/shared/model/types";
+import { Position } from "@/shared/model/types";
 import { levelSkills } from "@/shared/lib/constants";
 
 export const Filters = () => {
-  const { positions, skills } = useFilters();
+  const { positions } = useFilters();
   const { setOptions } = useSearchExpert();
   const [levelCompetence, setLevelCompetence] = useState<string[]>([]);
 
@@ -25,10 +25,10 @@ export const Filters = () => {
     setRole(e.target.value);
   };
 
-  const [skillsF, setSkillsF] = useState<number[]>([]);
-  const handleChangeSkill = (event: SelectChangeEvent<number>) => {
-    setSkillsF([...skillsF, Number(event.target.value)]);
-  };
+  //const [skillsF, setSkillsF] = useState<number[]>([]);
+  // const handleChangeSkill = (event: SelectChangeEvent<number>) => {
+  //   setSkillsF([...skillsF, Number(event.target.value)]);
+  // };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setLevelCompetence([...levelCompetence, event.target.value]);
@@ -56,19 +56,19 @@ export const Filters = () => {
       <Typography color="textDisabled" marginTop="20px">
         Область экспертизы
       </Typography>
-      <Select
+      {/* <Select
         id="demo-multiple-chip"
         multiple
-        value={skills.id}
+        value={skills.}
         onChange={handleChangeSkill}
       >
-        {skills.map((item: Skill) => (
+        {skills && skills.map((item: Skill) => (
           <MenuItem key={item.id} value={item.id}>
             <Checkbox checked={skillsF.includes(item.id)} />
             <ListItemText primary={item.name} />
           </MenuItem>
         ))}
-      </Select>
+      </Select> */}
       <FormGroup>
         <Typography color="textDisabled">
           Фильтр по уровню компетенции

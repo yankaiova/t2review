@@ -6,8 +6,8 @@ import {
   TypographyStatus,
 } from "@/shared/ui";
 import { useParams } from "react-router-dom";
-import { meetingsApi } from "@/entities/meeting";
-import { CommentList } from "@/widgets/comment-list";
+// import { meetingsApi } from "@/entities/meeting";
+// import { CommentList } from "@/widgets/comment-list";
 import { NameUser } from "@/features/user-name";
 import { meetings } from "@/mocks";
 

@@ -1,5 +1,5 @@
 import { Stack } from "@mui/material";
-import { BaseLink, BaseTypography, TypographyStatus } from "@/shared/ui";
+import { BaseLink, TypographyStatus } from "@/shared/ui";
 import { Meeting } from "@/shared/model/types";
 
 import { style } from "./styles";

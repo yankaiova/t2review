@@ -1,4 +1,4 @@
-import { usersApi } from "@/entities/user";
+//import { usersApi } from "@/entities/user";
 import { users } from "@/mocks";
 import { BaseTypography } from "@/shared/ui";
 

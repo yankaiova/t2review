@@ -9,7 +9,7 @@ export const CompleteMeeting = ({ meeting_id }: { meeting_id: number }) => {
   const [value, setValue] = useState<number | null>(5);
   const setRating = (e: React.SyntheticEvent, newValue: number | null) => {
     setValue(newValue);
-    console.log(newValue);
+    console.log(newValue, e.currentTarget);
   };
   const [updateStatus] = meetingsApi.useSetMeetingStatusMutation();
   const completeMeeting = () => {

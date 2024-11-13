@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { SERVER_API, SERVER_API_PROFILE } from "@/shared/lib/constants";
-import { Position, User } from "@/shared/model/types";
+import { SERVER_API_PROFILE } from "@/shared/lib/constants";
+import { Position, Skill } from "@/shared/model/types";
 
 export const filtersApi = createApi({
   reducerPath: "filtersApi",
@@ -16,7 +16,7 @@ export const filtersApi = createApi({
   }),
 
   endpoints: (build) => ({
-    getAllSkills: build.query<any, void>({
+    getAllSkills: build.query<Skill[], void>({
       //получение всех скиллов
       query: () => `/skills`,
     }),

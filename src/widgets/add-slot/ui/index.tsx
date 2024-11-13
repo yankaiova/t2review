@@ -23,7 +23,7 @@ import { useAuth } from "@/entities/auth";
 
 export const AddSlot = () => {
   const { open, openModal, closeModal } = useModal();
-  const { user } = useAuth();
+  const { currentUser } = useAuth();
   const [createNewSlot] = slotsApi.useCreateSlotMutation();
 
   const { date } = useCalendar();
@@ -36,9 +36,9 @@ export const AddSlot = () => {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (user) {
+    if (currentUser) {
       createNewSlot({
-        creator_id: user,
+        creator_id: currentUser,
         start_time,
         end_time: endTime,
         slot_type: checked ? "offline" : "online",
@@ -92,7 +92,7 @@ export const AddSlot = () => {
               onChange={(e: SelectChangeEvent) => setTime(e.target.value)}
             >
               {Object.entries(TIMER).map(([key, value]) => (
-                <MenuItem key={"slot" + value} value={value}>
+                <MenuItem key={"slot" + key} value={value}>
                   {value + "м"}
                 </MenuItem>
               ))}

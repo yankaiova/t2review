@@ -1,10 +1,10 @@
 import { BaseTypography } from "@/shared/ui";
 import { useParams } from "react-router-dom";
-import { CommentItem, commentsApi } from "@/entities/comment";
+import { CommentItem } from "@/entities/comment";
 import { Comment } from "@/shared/model/types";
 import { NameUser } from "@/features/user-name";
 import { comments } from "@/mocks";
-import { Box, Stack } from "@mui/material";
+import { Stack } from "@mui/material";
 
 export const CommentList = () => {
   const { meetingId } = useParams();
