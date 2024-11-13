@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { SERVER_API } from "@/shared/lib/constants";
-import { Team } from "../../meeting/model/types";
+import { Team } from "../../../entities/meeting/model/types";
 
 export interface UserTeamResponse {
   userprofileid: number;

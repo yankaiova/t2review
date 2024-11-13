@@ -3,7 +3,7 @@ import { useAppDispatch } from "@/shared/lib/hooks";
 import { teamsApi } from "@/entities/team";
 import { addUsersTeam, getUsersTeam, removeUserTeam } from "@/entities/meeting";
 import { useSelector } from "react-redux";
-import { UserTeamResponse } from "@/entities/team/api/slice";
+import { UserTeamResponse } from "@/features/add-users-meeting/api/slice";
 
 interface BaseUser {
   userprofileid: number;

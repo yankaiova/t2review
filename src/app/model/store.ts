@@ -6,7 +6,7 @@ import { usersReducer, specialistsApi } from "@/entities/specialist";
 import { materialsReducer } from "@/entities/material";
 import { commentsApi } from "@/entities/comment";
 import { authReducer, authApi, listenerMiddlewareAuth } from "@/entities/auth";
-import { teamsApi } from "@/entities/team";
+import { teamsApi } from "@/features/add-users-meeting";
 import { filtersApi } from "@/features/filters";
 
 export const store = configureStore({
