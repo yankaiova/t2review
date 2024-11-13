@@ -21,7 +21,6 @@ export const CalendarPage = () => {
           </Typography>
           <SlotList />
           <AddSlot />
-          <Teams />
         </Box>
       </Stack>
     </Container>

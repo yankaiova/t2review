@@ -6,6 +6,7 @@ import { usersReducer, specialistsApi } from "@/entities/specialist";
 import { materialsReducer } from "@/entities/material";
 import { commentsApi } from "@/entities/comment";
 import { authReducer, authApi, listenerMiddlewareAuth } from "@/entities/auth";
+import { teamsApi } from "@/features/add-users-meeting";
 import { filtersApi } from "@/features/filters";
 
 export const store = configureStore({
@@ -13,13 +14,14 @@ export const store = configureStore({
     auth: authReducer,
     users: usersReducer,
     slot: slotReducer,
-    day: meetingReducer,
+    meeting: meetingReducer,
     materials: materialsReducer,
     [authApi.reducerPath]: authApi.reducer,
     [slotsApi.reducerPath]: slotsApi.reducer,
     [meetingsApi.reducerPath]: meetingsApi.reducer,
     [specialistsApi.reducerPath]: specialistsApi.reducer,
     [commentsApi.reducerPath]: commentsApi.reducer,
+    [teamsApi.reducerPath]: teamsApi.reducer,
     [filtersApi.reducerPath]: filtersApi.reducer,
   },
 
@@ -30,6 +32,7 @@ export const store = configureStore({
         slotsApi.middleware,
         meetingsApi.middleware,
         specialistsApi.middleware,
+        teamsApi.middleware,
         commentsApi.middleware,
         filtersApi.middleware
       )

@@ -5,7 +5,7 @@ import { SERVER_API } from "@/shared/lib/constants";
 export const authApi = createApi({
   reducerPath: "authApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: `${SERVER_API}/api/v1/auth`,
+    baseUrl: `${SERVER_API.PROFILE}/api/v1/auth`,
   }),
 
   endpoints: (build) => ({
