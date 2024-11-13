@@ -34,10 +34,8 @@ export interface Meeting {
   meeting_status: string;
 }
 export interface User {
-  user_id: number;
-  user_outside_BD_id: number;
+  id: number;
   telegram: string;
-  role: "client" | "expert";
   firstName: string;
   lastName: string;
   description?: string;

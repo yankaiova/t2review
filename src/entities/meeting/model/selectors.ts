@@ -1,7 +1,10 @@
 import { createSelector } from "@reduxjs/toolkit";
 
-export const getDay = (state: RootState) => state.day;
+export const getMeeting = (state: RootState) => state.meeting;
 
-export const getDate = createSelector(getDay, (day) => {
-  return day.date;
+export const getDate = createSelector(getMeeting, (meeting) => {
+  return meeting.date;
+});
+export const getUsersTeam = createSelector(getMeeting, (meeting) => {
+  return meeting.users;
 });

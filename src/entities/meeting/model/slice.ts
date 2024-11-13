@@ -1,13 +1,18 @@
 import { dateToFormat } from "@/shared/lib/helpers";
-import { createSlice } from "@reduxjs/toolkit";
-
-export interface DayState {
-  date: string;
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+interface BaseUser {
+  userprofileid: number;
+  firstname: string;
+  lastname: string;
 }
+type MeetingState = {
+  date: string;
+  users: BaseUser[];
+};
 const today = dateToFormat(Date.now());
-
-const initialState: DayState = {
+export const initialState: MeetingState = {
   date: today,
+  users: [],
 };
 
 export const meetingSlice = createSlice({
@@ -17,9 +22,17 @@ export const meetingSlice = createSlice({
     setDate: (state, action) => {
       state.date = action.payload;
     },
+    addUsersTeam: (state, action: PayloadAction<BaseUser>) => {
+      state.users.push(action.payload);
+    },
+    removeUserTeam: (state, action: PayloadAction<number>) => {
+      state.users = state.users.filter(
+        (item) => item.userprofileid !== action.payload
+      );
+    },
   },
 });
 
-export const { setDate } = meetingSlice.actions;
+export const { setDate, addUsersTeam, removeUserTeam } = meetingSlice.actions;
 
 export default meetingSlice.reducer;

@@ -1,11 +1,11 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { SERVER_API_PROFILE } from "@/shared/lib/constants";
+import { SERVER_API } from "@/shared/lib/constants";
 import { Position, Skill } from "@/shared/model/types";
 
 export const filtersApi = createApi({
   reducerPath: "filtersApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: `${SERVER_API_PROFILE}/api/v1`,
+    baseUrl: `${SERVER_API.PROFILE}/api/v1`,
     prepareHeaders: (headers) => {
       const token = localStorage.getItem("token");
       if (token) {
