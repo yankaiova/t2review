@@ -1,7 +1,7 @@
 import { BaseFormDialog } from "@/shared/ui";
 import { TextField } from "@mui/material";
 import SmsIcon from "@mui/icons-material/Sms";
-import { commentsApi } from "@/entities/comment";
+//import { commentsApi } from "@/entities/comment";
 import { useState } from "react";
 import { useAuth } from "@/entities/auth";
 import { useParams } from "react-router-dom";
@@ -13,7 +13,7 @@ export const AddComment = () => {
   const { meetingId } = useParams();
   const id = Number(meetingId);
 
-  const { user } = useAuth();
+  const { currentUser } = useAuth();
 
   const [comment, setComment] = useState<string>("");
 
@@ -23,8 +23,14 @@ export const AddComment = () => {
     e.preventDefault();
     const create_time = String(dayjs());
     // addComment({ meeting_id: id, user_id, create_time, comment_text: comment });
+    console.log({
+      meeting_id: id,
+      user_id: currentUser,
+      create_time,
+      comment_text: comment,
+    });
     setComment("");
-    closeModal();
+    //closeModal();
   };
 
   return (

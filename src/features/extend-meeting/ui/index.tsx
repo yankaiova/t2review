@@ -51,6 +51,7 @@ export const ExtendMeeting = (props: PropsExtendMeeting) => {
       >
         <BaseCard
           slot={{
+            slot_type: "online",
             date: meeting.date,
             start_time: meeting.start_time,
             end_time: newEnd,
@@ -65,7 +66,7 @@ export const ExtendMeeting = (props: PropsExtendMeeting) => {
               onChange={(e: SelectChangeEvent) => setTime(e.target.value)}
             >
               {Object.entries(TIMER).map(([key, value]) => (
-                <MenuItem key={"slot" + value} value={value}>
+                <MenuItem key={"slot" + key} value={value}>
                   {value + "м"}
                 </MenuItem>
               ))}

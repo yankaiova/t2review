@@ -4,6 +4,7 @@ import { Calendar } from "@/widgets/calendar";
 import { AddSlot } from "@/widgets/add-slot";
 import { Stack, Box, Container, Typography } from "@mui/material";
 import { style } from "./styles";
+import { Teams } from "@/widgets/teams";
 
 export const CalendarPage = () => {
   return (
@@ -20,6 +21,7 @@ export const CalendarPage = () => {
           </Typography>
           <SlotList />
           <AddSlot />
+          <Teams />
         </Box>
       </Stack>
     </Container>

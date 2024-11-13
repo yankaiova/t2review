@@ -1,16 +1,26 @@
-import { EXPERTISE, RATING, ROLE } from "../lib/constants";
-
 type SlotType = "offline" | "online";
 
 export type FilterCompetention = { name: string; checked: boolean };
 
 export type FilterOptions = {
   competence: string[];
-  roleExpert: ROLE;
-  rating: RATING;
-  area: EXPERTISE;
+  position: number;
+  area: string[];
 };
-
+export interface Position {
+  id: number;
+  name: string;
+  description: string;
+}
+export interface Skill {
+  id: number;
+  name: string;
+  description: string;
+  question: string;
+}
+export interface LevelSkills {
+  id: string;
+}
 export interface Meeting {
   meeting_id: number;
   expert_id: number;

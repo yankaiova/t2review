@@ -1,6 +1,6 @@
 import { Stack } from "@mui/material";
 import { BaseTypography } from "@/shared/ui";
-import { Login } from "@/features/login";
+import { Login } from "@/widgets/login";
 import pictureMain from "@/assets/192cc1c0909911efab591690387607a1 1.png";
 
 export const HomePage = () => {

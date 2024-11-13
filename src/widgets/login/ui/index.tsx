@@ -3,7 +3,7 @@ import { BaseButton } from "@/shared/ui";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { style } from "./styles";
-import { useAppDispatch } from "@/entities/root-store";
+import { useAppDispatch } from "@/shared/lib/hooks";
 import { login } from "@/entities/auth/model/slice";
 
 export const Login = () => {

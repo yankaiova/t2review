@@ -1,7 +1,7 @@
 import { BaseButton, BaseCard, BaseTypography } from "@/shared/ui";
-import { useSlot, slotsApi } from "@/entities/slot";
+import { useSlot } from "@/entities/slot";
 import { style, styleBoxCard } from "./styles";
-import { meetingsApi } from "@/entities/meeting";
+//import { meetingsApi } from "@/entities/meeting";
 import { AddMaterial } from "@/features/add-material";
 import { useMaterials } from "@/entities/material";
 import { DeleteMaterial } from "@/features/delete-material";
@@ -53,6 +53,12 @@ export const AddMeeting = () => {
     //   end_time,
     //   meeting_type: slot_type,
     // }).then(() => updateSlotAvalible({ slot_id: slot_id, is_avalible: false }));
+    console.log({
+      slot_id,
+      start_time,
+      end_time,
+      meeting_type: slot_type,
+    });
     setDescription("");
   };
   return (

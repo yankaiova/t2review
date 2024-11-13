@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { TextField } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import { useSearchExpert } from "@/entities/user";
+import { useSearchExpert } from "@/entities/specialist";
 const style = { width: "100%", marginBottom: "30px" };
 export const SearchForm = () => {
   const { setQuery } = useSearchExpert();

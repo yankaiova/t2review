@@ -1,6 +1,6 @@
 import { DialogContent, MenuItem } from "@mui/material";
-import { meetingsApi } from "@/entities/meeting";
-import { slotsApi } from "@/entities/slot";
+//import { meetingsApi } from "@/entities/meeting";
+//import { slotsApi } from "@/entities/slot";
 import { useModal } from "@/shared/lib/hooks";
 import { BaseTypography, BaseFormDialog } from "@/shared/ui";
 
@@ -10,14 +10,14 @@ type PropsCancelMeeting = {
 };
 
 export const CancelMeeting = (props: PropsCancelMeeting) => {
-  const { meeting_id, slot_id } = props;
-  const [updateStatus] = meetingsApi.useSetMeetingStatusMutation();
-  const [updateSlotAvalible] = slotsApi.useUpdateSlotAvalibleMutation();
+  // const { meeting_id, slot_id } = props;
+  //const [updateStatus] = meetingsApi.useSetMeetingStatusMutation();
+  //const [updateSlotAvalible] = slotsApi.useUpdateSlotAvalibleMutation();
 
   const { open, openModal, closeModal } = useModal();
 
   const cancelMeeting = () => {
-    console.log("отмена");
+    console.log("отмена", props);
     // updateStatus({ meeting_id: meeting_id, status: "canceled" }).then(() =>
     //   updateSlotAvalible({ slot_id: slot_id, is_avalible: true })
     // );
