@@ -7,10 +7,10 @@ export const specialistsApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: SERVER_API.PROFILE,
     prepareHeaders: (headers) => {
-      const token = localStorage.getItem("token");
-      if (token) {
-        headers.set("Authorization", `Bearer ${token}`);
-      }
+      headers.set(
+        "Authorization",
+        `Bearer ${"X-API-TOKEN:3GXJiyB2SmiGf0O7j-U0luHjm-mrEFU6DB-D86rWRopwalYwzEEhaCLjiE4OOOFd"}`
+      );
       return headers;
     },
   }),
@@ -31,25 +31,9 @@ export const specialistsApi = createApi({
         body: { chosenOptions },
       }),
     }),
-    getUserByName: build.mutation<User[], string>({
-      //получить пользователя по id
-      query: (name) => ({
-        url: `/name`,
-        method: "GET",
-        body: { name },
-      }),
-    }),
     getUserbyId: build.query<User, number>({
       //получение пользователя по id
       query: (id) => `specialists/${id}`,
-    }),
-    getAllSkills: build.query<User, number>({
-      //получение всех скиллов
-      query: () => `/skills`,
-    }),
-    getAllPositiins: build.query<User, number>({
-      //получение всех позиций
-      query: () => `/positions`,
     }),
   }),
 });
@@ -58,5 +42,4 @@ export const {
   useGetUserbyIdQuery,
   useGetExpertsByQueryMutation,
   useGetExpertsByFilterMutation,
-  useGetUserByNameMutation,
 } = specialistsApi;

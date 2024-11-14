@@ -9,9 +9,10 @@ export const SearchPage = () => {
       <SearchForm />
       <Stack
         direction={{ xs: "column", sm: "row" }}
-        justifyContent="start"
-        alignItems="center"
+        justifyContent="center"
+        alignItems="start"
         gap="2rem"
+        marginBottom="30px"
       >
         <Filters />
         <ExpertList />

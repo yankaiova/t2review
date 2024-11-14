@@ -5,7 +5,7 @@ export type FilterCompetention = { name: string; checked: boolean };
 export type FilterOptions = {
   competence: string[];
   position: number;
-  area: string[];
+  levelCompetence: number;
 };
 export interface Position {
   id: number;
@@ -18,9 +18,10 @@ export interface Skill {
   description: string;
   question: string;
 }
-export interface LevelSkills {
-  id: string;
-}
+export type Level = {
+  name: string;
+  numericValue: number;
+};
 export interface Meeting {
   meeting_id: number;
   expert_id: number;

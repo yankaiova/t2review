@@ -7,10 +7,10 @@ export const filtersApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: `${SERVER_API.PROFILE}/api/v1`,
     prepareHeaders: (headers) => {
-      const token = localStorage.getItem("token");
-      if (token) {
-        headers.set("Authorization", `Bearer ${token}`);
-      }
+      headers.set(
+        "Authorization",
+        `Bearer ${"X-API-TOKEN:3GXJiyB2SmiGf0O7j-U0luHjm-mrEFU6DB-D86rWRopwalYwzEEhaCLjiE4OOOFd"}`
+      );
       return headers;
     },
   }),
@@ -20,11 +20,11 @@ export const filtersApi = createApi({
       //получение всех скиллов
       query: () => `/skills`,
     }),
-    getAllPositiins: build.query<Position[], void>({
+    getAllPositions: build.query<Position[], void>({
       //получение всех позиций
       query: () => `/positions`,
     }),
   }),
 });
 
-export const { useGetAllPositiinsQuery, useGetAllSkillsQuery } = filtersApi;
+export const { useGetAllPositionsQuery, useGetAllSkillsQuery } = filtersApi;
