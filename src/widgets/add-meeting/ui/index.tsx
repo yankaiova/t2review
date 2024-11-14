@@ -1,7 +1,7 @@
 import { BaseButton, BaseCard, BaseTypography } from "@/shared/ui";
 import { useSlot } from "@/entities/slot";
 import { style, styleBoxCard } from "./styles";
-import { teamsApi } from "@/entities/team";
+import { teamsApi } from "@/features/add-users-meeting";
 import { Team } from "@/entities/meeting/model/types";
 //import { meetingsApi } from "@/entities/meeting";
 import { AddMaterial } from "@/features/add-material";
