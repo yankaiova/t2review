@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { Slot } from "@/shared/model/types";
+import { Slot } from "../model/types";
 import { SERVER_API } from "@/shared/lib/constants";
 
 export const slotsApi = createApi({
@@ -9,15 +9,11 @@ export const slotsApi = createApi({
   endpoints: (build) => ({
     getSlotsbyExpert: build.query<Slot[], number>({
       //получить доступные слоты у эксперта
-      query: (expert_id) => `/expert/${expert_id}`,
+      query: (expert_id) => `/expert_id=${expert_id}`,
     }),
     getSlotbyId: build.query<Slot, number>({
       //получение cлота по id
       query: (id) => `/${id}`,
-    }),
-    getSlotbyExpertId: build.query<Slot, number>({
-      //получение встречи по id
-      query: (id) => `/slots/expert/${id}`,
     }),
     createSlot: build.mutation<Slot, Partial<Slot>>({
       //добавление - создание слота

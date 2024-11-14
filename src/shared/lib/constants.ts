@@ -2,7 +2,7 @@ import { Level } from "../model/types";
 
 export enum SERVER_API {
   REVIEW = "https://dummyjson.com",
-  PROFILE = "http://localhost:8080",
+  PROFILE = " http://10.4.56.98:8080",
   TEAM = "http://10.4.56.94:3000",
 }
 export enum SERVICE {

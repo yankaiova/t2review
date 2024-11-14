@@ -12,8 +12,7 @@ export const useAuth = () => {
   const logIn = (user: string, password: string): void => {
     //const data = authUser({ user, password })
     // .then((res) => {
-    console.log(user, password);
-    localStorage.setItem("token", "765");
+    // localStorage.setItem("token", res.token);
     dispatch(login(23));
     //})
     // .catch(() => {

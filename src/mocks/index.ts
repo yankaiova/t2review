@@ -30,8 +30,8 @@ export const materials: Material[] = [
 export const meetings: Meeting[] = [
   {
     meeting_id: 1,
-    expert_id: 23,
-    client_id: [1],
+    expert_id: 3,
+    client_id: [1, 23],
     slot_id: 1,
     date: "29-10-2024",
     start_time: "12:30",
@@ -39,11 +39,15 @@ export const meetings: Meeting[] = [
     description: "jfjjff",
     meeting_type: "online",
     meeting_status: "запланирована",
+    materials: [
+      "https://ya.ru",
+      "https://www.google.com/search?q=%D1%8F%D0%BD%D0%B4%D0%B5%D0%BA%D1%81&oq=%D1%8F%D0%BD%D0%B4%D0%B5%D0%BA%D1%81&gs_lcrp=EgZjaHJvbWUqBwgAEAAYjwIyBwgAEAAYjwIyEwgBEC4YgwEYxwEYsQMY0QMYgAQyEAgCEAAYgwEYsQMYyQMYgAQyDQgDEAAYgwEYsQMYgAQyDQgEEAAYgwEYsQMYgAQyBggFEEUYOzINCAYQABiDARixAxiABDIHCAcQABiABDIHCAgQABiPAjIHCAkQABiPAtIBCTczNzRqMGoxNagCALACAA&sourceid=chrome&ie=UTF-8",
+    ],
   },
   {
     meeting_id: 2,
-    expert_id: 23,
-    client_id: [4],
+    expert_id: 1,
+    client_id: [4, 23],
     slot_id: 8,
     date: "29-10-2024",
     start_time: "15:30",
@@ -51,6 +55,10 @@ export const meetings: Meeting[] = [
     end_time: "16:00",
     meeting_type: "offline",
     meeting_status: "завершена",
+    materials: [
+      "https://ya.ru",
+      "https://www.google.com/search?q=%D1%8F%D0%BD%D0%B4%D0%B5%D0%BA%D1%81&oq=%D1%8F%D0%BD%D0%B4%D0%B5%D0%BA%D1%81&gs_lcrp=EgZjaHJvbWUqBwgAEAAYjwIyBwgAEAAYjwIyEwgBEC4YgwEYxwEYsQMY0QMYgAQyEAgCEAAYgwEYsQMYyQMYgAQyDQgDEAAYgwEYsQMYgAQyDQgEEAAYgwEYsQMYgAQyBggFEEUYOzINCAYQABiDARixAxiABDIHCAcQABiABDIHCAgQABiPAjIHCAkQABiPAtIBCTczNzRqMGoxNagCALACAA&sourceid=chrome&ie=UTF-8",
+    ],
   },
 ];
 export const users: User[] = [

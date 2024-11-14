@@ -4,11 +4,13 @@ import { BaseUser } from "./types";
 
 type MeetingState = {
   date: string;
+  links: string[];
   users: BaseUser[];
 };
 const today = dateToFormat(Date.now());
 export const initialState: MeetingState = {
   date: today,
+  links: [],
   users: [],
 };
 
@@ -30,10 +32,20 @@ export const meetingSlice = createSlice({
     cleanUsersTeam: (state) => {
       state.users = [];
     },
+    addToMaterials: (state, action) => {
+      state.links.push(action.payload);
+    },
+    removeFromMaterials: (state, action) => {
+      state.links = state.links?.filter((item) => item !== action.payload);
+    },
   },
 });
 
-export const { setDate, addUserTeam, removeUserTeam, cleanUsersTeam } =
-  meetingSlice.actions;
-
-export default meetingSlice.reducer;
+export const {
+  setDate,
+  addUserTeam,
+  removeUserTeam,
+  cleanUsersTeam,
+  removeFromMaterials,
+  addToMaterials,
+} = meetingSlice.actions;

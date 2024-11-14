@@ -15,7 +15,7 @@ export const SearchPage = () => {
         marginBottom="30px"
       >
         <Filters />
-        <ExpertList />
+        {/* <ExpertList /> */}
       </Stack>
     </Container>
   );

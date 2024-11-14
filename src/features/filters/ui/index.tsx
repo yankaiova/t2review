@@ -7,10 +7,10 @@ import { Level, Position } from "@/shared/model/types";
 import { levelSkills } from "@/shared/lib/constants";
 
 export const Filters = () => {
-  const { positions, skills } = useFilters();
+  const { positions } = useFilters();
   const { setOptions } = useSearchExpert();
   const [levelCompetence, setLevelCompetence] = useState<string>("");
-
+  const skills = [];
   const [role, setRole] = useState<string>("");
   const [skill, setSkill] = useState<string>("");
   const handleChangeRole = (e: SelectChangeEvent<string>) => {

@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { Meeting } from "@/shared/model/types";
+import { Meeting } from "../model/types";
 import { SERVER_API } from "@/shared/lib/constants";
 
 export const meetingsApi = createApi({

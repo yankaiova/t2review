@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { Comment } from "@/shared/model/types";
+import { Comment } from "../model/types";
 import { SERVER_API } from "@/shared/lib/constants";
 
 export const commentsApi = createApi({
@@ -11,7 +11,7 @@ export const commentsApi = createApi({
   endpoints: (build) => ({
     getAllCommentsByMeeting: build.query<Comment[], number>({
       //получить все комментарии по id встречи
-      query: (meeting_id) => `/meeting/${meeting_id}`,
+      query: (meeting_id) => `/meeting_id=${meeting_id}`,
     }),
     addComments: build.mutation<
       Comment,

@@ -23,12 +23,7 @@ export const AddComment = () => {
     e.preventDefault();
     const create_time = String(dayjs());
     // addComment({ meeting_id: id, user_id, create_time, comment_text: comment });
-    console.log({
-      meeting_id: id,
-      user_id: currentUser,
-      create_time,
-      comment_text: comment,
-    });
+
     setComment("");
     //closeModal();
   };

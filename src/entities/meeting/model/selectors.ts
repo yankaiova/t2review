@@ -8,3 +8,6 @@ export const getDate = createSelector(getMeeting, (meeting) => {
 export const getUsersTeam = createSelector(getMeeting, (meeting) => {
   return meeting.users;
 });
+export const getMaterialLinks = createSelector(getMeeting, (meeting) => {
+  return meeting.links;
+});

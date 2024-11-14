@@ -25,5 +25,3 @@ export const slotSlice = createSlice({
 });
 
 export const { setSlot } = slotSlice.actions;
-
-export default slotSlice.reducer;

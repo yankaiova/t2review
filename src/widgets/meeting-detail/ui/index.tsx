@@ -13,7 +13,6 @@ import { meetings } from "@/mocks";
 
 export const MeetingInfo = () => {
   const { meetingId } = useParams();
-  const links = ["https://www.google.ru/?hl=ru", "https://ya.ru"];
   const data = meetings.find((item) => item.meeting_id === Number(meetingId));
   // const { data } = meetingsApi.useGetMeetingbyIdQuery(Number(meetingId));
 
@@ -42,7 +41,7 @@ export const MeetingInfo = () => {
       <Box style={{ marginTop: "10px" }}>
         <BaseTypography>Материалы</BaseTypography>
         <List>
-          {links.map((item: string) => (
+          {data.materials.map((item: string) => (
             <ListItem key={item}>
               <Typography color="#2FB3FF">{item}</Typography>
             </ListItem>

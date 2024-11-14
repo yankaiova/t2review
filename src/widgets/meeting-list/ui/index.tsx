@@ -5,15 +5,26 @@ import { meetings } from "@/mocks";
 import { MeetingSettings } from "@/widgets/meeting-settings";
 import { BaseTypography } from "@/shared/ui";
 import { Fragment } from "react";
+import { useAuth } from "@/entities/auth";
 
 export const MeetingList = () => {
   const { date } = useCalendar();
-  if (meetings && meetings.length === 0) {
+  const { currentUser } = useAuth();
+  if (!currentUser || !date) return;
+
+  const data = meetings.filter(
+    (item) =>
+      (item.client_id.includes(currentUser) ||
+        item.expert_id === currentUser) &&
+      item.date === date
+  );
+
+  if (data && data.length === 0) {
     return <BaseTypography>Нет встреч текущую дату</BaseTypography>;
   }
   return (
     <div>
-      {meetings.map((item: Meeting) => (
+      {data.map((item: Meeting) => (
         <Fragment key={item.meeting_id + "meet"}>
           {date === item.date && (
             <MeetingItem key={item.meeting_id} meeting={item}>
