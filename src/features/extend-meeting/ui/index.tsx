@@ -27,7 +27,7 @@ export const ExtendMeeting = (props: PropsExtendMeeting) => {
     // );
   };
 
-  const [time, setTime] = useState<string>(String(TIMER.HOUR_0_5));
+  const [time, setTime] = useState<string>(String(TIMER[0]));
   const [newEnd, setNewEnd] = useState<string>(meeting.end_time);
   useEffect(() => {
     const value = calculateEndTime(

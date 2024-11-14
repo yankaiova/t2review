@@ -32,7 +32,7 @@ export const AddSlot = () => {
   const [start_time, setStart_time] = useState<string>("");
   const [checked, setChecked] = useState<boolean>(false);
   const [endTime, setEndTime] = useState<string>("");
-  const [time, setTime] = useState<string>(String(TIMER.HOUR_0_5));
+  const [time, setTime] = useState<string>(String(TIMER[0]));
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
