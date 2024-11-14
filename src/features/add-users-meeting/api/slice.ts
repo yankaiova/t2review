@@ -1,16 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { SERVER_API } from "@/shared/lib/constants";
-import { Team } from "../../../entities/meeting/model/types";
-
-export interface UserTeamResponse {
-  userprofileid: number;
-  firstname: string;
-  lastname: string;
-  position: string;
-  description: string;
-  contactinformation: string;
-  privacysettings: string;
-}
+import { Team, UserTeamResponse } from "../model/types";
 
 export const teamsApi = createApi({
   reducerPath: "teamsApi",

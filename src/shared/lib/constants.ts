@@ -49,12 +49,4 @@ export const levelSkills = ["1", "2", "3", "4", "5"];
 //   { name: "Middle", checked: false },
 //   { name: "Senior", checked: false },
 // ];
-export enum TIMER {
-  ZERO = 0,
-  HOUR_0_5 = 30,
-  HOUR_1 = 60,
-  HOUR_1_5 = 90,
-  HOUR_2 = 120,
-  HOUR_2_5 = 150,
-  HOUR_3 = 180,
-}
+export const TIMER = [0, 30, 60, 90, 120, 150, 180];

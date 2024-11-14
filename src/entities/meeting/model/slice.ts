@@ -1,10 +1,7 @@
 import { dateToFormat } from "@/shared/lib/helpers";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-interface BaseUser {
-  userprofileid: number;
-  firstname: string;
-  lastname: string;
-}
+import { BaseUser } from "./types";
+
 type MeetingState = {
   date: string;
   users: BaseUser[];
@@ -22,7 +19,7 @@ export const meetingSlice = createSlice({
     setDate: (state, action) => {
       state.date = action.payload;
     },
-    addUsersTeam: (state, action: PayloadAction<BaseUser>) => {
+    addUserTeam: (state, action: PayloadAction<BaseUser>) => {
       state.users.push(action.payload);
     },
     removeUserTeam: (state, action: PayloadAction<number>) => {
@@ -30,9 +27,13 @@ export const meetingSlice = createSlice({
         (item) => item.userprofileid !== action.payload
       );
     },
+    cleanUsersTeam: (state) => {
+      state.users = [];
+    },
   },
 });
 
-export const { setDate, addUsersTeam, removeUserTeam } = meetingSlice.actions;
+export const { setDate, addUserTeam, removeUserTeam, cleanUsersTeam } =
+  meetingSlice.actions;
 
 export default meetingSlice.reducer;

@@ -1,36 +1,28 @@
 import { Checkbox, ListItemText, MenuItem } from "@mui/material";
 import { useAppDispatch } from "@/shared/lib/hooks";
-import { teamsApi } from "../api/slice";
-import { addUsersTeam, getUsersTeam, removeUserTeam } from "@/entities/meeting";
 import { useSelector } from "react-redux";
-import { UserTeamResponse } from "@/features/add-users-meeting/api/slice";
-
-interface BaseUser {
-  userprofileid: number;
-  firstname: string;
-  lastname: string;
-}
+import { teamsApi } from "../api/slice";
+import { addUserTeam, removeUserTeam, getUsersTeam } from "@/entities/meeting";
+import { UserTeamResponse } from "@/features/add-users-meeting";
+import { checkIncludeUser, transformData } from "../lib/utils";
 
 export const AddUsersTeam = ({ team }: { team: string }) => {
+  console.log("add", team);
+
   const { data } = teamsApi.useGetUserbyTeamidQuery(Number(team));
+  if (!data || data.length < 1) return;
+
   const dispatch = useAppDispatch();
   const currentUsers = useSelector(getUsersTeam);
-  console.log(data);
 
   const handleChangeUser = (item: UserTeamResponse) => {
-    const user: BaseUser = {
-      userprofileid: item.userprofileid,
-      firstname: item.firstname,
-      lastname: item.lastname,
-    };
-    if (currentUsers.includes(user)) {
+    const user = transformData(item);
+    if (checkIncludeUser(currentUsers, user)) {
       dispatch(removeUserTeam(user.userprofileid));
     } else {
-      dispatch(addUsersTeam(user));
+      dispatch(addUserTeam(user));
     }
   };
-
-  if (!data || data.length < 1) return;
 
   return (
     <div>
@@ -39,7 +31,9 @@ export const AddUsersTeam = ({ team }: { team: string }) => {
           key={item.userprofileid}
           onClick={() => handleChangeUser(item)}
         >
-          <Checkbox checked={currentUsers.includes(item)} />
+          <Checkbox
+            checked={checkIncludeUser(currentUsers, transformData(item))}
+          />
           <ListItemText primary={item.firstname + " " + item.lastname} />
         </MenuItem>
       ))}

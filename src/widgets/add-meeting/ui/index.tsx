@@ -1,55 +1,31 @@
-import { BaseButton, BaseCard, BaseTypography } from "@/shared/ui";
+import { BaseButton, BaseCard } from "@/shared/ui";
 import { useSlot } from "@/entities/slot";
 import { style, styleBoxCard } from "./styles";
-import { teamsApi } from "@/features/add-users-meeting";
-import { Team } from "@/entities/meeting/model/types";
+import { teamsApi, Team } from "@/features/add-users-meeting";
 //import { meetingsApi } from "@/entities/meeting";
-import { AddMaterial } from "@/features/add-material";
-import { useMaterials } from "@/entities/material";
-import { DeleteMaterial } from "@/features/delete-material";
-import { lazy, useState } from "react";
+import React, { lazy, useState } from "react";
 import {
   TextField,
   Typography,
   FormControl,
-  List,
-  ListItem,
   Container,
   Box,
   Select,
   SelectChangeEvent,
   MenuItem,
 } from "@mui/material";
-import { useDebounce } from "@/shared/lib/hooks";
+import { useAppDispatch, useDebounce } from "@/shared/lib/hooks";
+import { cleanUsersTeam } from "@/entities/meeting";
 
 const LazyAddUsers = lazy(() => import("@/features/add-users-meeting"));
 
-export const MaterialList = () => {
-  const { links } = useMaterials();
-  console.log(links);
-  if (!links) {
-    return <BaseTypography>Материалы пока не добавлены</BaseTypography>;
-  }
-  return (
-    <>
-      <BaseTypography>Материалы</BaseTypography>
-      <List>
-        {links.map((item: string) => (
-          <ListItem key={item}>
-            <Typography color="#2FB3FF">{item}</Typography>
-            <DeleteMaterial link={item} />
-          </ListItem>
-        ))}
-      </List>
-    </>
-  );
-};
-
-export const AddMeeting = () => {
+export const AddMeeting = ({ children }: { children: React.ReactNode }) => {
   const { data } = teamsApi.useGetAllTeamsQuery();
+  const dispatch = useAppDispatch();
   const [team, setTeam] = useState<string>("");
   const handleChangeTeams = (event: SelectChangeEvent<string>) => {
     setTeam(event.target.value);
+    dispatch(cleanUsersTeam());
   };
   const debounceValue = useDebounce(team, 200);
   const [description, setDescription] = useState<string>("");
@@ -82,20 +58,6 @@ export const AddMeeting = () => {
           <BaseCard slot={{ date, start_time, end_time, slot_type }} />
         </Box>
         <Typography color="#2FB3FF">Встреча онлайн на 60 минут</Typography>
-        <Typography color="textDisabled">Выбор участников</Typography>
-        <SelectUsers />
-        <MaterialList />
-        <AddMaterial />
-        <TextField
-          id="outlined-textarea"
-          label="Описание"
-          placeholder="Добавьте описание"
-          value={description}
-          onChange={(
-            e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-          ) => setDescription(e.target.value)}
-          multiline
-        />
         <Typography color="textDisabled" marginTop="20px">
           Выбор участников
         </Typography>
@@ -111,7 +73,18 @@ export const AddMeeting = () => {
               </MenuItem>
             ))}
         </Select>
-        {debounceValue && <LazyAddUsers team={debounceValue} />}
+        {/* {debounceValue && <LazyAddUsers team={debounceValue} />} */}
+        {children}
+        <TextField
+          id="outlined-textarea"
+          label="Описание"
+          placeholder="Добавьте описание"
+          value={description}
+          onChange={(
+            e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+          ) => setDescription(e.target.value)}
+          multiline
+        />
         <Box>
           <BaseButton text="Сохранить" onClick={createMeeting} />
         </Box>
