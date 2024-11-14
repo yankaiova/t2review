@@ -6,5 +6,4 @@ export { BaseCard } from "./card";
 export { BaseFormDialog } from "./dialog";
 export { TypographyStatus } from "./status";
 export { CustomToggleGroup } from "./toggle-button-group";
-export { SuggestionsUI } from "./suggestions-ui";
 export { HeaderView } from "./header";

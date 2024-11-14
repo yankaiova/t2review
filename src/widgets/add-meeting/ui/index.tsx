@@ -20,7 +20,6 @@ import {
   SelectChangeEvent,
   MenuItem,
 } from "@mui/material";
-import { SelectUsers } from "@/features/suggestions-user";
 import { useDebounce } from "@/shared/lib/hooks";
 
 const LazyAddUsers = lazy(() => import("@/features/add-users-meeting"));
