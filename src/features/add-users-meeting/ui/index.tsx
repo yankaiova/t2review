@@ -1,6 +1,6 @@
 import { Checkbox, ListItemText, MenuItem } from "@mui/material";
 import { useAppDispatch } from "@/shared/lib/hooks";
-import { teamsApi } from "@/entities/team";
+import { teamsApi } from "../api/slice";
 import { addUsersTeam, getUsersTeam, removeUserTeam } from "@/entities/meeting";
 import { useSelector } from "react-redux";
 import { UserTeamResponse } from "@/features/add-users-meeting/api/slice";
