@@ -47,8 +47,10 @@ export const AddSlot = () => {
   };
 
   useEffect(() => {
-    const t = calculateEndTime(date, start_time, Number(time));
-    setEndTime(t);
+    if (start_time) {
+      const t = calculateEndTime(date, start_time, Number(time));
+      setEndTime(t);
+    }
   }, [time, start_time]);
 
   return (
