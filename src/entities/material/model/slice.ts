@@ -1,15 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export interface MaterialState {
+type MaterialState = {
   links: string[];
-}
-
-const initialState: MaterialState = {
+};
+export const initialState: MaterialState = {
   links: [],
 };
 
-export const materialsSlice = createSlice({
-  name: "materials",
+export const materialSlice = createSlice({
+  name: "material",
   initialState,
   reducers: {
     addToMaterials: (state, action) => {
@@ -18,9 +17,11 @@ export const materialsSlice = createSlice({
     removeFromMaterials: (state, action) => {
       state.links = state.links?.filter((item) => item !== action.payload);
     },
+    cleanMaterials: (state) => {
+      state.links = [];
+    },
   },
 });
 
-export const { addToMaterials, removeFromMaterials } = materialsSlice.actions;
-
-export default materialsSlice.reducer;
+export const { removeFromMaterials, addToMaterials, cleanMaterials } =
+  materialSlice.actions;

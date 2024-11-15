@@ -1,3 +1,9 @@
+export { type Material } from "./model/types";
+export { materialsApi } from "./api/slice";
 export { useMaterials } from "./lib/hook";
-import materialsReducer from "./model/slice";
-export { materialsReducer };
+export {
+  materialSlice,
+  cleanMaterials,
+  removeFromMaterials,
+  addToMaterials,
+} from "./model/slice";

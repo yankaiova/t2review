@@ -1,62 +1,44 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { SERVER_API } from "@/shared/lib/constants";
-import { FilterOptions, User } from "@/shared/model/types";
+import { UserProfileResponse } from "../model/types";
 
 export const specialistsApi = createApi({
   reducerPath: "specialistsApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: SERVER_API.PROFILE,
+    baseUrl: `${SERVER_API.PROFILE}/api/v1`,
     prepareHeaders: (headers) => {
-      const token = localStorage.getItem("token");
-      if (token) {
-        headers.set("Authorization", `Bearer ${token}`);
-      }
+      headers.set(
+        "X-API-TOKEN",
+        "eyJhbGciOiJIUzM4NCJ9.eyJyb2xlIjp7ImlkIjoxLCJuYW1lIjoiUk9MRV9BRE1JTiJ9LCJpZCI6MSwic3ViIjoiYWRtaW4iLCJpYXQiOjE3MzE2NjkwODAsImV4cCI6MTczMTY4NzA4MH0.XcOxmgXTthzJMTgPBgX32V_6GJsZut4C93RldJPSzd3cOdvfJFNXc8vVprkTnmKi"
+      );
       return headers;
     },
   }),
 
   endpoints: (build) => ({
-    getExpertsByQuery: build.mutation<User[], string>({
+    getExpertsByQuery: build.query<UserProfileResponse[], string>({
       //поиск экспертов по ключевым словам
       query: (query) => ({
-        url: `specialists/search=${query}`,
+        url: `specialists?search=${query}`,
         method: "GET",
       }),
     }),
-    getExpertsByFilter: build.mutation<User[], Partial<FilterOptions>>({
+    getExpertsByFilter: build.query<UserProfileResponse[], string>({
       //получить экспертов по фильтрам
-      query: (chosenOptions) => ({
-        url: `/filters`,
+      query: () => ({
+        url: `/specialists?position=Backend%20Developer&skill=null&level=null`,
         method: "GET",
-        body: { chosenOptions },
       }),
     }),
-    getUserByName: build.mutation<User[], string>({
-      //получить пользователя по id
-      query: (name) => ({
-        url: `/name`,
-        method: "GET",
-        body: { name },
-      }),
-    }),
-    getUserbyId: build.query<User, number>({
+    getExpertbyId: build.query<UserProfileResponse, number>({
       //получение пользователя по id
       query: (id) => `specialists/${id}`,
-    }),
-    getAllSkills: build.query<User, number>({
-      //получение всех скиллов
-      query: () => `/skills`,
-    }),
-    getAllPositiins: build.query<User, number>({
-      //получение всех позиций
-      query: () => `/positions`,
     }),
   }),
 });
 
 export const {
-  useGetUserbyIdQuery,
-  useGetExpertsByQueryMutation,
-  useGetExpertsByFilterMutation,
-  useGetUserByNameMutation,
+  useGetExpertbyIdQuery,
+  useGetExpertsByQueryQuery,
+  useGetExpertsByFilterQuery,
 } = specialistsApi;

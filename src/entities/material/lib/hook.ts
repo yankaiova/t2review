@@ -1,7 +1,10 @@
 import { useAppDispatch, useAppSelector } from "@/shared/lib/hooks";
+import {
+  addToMaterials,
+  cleanMaterials,
+  removeFromMaterials,
+} from "../model/slice";
 import { getMaterialLinks } from "../model/selectors";
-import { addToMaterials, removeFromMaterials } from "../model/slice";
-
 export const useMaterials = () => {
   const dispatch = useAppDispatch();
   const links = useAppSelector(getMaterialLinks);
@@ -13,6 +16,9 @@ export const useMaterials = () => {
   const removeLink = (link: string) => {
     dispatch(removeFromMaterials(link));
   };
+  const clearLinks = () => {
+    dispatch(cleanMaterials());
+  };
 
-  return { links, addLink, removeLink };
+  return { links, addLink, removeLink, clearLinks };
 };

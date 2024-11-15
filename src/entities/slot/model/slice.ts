@@ -1,8 +1,9 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { BaseSlot } from "@/shared/model/types";
 
-export type SlotState = BaseSlot & { slot_id: number };
+export type SlotState = BaseSlot & { slot_id: number; expert_id: number };
 export const initialState: SlotState = {
+  expert_id: 1,
   slot_id: 1,
   slot_type: "online",
   date: "",
@@ -15,6 +16,7 @@ export const slotSlice = createSlice({
   initialState,
   reducers: {
     setSlot: (state, { payload }: PayloadAction<SlotState>) => {
+      state.expert_id;
       state.slot_id = payload.slot_id;
       state.date = payload.date;
       state.start_time = payload.start_time;
@@ -25,5 +27,3 @@ export const slotSlice = createSlice({
 });
 
 export const { setSlot } = slotSlice.actions;
-
-export default slotSlice.reducer;

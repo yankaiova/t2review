@@ -1,12 +1,15 @@
 import Grid from "@mui/material/Grid2";
-import { Slot } from "@/shared/model/types";
-import { Record } from "@/entities/slot";
+import { Record, slotsApi, type Slot } from "@/entities/slot";
 import { CreateRecordButton } from "@/features/create-record";
 import { BaseTypography } from "@/shared/ui";
-import { slots } from "@/mocks";
+import { slots as data } from "@/mocks";
+import { useParams } from "react-router-dom";
 
 export const RecordsByExpert = () => {
-  if (slots.length === 0) {
+  const { expertId } = useParams();
+  const slots = data.filter((item) => item.creator_id === Number(expertId));
+  // const { data: slots } = slotsApi.useGetSlotsbyExpertQuery(currentUser);
+  if (!slots || slots.length < 1) {
     return <BaseTypography>Нет свободных записей</BaseTypography>;
   }
   return (

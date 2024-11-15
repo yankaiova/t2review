@@ -1,42 +1,39 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { Comment } from "../model/types";
-import { SERVER_API } from "@/shared/lib/constants";
+import { Material } from "../model/types";
 
-export const commentsApi = createApi({
-  reducerPath: "commentsApi",
+export const materialsApi = createApi({
+  reducerPath: "materialsApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: `http://127.0.0.1:8055/items/comment`,
+    baseUrl: `http://127.0.0.1:8055/items/meetings_materials`,
   }),
 
   endpoints: (build) => ({
-    getAllCommentsByMeeting: build.query<any, number>({
+    getAllMaterialsByMeeting: build.query<any, number>({
       //получить все комментарии по id встречи
       query: (meeting_id) => `/?filter[meeting_id][_eq]=${meeting_id}`,
       transformResponse: (response: any) => {
         return response.data;
       },
     }),
-    addComments: build.mutation<
-      Comment,
+    addMaterial: build.mutation<
+      Material,
       {
         meeting_id: number;
-        user_id: number;
-        comment_text: string;
+        material_link: string;
       }
     >({
       //добавление - создание комментария
-      query: ({ meeting_id, user_id, comment_text }) => ({
+      query: ({ meeting_id, material_link }) => ({
         url: "",
         method: "POST",
         body: {
           meeting_id,
-          user_id,
-          comment_text,
+          material_link,
         },
       }),
     }),
   }),
 });
 
-export const { useGetAllCommentsByMeetingQuery, useAddCommentsMutation } =
-  commentsApi;
+export const { useAddMaterialMutation, useGetAllMaterialsByMeetingQuery } =
+  materialsApi;

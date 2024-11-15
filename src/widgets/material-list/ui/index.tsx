@@ -1,6 +1,7 @@
 import { BaseTypography } from "@/shared/ui";
 import { useMaterials } from "@/entities/material";
 import { DeleteMaterial } from "@/features/delete-material";
+import { AddMaterial } from "@/features/add-material";
 import { Typography, List, ListItem } from "@mui/material";
 
 export const MaterialList = () => {
@@ -20,6 +21,7 @@ export const MaterialList = () => {
           </ListItem>
         ))}
       </List>
+      <AddMaterial />
     </>
   );
 };

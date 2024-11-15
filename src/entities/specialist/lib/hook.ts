@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from "@/shared/lib/hooks";
 import { getQuerySearch, getChosenOptions } from "../model/selectors";
 import { setChosenOptions, setQuerySearch } from "../model/slice";
-import { FilterOptions } from "@/shared/model/types";
+import { FilterOptions } from "../model/types";
 
 export const useSearchExpert = () => {
   const dispatch = useAppDispatch();

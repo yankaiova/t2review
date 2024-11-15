@@ -1,4 +1,4 @@
-import { FilterOptions } from "@/shared/model/types";
+import { FilterOptions } from "./types";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 type ExpertState = {
   chosenOptions: Partial<FilterOptions>;
@@ -29,5 +29,3 @@ export const usersSlice = createSlice({
 
 export const { setChosenOptions, setExpert, setQuerySearch } =
   usersSlice.actions;
-
-export default usersSlice.reducer;

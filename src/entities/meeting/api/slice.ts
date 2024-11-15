@@ -1,54 +1,82 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { Meeting } from "@/shared/model/types";
-import { SERVER_API } from "@/shared/lib/constants";
+import { Meeting } from "../model/types";
 
 export const meetingsApi = createApi({
   reducerPath: "meetingsApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: `${SERVER_API}/api/v1/meetings`,
+    baseUrl: `http://127.0.0.1:8055/items`,
   }),
 
   endpoints: (build) => ({
-    getAllMeeting: build.query<Meeting[], void>({
-      query: () => ``,
+    getAllMeetingUser: build.query<any, { expert_id: string; date: string }>({
+      query: ({ expert_id, date }) =>
+        `/meeting/?filter[expert_id][_eq]=${expert_id}&filter[date][_eq]=${date}`,
+      transformResponse: (response: any) => {
+        return response.data;
+      },
     }),
-    getMeetingbyId: build.query<Meeting, number>({
+    getMeetingbyId: build.query<any, number>({
       //получение встречи по id
-      query: (id) => `/${id}`,
+      query: (id) => `/meeting/${id}`,
+      transformResponse: (response: any) => {
+        return response.data;
+      },
+    }),
+    getUsersbyMeeting: build.query<any, number>({
+      //получение встречи по id
+      query: (id) => `/meetings_users/?filter[meeting_id][_eq]=${id}`,
+      transformResponse: (response: any) => {
+        return response.data;
+      },
     }),
     createMeeting: build.mutation<Meeting, Partial<Meeting>>({
       //добавление - создание встречи
       query: ({
-        meeting_status,
         slot_id,
         start_time,
         end_time,
+        date,
         meeting_type,
         description,
         expert_id,
       }) => ({
-        url: "",
+        url: "/meeting",
         method: "POST",
         body: {
-          meeting_status,
+          meeting_status: "запланирована",
           slot_id,
           start_time,
           end_time,
+          date,
           meeting_type,
           description,
           expert_id,
         },
       }),
     }),
+    createMeetingUser: build.mutation<
+      Meeting,
+      { meeting_id: number; user_id: number }
+    >({
+      //добавление - создание встречи
+      query: ({ meeting_id, user_id }) => ({
+        url: "/meetings_users",
+        method: "POST",
+        body: {
+          meeting_id,
+          user_id,
+        },
+      }),
+    }),
     setMeetingStatus: build.mutation<
       void,
-      { meeting_id: number; status: string }
+      { meeting_id: number; meeting_status: string }
     >({
       //изменение статуса встречи
-      query: ({ meeting_id, status }) => ({
-        url: `/${meeting_id}/status`,
+      query: ({ meeting_id, meeting_status }) => ({
+        url: `/meeting/${meeting_id}`,
         method: "PATCH",
-        body: { meeting_id, status }, //при завершении встречи - completed, при удалении встречи - canceled
+        body: { meeting_status }, //при завершении встречи - completed, при удалении встречи - canceled
       }),
     }),
     updateTimeMeeting: build.mutation<
@@ -60,22 +88,12 @@ export const meetingsApi = createApi({
     >({
       //продление встречи
       query: ({ meeting_id, end_time }) => ({
-        url: `/${meeting_id}/end_time`,
+        url: `/meeting/${meeting_id}`,
         method: "PATCH",
-        body: { meeting_id, end_time },
+        body: { end_time },
       }),
     }),
-    setNewSlotMeeting: build.mutation<
-      void,
-      {
-        meeting_id: number;
-        slot_id: number;
-        date: number;
-        start_time: string;
-        end_time: string;
-        type_meeting: "offline" | "online";
-      }
-    >({
+    setNewSlotMeeting: build.mutation<void, Partial<Meeting>>({
       // перенос встречи
       query: ({
         meeting_id,
@@ -83,21 +101,23 @@ export const meetingsApi = createApi({
         date,
         start_time,
         end_time,
-        type_meeting,
+        meeting_type,
       }) => ({
-        url: `/${meeting_id}/slot`,
+        url: `/meeting/${meeting_id}`,
         method: "PATCH",
-        body: { meeting_id, slot_id, date, start_time, end_time, type_meeting },
+        body: { slot_id, date, start_time, end_time, meeting_type },
       }),
     }),
   }),
 });
 
 export const {
-  useGetAllMeetingQuery,
+  useGetAllMeetingUserQuery,
   useGetMeetingbyIdQuery,
   useCreateMeetingMutation,
   useSetMeetingStatusMutation,
   useUpdateTimeMeetingMutation,
   useSetNewSlotMeetingMutation,
+  useGetUsersbyMeetingQuery,
+  useCreateMeetingUserMutation,
 } = meetingsApi;

@@ -1,7 +1,12 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { Meeting } from "@/shared/model/types";
 import { SERVER_API } from "@/shared/lib/constants";
-
+type AuthResponse = {
+  token: string;
+  roleResponse: {
+    id: number;
+    name: string;
+  };
+};
 export const authApi = createApi({
   reducerPath: "authApi",
   baseQuery: fetchBaseQuery({
@@ -9,12 +14,15 @@ export const authApi = createApi({
   }),
 
   endpoints: (build) => ({
-    authUser: build.mutation<Meeting, { user: string; password: string }>({
-      query: ({ user, password }) => ({
-        url: "",
+    authUser: build.mutation<
+      AuthResponse,
+      { username: string; password: string }
+    >({
+      query: ({ username, password }) => ({
+        url: "/sign-in",
         method: "POST",
         body: {
-          user,
+          username,
           password,
         },
       }),

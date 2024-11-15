@@ -28,22 +28,26 @@ export const AddSlot = () => {
 
   const { date } = useCalendar();
   const dateV = dateView(date);
-
   const [start_time, setStart_time] = useState<string>("");
   const [checked, setChecked] = useState<boolean>(false);
   const [endTime, setEndTime] = useState<string>("");
-  const [time, setTime] = useState<string>(String(TIMER[0]));
+  const [time, setTime] = useState<string>(String(TIMER[1]));
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+    // e.preventDefault();
     if (currentUser) {
-      createNewSlot({
+      const data = createNewSlot({
         creator_id: currentUser,
+        date: date,
         start_time,
         end_time: endTime,
         slot_type: checked ? "offline" : "online",
       });
+      console.log(data.data);
     }
+    setStart_time("");
+    setTime(String(TIMER[1]));
+    closeModal();
   };
 
   useEffect(() => {
@@ -77,6 +81,7 @@ export const AddSlot = () => {
               id="outlined-input-startslot"
               placeholder="12:00"
               value={start_time}
+              required
               onChange={(
                 e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
               ) => setStart_time(e.target.value)}
@@ -93,9 +98,9 @@ export const AddSlot = () => {
               value={time}
               onChange={(e: SelectChangeEvent) => setTime(e.target.value)}
             >
-              {Object.entries(TIMER).map(([key, value]) => (
-                <MenuItem key={"slot" + key} value={value}>
-                  {value + "м"}
+              {TIMER.map((item: number) => (
+                <MenuItem key={"slotm" + item} value={item}>
+                  {item + "м"}
                 </MenuItem>
               ))}
             </Select>

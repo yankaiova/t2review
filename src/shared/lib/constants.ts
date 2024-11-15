@@ -1,15 +1,23 @@
-import { FilterCompetention } from "../model/types";
+import { Level } from "../model/types";
 
 export enum SERVER_API {
   REVIEW = "https://dummyjson.com",
-  PROFILE = "http://localhost:8080",
+  PROFILE = " http://10.4.56.98:8080",
   TEAM = "http://10.4.56.94:3000",
 }
 export enum SERVICE {
   TEAM = "http://10.4.56.94:8080",
 }
 
-export const levelSkills = ["1", "2", "3", "4", "5"];
+export const TIMER = [0, 30, 60, 90, 120, 150, 180];
+
+export const levelSkills: Level[] = [
+  { name: "Негативный", numericValue: -1 },
+  { name: "Нейтральный", numericValue: 0 },
+  { name: "Базовый", numericValue: 1 },
+  { name: "Продвинутый", numericValue: 2 },
+  { name: "Экспертный", numericValue: 3 },
+];
 
 // export enum ROLE {
 //   DEV = "Разработчик (Developer)",
@@ -43,10 +51,3 @@ export const levelSkills = ["1", "2", "3", "4", "5"];
 //   USER_GUIDE = "Руководства пользователя",
 //   INTERNAL_DOCUMENTATION = "Внутренняя документация",
 // }
-
-// export const competentions: FilterCompetention[] = [
-//   { name: "Junior", checked: false },
-//   { name: "Middle", checked: false },
-//   { name: "Senior", checked: false },
-// ];
-export const TIMER = [0, 30, 60, 90, 120, 150, 180];
