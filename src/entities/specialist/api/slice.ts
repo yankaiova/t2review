@@ -23,10 +23,13 @@ export const specialistsApi = createApi({
         method: "GET",
       }),
     }),
-    getExpertsByFilter: build.query<UserProfileResponse[], string>({
+    getExpertsByFilter: build.query<
+      UserProfileResponse[],
+      { skill: string | null; position: string; level: string | null }
+    >({
       //получить экспертов по фильтрам
       query: () => ({
-        url: `/specialists?position=Backend%20Developer&skill=null&level=null`,
+        url: `/specialists?position=${position}&skill=${skill}&level=${level}`,
         method: "GET",
       }),
     }),

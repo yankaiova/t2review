@@ -19,35 +19,21 @@ export const levelSkills: Level[] = [
   { name: "Экспертный", numericValue: 3 },
 ];
 
-// export enum ROLE {
-//   DEV = "Разработчик (Developer)",
-//   TEST = "Тестировщик(QA Engineer)",
-//   DISIGN = "Дизайнер (UI/UX designer)",
-//   SYS_ADMIN = "Системный администратор (System Administrator)",
-//   TECH_WRITER = "Технический писатель (TechnivalWriter)",
-// }
-// export enum EXPERTISE {
-//   JAVA = "Java",
-//   PYTHON = "Python",
-//   JS = "JavaScript/TypeScript",
-//   C_PLUS = "C/C++",
-//   C = "C#",
-//   PUBY = "Ruby",
-//   PHP = "PHP",
-//   GO = "Go",
-//   SWIFT = "Swift",
-//   KOTLIN = "Kotlin",
-//   RUST = "Rust",
-//   AUTO_TEST = "Автоматизированное тестирование",
-//   MANUAL_TEST = "Ручное тестирование",
-//   PERFORMANCE_TEST = "Тестирование производительности",
-//   UI_UX = "UI/UX дизайн",
-//   DRAPHIC_DESIGN = "Графический дизайн",
-//   PROTO_DESIGN = "Прототипирование",
-//   DATA_PROTECTION = "Защита данных",
-//   PENTESTING = "Пентестинг",
-//   INCIDENT_MANAGEMENT = "Управление инцидентами",
-//   TECH_WRITING = "Техническое письмо",
-//   USER_GUIDE = "Руководства пользователя",
-//   INTERNAL_DOCUMENTATION = "Внутренняя документация",
-// }
+export const skills: string[] = [
+  "Java",
+  "Spring",
+  "Typescript",
+  "Аналитическое мышление",
+  "Самоконтроль",
+  "Эффективная коммуникация",
+  "SQL",
+  "Docker",
+  "CI/CD",
+  "Kubernetes",
+  "Git",
+];
+export const roles: string[] = [
+  "DevOps Engineer",
+  "Frontend developer",
+  "Backend Developer",
+];
