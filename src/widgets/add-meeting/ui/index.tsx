@@ -1,8 +1,7 @@
 import { BaseButton, BaseCard } from "@/shared/ui";
 import { useSlot } from "@/entities/slot";
 import { style, styleBoxCard } from "./styles";
-import { teamsApi, Team } from "@/features/add-users-meeting";
-//import { meetingsApi } from "@/entities/meeting";
+import { teamsApi, Team } from "@/features/add-team-meeting";
 import React, { lazy, useState } from "react";
 import {
   TextField,
@@ -14,42 +13,25 @@ import {
   SelectChangeEvent,
   MenuItem,
 } from "@mui/material";
-import { useAppDispatch, useDebounce } from "@/shared/lib/hooks";
-import { cleanUsersTeam } from "@/entities/meeting";
-
-const LazyAddUsers = lazy(() => import("@/features/add-users-meeting"));
+import { useDebounce } from "@/shared/lib/hooks";
+import { addMeeting } from "../lib/hooks";
+const LazyAddUsers = lazy(() => import("@/features/add-team-meeting"));
 
 export const AddMeeting = ({ children }: { children: React.ReactNode }) => {
   const { data } = teamsApi.useGetAllTeamsQuery();
-  const dispatch = useAppDispatch();
   const [team, setTeam] = useState<string>("");
   const handleChangeTeams = (event: SelectChangeEvent<string>) => {
     setTeam(event.target.value);
-    dispatch(cleanUsersTeam());
   };
   const debounceValue = useDebounce(team, 200);
   const [description, setDescription] = useState<string>("");
-  // const [createNewMeeting] = meetingsApi.useCreateMeetingMutation();
-  // const [updateSlotAvalible] = slotsApi.useUpdateSlotAvalibleMutation();
 
   const { slotAtribiutes } = useSlot();
-  const { slot_id, date, start_time, end_time, slot_type } = slotAtribiutes;
+  const { date, start_time, end_time, slot_type } = slotAtribiutes;
 
   const createMeeting = () => {
-    // createNewMeeting({
-    //   slot_id,
-    //   start_time,
-    //   end_time,
-    //   meeting_type: slot_type,
-    //user_ids:
-    // }).then(() => updateSlotAvalible({ slot_id: slot_id, is_avalible: false }));
-    console.log({
-      slot_id,
-      start_time,
-      end_time,
-      meeting_type: slot_type,
-    });
     setDescription("");
+    addMeeting(description, team);
   };
   return (
     <Container>
@@ -73,7 +55,8 @@ export const AddMeeting = ({ children }: { children: React.ReactNode }) => {
               </MenuItem>
             ))}
         </Select>
-        {/* {debounceValue && <LazyAddUsers team={debounceValue} />} */}
+        {debounceValue && <LazyAddUsers team={debounceValue} />}
+
         {children}
         <TextField
           id="outlined-textarea"

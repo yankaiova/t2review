@@ -11,9 +11,11 @@ export const CompleteMeeting = ({ meeting_id }: { meeting_id: number }) => {
     setValue(newValue);
     console.log(newValue, e.currentTarget);
   };
+
   const [updateStatus] = meetingsApi.useSetMeetingStatusMutation();
   const completeMeeting = () => {
-    updateStatus({ meeting_id: meeting_id, status: "completed" });
+    updateStatus({ meeting_id: meeting_id, meeting_status: "завершена" });
+    closeModal();
   };
 
   return (

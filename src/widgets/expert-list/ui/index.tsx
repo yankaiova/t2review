@@ -19,6 +19,9 @@ export const ExpertList = () => {
     const { data } = specialistsApi.useGetExpertsByFilterQuery(position);
     console.log(data);
   }
+  const experts = users;
+  const { data: specialist } =
+    specialistsApi.useGetExpertsByFilterQuery("Backend");
   // const { query, chosenOptions } = useSearchExpert();
   // const [experts, setExperts] = useState<User[]>([...users]);
   // const [expertByQuery] = specialistsApi.useGetExpertsByQueryMutation();

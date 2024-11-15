@@ -1,32 +1,6 @@
-import { Meeting, Slot, User, Comment, Material } from "@/shared/model/types";
-export const comments: Comment[] = [
-  {
-    comment_id: 25,
-    meeting_id: 1,
-    user_id: 23,
-    comment_text: "Задание 1 проверено. Исправить замечания",
-    create_time: "10-10-2024 12:00:00",
-  },
-  {
-    comment_id: 26,
-    meeting_id: 1,
-    user_id: 1,
-    comment_text: "Комментарий 2 содержит описание",
-    create_time: "11-10-2024 13:58:00",
-  },
-];
-export const materials: Material[] = [
-  {
-    material_id: 31,
-    meeting_id: 23,
-    material_link: "Ссылка 1",
-  },
-  {
-    material_id: 29,
-    meeting_id: 23,
-    material_link: "Ссылка 2",
-  },
-];
+import { Meeting } from "@/entities/meeting";
+import { Slot } from "@/entities/slot";
+
 export const meetings: Meeting[] = [
   {
     meeting_id: 1,

@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { SERVER_API } from "@/shared/lib/constants";
 import { Team, UserTeamResponse } from "../model/types";
+import { BaseUser } from "@/entities/meeting";
 
 export const teamsApi = createApi({
   reducerPath: "teamsApi",
@@ -17,7 +18,17 @@ export const teamsApi = createApi({
       //получение пользователя по id
       query: (id) => `/rpc/get_team_members?team_id=${id}`,
     }),
+    getUserById: build.query<BaseUser, number>({
+      //получение всех скиллов
+      query: (id) =>
+        `/userprofile?userprofileid=eq.${id}&select=firstname,lastname`,
+    }),
   }),
 });
 
-export const { useGetAllTeamsQuery, useGetUserbyTeamidQuery } = teamsApi;
+export const {
+  useGetAllTeamsQuery,
+  useGetUserbyTeamidQuery,
+  useGetUserByIdQuery,
+  useLazyGetUserbyTeamidQuery,
+} = teamsApi;

@@ -4,7 +4,6 @@ export interface Slot {
   date: string;
   start_time: string;
   end_time: string;
-  description: string;
   slot_type: "offline" | "online";
-  is_availible: boolean;
+  is_availible: "false" | "true";
 }

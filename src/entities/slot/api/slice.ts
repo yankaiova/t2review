@@ -1,31 +1,41 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { Slot } from "../model/types";
-import { SERVER_API } from "@/shared/lib/constants";
 
 export const slotsApi = createApi({
   reducerPath: "slotsApi",
-  baseQuery: fetchBaseQuery({ baseUrl: `${SERVER_API}/api/v1/slots` }),
+  baseQuery: fetchBaseQuery({ baseUrl: `http://127.0.0.1:8055/items/slot` }),
 
   endpoints: (build) => ({
-    getSlotsbyExpert: build.query<Slot[], number>({
+    getSlotsbyExpertAndDate: build.query<
+      any,
+      { creator_id: number; date: string }
+    >({
       //получить доступные слоты у эксперта
-      query: (expert_id) => `/expert_id=${expert_id}`,
+      query: ({ creator_id, date }) =>
+        `/?filter[creator_id][_eq]=${creator_id}&filter[date][_eq]=${date}`,
+      transformResponse: (response: any) => {
+        return response.data;
+      },
     }),
-    getSlotbyId: build.query<Slot, number>({
-      //получение cлота по id
-      query: (id) => `/${id}`,
+    getSlotsbyExpert: build.query<any, number>({
+      //получить доступные слоты у эксперта
+      query: (creator_id) => `/?filter[creator_id][_eq]=${creator_id}`,
+      transformResponse: (response: any) => {
+        return response.data;
+      },
     }),
     createSlot: build.mutation<Slot, Partial<Slot>>({
       //добавление - создание слота
-      query: ({ creator_id, start_time, end_time, slot_type }) => ({
+      query: ({ creator_id, start_time, date, end_time, slot_type }) => ({
         url: "",
         method: "POST",
         body: {
           creator_id,
           start_time,
+          date,
           end_time,
           slot_type,
-          is_avalible: true,
+          is_availible: "true",
         },
       }),
     }),
@@ -33,14 +43,14 @@ export const slotsApi = createApi({
       void,
       {
         slot_id: number;
-        is_avalible: boolean;
+        is_availible: string;
       }
     >({
       //слот недоступен теперь (занят) или свободен
-      query: ({ slot_id, is_avalible }) => ({
-        url: `/${slot_id}/availability`,
+      query: ({ slot_id, is_availible }) => ({
+        url: `/${slot_id}`,
         method: "PATCH",
-        body: { slot_id, is_avalible },
+        body: { is_availible },
       }),
     }),
     updateSlotEndTime: build.mutation<
@@ -52,9 +62,16 @@ export const slotsApi = createApi({
     >({
       //продление слота при продлении встречи
       query: ({ slot_id, end_time }) => ({
-        url: `/${slot_id}/end_time`,
+        url: `/${slot_id}`,
         method: "PATCH",
-        body: { slot_id, end_time },
+        body: { end_time },
+      }),
+    }),
+    deleteSlot: build.mutation<void, number>({
+      //продление слота при продлении встречи
+      query: (id) => ({
+        url: `/${id}`,
+        method: "DELETE",
       }),
     }),
   }),
@@ -63,7 +80,7 @@ export const slotsApi = createApi({
 export const {
   useCreateSlotMutation,
   useGetSlotsbyExpertQuery,
-  useLazyGetSlotbyIdQuery,
+  useLazyGetSlotsbyExpertAndDateQuery,
   useUpdateSlotAvalibleMutation,
   useUpdateSlotEndTimeMutation,
 } = slotsApi;

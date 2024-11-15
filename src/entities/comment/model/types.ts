@@ -1,7 +1,7 @@
 export interface Comment {
-  comment_id: number;
+  comment_id: string;
   meeting_id: number;
   user_id: number;
-  create_time: string;
+  date_created: string;
   comment_text: string;
 }

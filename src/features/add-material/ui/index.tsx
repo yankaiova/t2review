@@ -1,4 +1,4 @@
-import { useMaterials } from "@/entities/meeting";
+import { useMaterials } from "@/entities/material";
 import { useModal } from "@/shared/lib/hooks";
 import { BaseButton, BaseFormDialog } from "@/shared/ui";
 import { useState } from "react";

@@ -1,11 +1,5 @@
 export { MeetingItem } from "./ui";
 export { meetingsApi } from "./api/slice";
-export { useCalendar, useMaterials } from "./lib/hook";
-export {
-  addUserTeam,
-  removeUserTeam,
-  cleanUsersTeam,
-  meetingSlice,
-} from "./model/slice";
-export { getUsersTeam } from "./model/selectors";
+export { useCalendar } from "./lib/hook";
+export { meetingSlice } from "./model/slice";
 export { type BaseUser, type Meeting } from "./model/types";

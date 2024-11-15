@@ -2,8 +2,7 @@ import { CancelMeeting } from "@/features/cancel-meeting";
 import { useNavigate } from "react-router";
 import { ExtendMeeting } from "@/features/extend-meeting/ui";
 import { CompleteMeeting } from "@/features/complete-meeting";
-//import { meetingsApi } from "@/entities/meeting";
-import { meetings } from "@/mocks";
+import { meetingsApi } from "@/entities/meeting";
 import { Button, Menu, MenuItem } from "@mui/material";
 import { useState } from "react";
 import SettingsIcon from "@mui/icons-material/Settings";
@@ -11,8 +10,7 @@ import { BaseTypography } from "@/shared/ui";
 
 export const MeetingSettings = ({ meeting_id }: { meeting_id: number }) => {
   const navigate = useNavigate();
-  const data = meetings.find((item) => item.meeting_id === meeting_id);
-  // const { data } = meetingsApi.useGetMeetingbyIdQuery(meetingId);
+  const { data } = meetingsApi.useGetMeetingbyIdQuery(meeting_id);
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -25,7 +23,7 @@ export const MeetingSettings = ({ meeting_id }: { meeting_id: number }) => {
   if (!data) return;
 
   const rescheduleMeeting = () => {
-    navigate(`/meeting/${meeting_id}/expert/${data.expert_id}`);
+    navigate(`/meeting/${meeting_id}/reschudale/expert/${data.expert_id}`);
   };
 
   return (

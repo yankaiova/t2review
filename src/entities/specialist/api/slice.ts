@@ -26,7 +26,7 @@ export const specialistsApi = createApi({
     getExpertsByFilter: build.query<UserProfileResponse[], string>({
       //получить экспертов по фильтрам
       query: (position) => ({
-        url: `${position}`,
+        url: `?position=${position}`,
         method: "GET",
       }),
     }),

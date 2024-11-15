@@ -1,17 +1,15 @@
 import { BaseTypography } from "@/shared/ui";
 import { useParams } from "react-router-dom";
-import { CommentItem } from "@/entities/comment";
-import { Comment } from "@/shared/model/types";
+import { CommentItem, Comment, commentsApi } from "@/entities/comment";
 import { NameUser } from "@/features/user-name";
-import { comments } from "@/mocks";
 import { Stack } from "@mui/material";
 
 export const CommentList = () => {
   const { meetingId } = useParams();
-  const data = comments.filter((item) => item.meeting_id === Number(meetingId));
-  // const { data } = commentsApi.useGetAllCommentsByMeetingQuery(
-  //   Number(meetingId)
-  // );
+  const { data } = commentsApi.useGetAllCommentsByMeetingQuery(
+    Number(meetingId)
+  );
+  console.log(data);
   if (!data) {
     return <BaseTypography>Пока нет комментариев</BaseTypography>;
   }
