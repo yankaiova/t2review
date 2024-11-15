@@ -6,7 +6,6 @@ import { usersSlice, specialistsApi } from "@/entities/specialist";
 import { commentsApi } from "@/entities/comment";
 import { authSlice, authApi, listenerMiddlewareAuth } from "@/entities/auth";
 import { teamsApi } from "@/features/add-team-meeting";
-import { filtersApi } from "@/features/filters";
 import { materialsApi, materialSlice } from "@/entities/material";
 
 export const store = configureStore({
@@ -23,7 +22,6 @@ export const store = configureStore({
     [specialistsApi.reducerPath]: specialistsApi.reducer,
     [commentsApi.reducerPath]: commentsApi.reducer,
     [teamsApi.reducerPath]: teamsApi.reducer,
-    [filtersApi.reducerPath]: filtersApi.reducer,
   },
 
   middleware: (getDefaultMiddleware) =>
@@ -35,8 +33,7 @@ export const store = configureStore({
         specialistsApi.middleware,
         materialsApi.middleware,
         teamsApi.middleware,
-        commentsApi.middleware,
-        filtersApi.middleware
+        commentsApi.middleware
       )
       .prepend(listenerMiddlewareAuth.middleware),
 });

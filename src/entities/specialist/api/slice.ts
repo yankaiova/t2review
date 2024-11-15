@@ -5,11 +5,11 @@ import { UserProfileResponse } from "../model/types";
 export const specialistsApi = createApi({
   reducerPath: "specialistsApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: SERVER_API.PROFILE,
+    baseUrl: `${SERVER_API.PROFILE}/api/v1`,
     prepareHeaders: (headers) => {
       headers.set(
         "X-API-TOKEN",
-        "3GXJiyB2SmiGf0O7j-U0luHjm-mrEFU6DB-D86rWRopwalYwzEEhaCLjiE4OOOFd"
+        "eyJhbGciOiJIUzM4NCJ9.eyJyb2xlIjp7ImlkIjoxLCJuYW1lIjoiUk9MRV9BRE1JTiJ9LCJpZCI6MSwic3ViIjoiYWRtaW4iLCJpYXQiOjE3MzE2NjkwODAsImV4cCI6MTczMTY4NzA4MH0.XcOxmgXTthzJMTgPBgX32V_6GJsZut4C93RldJPSzd3cOdvfJFNXc8vVprkTnmKi"
       );
       return headers;
     },
@@ -25,8 +25,8 @@ export const specialistsApi = createApi({
     }),
     getExpertsByFilter: build.query<UserProfileResponse[], string>({
       //получить экспертов по фильтрам
-      query: (position) => ({
-        url: `?position=${position}`,
+      query: () => ({
+        url: `/specialists?position=Backend%20Developer&skill=null&level=null`,
         method: "GET",
       }),
     }),
